@@ -6,7 +6,7 @@
 
 #### By _**[Panaintescu Adrian-Valentin](https://github.com/AdrianCert/)**_
 #### By _**[Baciu Dragoș](https://github.com/Dragos101/)**_
-#### By _**[Bordea Ioan](https://github.com/AdrianCert/)**_
+#### By _**[Bordea Ioan](https://github.com/JohnBordea/)**_
 
 
 ## Requirement
@@ -27,3 +27,5 @@
 _[Panaintescu Adrian-Valentin (adrian.cert@gmail.com)](mailto:adrian.cert@gmail.com)_
 
 _[Baciu Dragos (baciu.dragos17@gmail.com)](mailto:baciu.dragos17@gmail.com)_
+
+_[Bordea Ion (johnbordea@gmail.com)](mailto:johnbordea@gmail.com)_
