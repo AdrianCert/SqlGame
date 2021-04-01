@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+}
+
+.page-error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #002626;
+  height: 100vh;
+}
+
+.page-error svg {
+  height: 50vmin;
+  margin-left: 20vmin;
+}
+
+.page-error svg :first-child {
+  fill: #002626;
+  stroke: #c8cfc6;
+}
+
+.page-error span {
+  color: #f0f7ee;
+  font-size: 6vmin;
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 2em;
+}

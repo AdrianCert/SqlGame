@@ -1,0 +1,31 @@
+$color-primary: #002626;
+$color-secondary: #f0f7ee;
+
+body {
+    margin : 0;
+}
+
+.page-error {
+    display: flex;
+    align-items: center;
+    background-color: $color-primary;
+    height: 100vh;
+
+    svg {
+        height : 50vmin;
+        margin-left: 20vmin;
+
+        :first-child {
+            fill : $color-primary;
+            stroke: $color-secondary - 040;
+        }
+    }
+
+    span {
+        color: $color-secondary;
+        font-size: 6vmin;
+        text-align: center;
+        padding-left: 1em;
+        padding-right: 2em;
+    }
+}
