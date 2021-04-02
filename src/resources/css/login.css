@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #e67e22;
+}
+
+.container {
+  background-image: url("C:/Users/40749/OneDrive/Desktop/Facultate/ProiectTW/login.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 300px;
+  padding: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 24px;
+}
+
+.container h1 {
+  color: #e67e22;
+}
+
+.container input[id=username], input[id=password] {
+  border: 0;
+  background: none;
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  border: 3px solid #e67e22;
+  padding: 10px 10px;
+  color: white;
+  outline: none;
+  width: 200px;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.container input[id=username]:focus, input[id=password]:focus {
+  width: 220px;
+}
+
+.container button[value=Login] {
+  width: 50px;
+  border: 0;
+  text-align: center;
+  padding: 10px 10px;
+  background: #e67e22;
+}
