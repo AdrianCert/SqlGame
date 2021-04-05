@@ -19,17 +19,18 @@ body{
 .col_30{
     width: 30%;
     float: left;
+
+    p{
+        margin: 20px auto;
+        padding: 10px 10px;
+        text-align: right;
+    }
 }
 
 .col_70{
+    margin: 20px auto;
     width: 70%;
     float: right;
-}
-
-.col_30 p{
-    margin: 20px auto;
-    padding: 10px 10px;
-    text-align: right;
 }
 
 .col_50_1{
@@ -75,7 +76,7 @@ body{
     }
 
     button{
-        padding: 1em 2em;
+        padding: 1em 1em;
         text-align: center;
         background: $background_color;
         outline: none;
@@ -95,19 +96,35 @@ body{
 
 @media only screen and (max-device-width: 800px) {
     .wizzard {
-
         width: 80vw;
-
         .row {
             > * {
                 width: 100%;
                 margin: 0;
                 padding: 1em 0 0 0;
             }
-
             p {
                 text-align: center;
             }
         }
     }
 }
+
+
+@media only screen and (max-device-height: 600px) {
+    .wizzard{
+        width: 80vh;
+        .row{
+            p{
+                font-size: 4vmin;
+                text-align: center;
+            }
+            input,textarea{
+                font-size: 4vmin;
+                text-align: center;
+            }
+            
+        }
+    }
+}
+

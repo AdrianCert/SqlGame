@@ -16,15 +16,16 @@ body {
   float: left;
 }
 
-.col_70 {
-  width: 70%;
-  float: right;
-}
-
 .col_30 p {
   margin: 20px auto;
   padding: 10px 10px;
   text-align: right;
+}
+
+.col_70 {
+  margin: 20px auto;
+  width: 70%;
+  float: right;
 }
 
 .col_50_1 {
@@ -39,7 +40,6 @@ body {
 
 .col_100 {
   width: 100%;
-  float: center;
 }
 
 .wizzard {
@@ -50,11 +50,9 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   text-align: center;
   border-radius: 23px;
-  -webkit-transition: 0.15s;
   transition: 0.15s;
 }
 
@@ -74,13 +72,12 @@ body {
 }
 
 .wizzard button {
-  padding: 1em 2em;
+  padding: 1em 1em;
   text-align: center;
   background: #245f78;
   outline: none;
   color: #a2a391;
   width: 100px;
-  float: center;
 }
 
 .wizzard p {
@@ -91,7 +88,7 @@ body {
   display: none;
 }
 
-@media only screen and (max-device-width: 800px) {
+@media only screen and (max-width: 800px) {
   .wizzard {
     width: 80vw;
   }
@@ -101,6 +98,20 @@ body {
     padding: 1em 0 0 0;
   }
   .wizzard .row p {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  .wizzard {
+    width: 80vh;
+  }
+  .wizzard .row p {
+    font-size: 4vmin;
+    text-align: center;
+  }
+  .wizzard .row input, .wizzard .row textarea {
+    font-size: 4vmin;
     text-align: center;
   }
 }

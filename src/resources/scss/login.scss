@@ -1,7 +1,7 @@
-$body_color:#e67e22;
+$body_color:#245f78;
 $h1_color:black;
-$form_color:green;
-$text_color:white;
+$form_color:#a2a391;
+$text_color:#a2a391;
 
 body{
     margin: 0;
@@ -10,12 +10,9 @@ body{
     background-color: $body_color;    
 }
 
-
-.container{
-    background-image: url("C:/Users/40749/OneDrive/Desktop/Facultate/ProiectTW/login.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
+.wizzard{
+    background-color: $form_color;
+    width: 30vmax;
     padding: 30px;
     position: absolute;
     top: 50%;
@@ -25,32 +22,53 @@ body{
     border-radius: 24px;
 }
 
-.container h1{
-    color: $body_color;
+.login-forum{
+
+    .row{
+        width: 100%;
+    }
+
+    h1{
+        color: $body_color;
+    }
+
+    input{
+        text-align: center;
+        background: none;
+        outline: none;
+        border: 3px solid $background_color;
+        width: 70%;
+        border-radius: 23px;
+        resize: none;
+        font-size: 2em;
+        &:focus{
+            width: calc(70% + 10px);
+        }
+    }
+
+    button{
+        padding: 1em 1em;
+        text-align: center;
+        background: $form_color;
+        outline: none;
+        color: $input_color;
+        width: 100px;
+        float: center;
+    }
 }
 
-.container input[id = username], input[id = password]{
-    border : 0;
-    background:none;
-    display: block;
-    text-align: center;
-    margin: 20px auto;
-    border: 3px solid $body_color;
-    padding: 10px 10px;
-    color: $text_color;
-    outline: none;
-    width: 200px;
-    transition: 0.25s;
-}
-
-.container input[id = username]:focus, input[id = password]:focus{
-    width: 220px;
-}
-
-.container button[value = Login]{
-    width: 50px;
-    border : 0;
-    text-align: center;
-    padding: 10px 10px;
-    background: $body_color;
+@media only screen and (max-device-width: 800px) {
+    .wizzard {
+        width: 80vw;
+        .row {
+            > * {
+                width: 100%;
+                margin: 0;
+                padding: 1em 0 0 0;
+            }
+            p {
+                text-align: center;
+            }
+        }
+    }
 }

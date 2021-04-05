@@ -2,51 +2,53 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: #e67e22;
+  background-color: #245f78;
 }
 
-.container {
-  background-image: url("C:/Users/40749/OneDrive/Desktop/Facultate/ProiectTW/login.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 300px;
+.wizzard {
+  background-color: #a2a391;
+  width: 30vmax;
   padding: 30px;
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   text-align: center;
   border-radius: 24px;
 }
+  .row{
+    width: 100%;
+  }
 
-.container h1 {
-  color: #e67e22;
+.login-forum h1 {
+  color: #245f78;
 }
 
-.container input[id=username], input[id=password] {
+.login-forum input {
   border: 0;
   background: none;
   display: block;
   text-align: center;
   margin: 20px auto;
-  border: 3px solid #e67e22;
+  border: 3px solid #245f78;
   padding: 10px 10px;
-  color: white;
+  color: #a2a391;
   outline: none;
-  width: 200px;
+  width: 15vmax;
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
 
-.container input[id=username]:focus, input[id=password]:focus {
-  width: 220px;
+.login-forum input:focus {
+  width: 16vmax;
 }
 
-.container button[value=Login] {
+.login-forum button {
   width: 50px;
   border: 0;
   text-align: center;
+  color: #a2a391;
   padding: 10px 10px;
-  background: #e67e22;
+  background: #245f78;
+  outline: none;
 }
