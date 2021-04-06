@@ -1,0 +1,20 @@
+<users>
+    <user>
+        <id>0001</id>
+        <username>BoRdEa2@00</username>
+        <email>ion@mail.com</email>
+        <sqlid>13</sqlid>
+    </user>
+    <user>
+        <id>0002</id>
+        <username>Adrian</username>
+        <email>panaintescu@mail.com</email>
+        <sqlid>21</sqlid>
+    </user>
+    <user>
+        <id>0003</id>
+        <username>Dragos</username>
+        <email>baciu@mail.com</email>
+        <sqlid>17</sqlid>
+    </user>
+</users>

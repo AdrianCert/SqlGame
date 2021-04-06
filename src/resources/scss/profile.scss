@@ -1,0 +1,216 @@
+$background_color: #052338;
+$input_color:#e9f5fd;
+$text_color:#031724;
+$disabled_button:#202020;
+
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+    background-color: $background_color;
+}
+
+.row{
+    margin: 0;
+    padding: 1em 0 0 0;
+}
+
+//pentru details
+.row::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.profile_container{
+    width: 30%;
+    height: 100%;
+    float: left;
+}
+
+/*.container{
+    position: relative;
+}*/
+
+.profile_picture{
+    opacity: 1;
+    display: block;
+    width:90%;
+    border-radius: 50%;
+    border: 3px solid $background_color;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+/*.edit_text_prompt{
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.container:hover .profile_picture {
+    opacity: 0.3;
+}
+
+.container:hover .edit_text_prompt {
+    opacity: 1;
+}
+
+.text {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+}*/
+
+#change_profile_picture{
+    display: none;
+}
+
+.col_70{
+    width: 70%;
+    float: right;
+}
+
+.col_30{
+    width: 30%;
+    float: left;
+}
+
+.col_30 p{
+    margin: 10px auto;
+    padding: 0px 20px 0px;
+    text-align: right;
+}
+
+
+
+.col_100{
+    width: 100%;
+}
+
+.wizzard {
+    background-color: $input_color;
+    width: 70vw;
+    height: auto;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 23px;
+    transition: 0.15s;
+
+    input, textarea {
+        text-align: center;
+        background: none;
+        outline: none;
+        border: 3px solid $background_color;
+        width: 70%;
+        border-radius: 23px;
+        resize: none;
+        font-size: 2em;
+        &:focus{
+            width: calc(70% + 10px);
+        }
+    }
+
+    .disabled_button{
+        padding: 1em 2em;
+        text-align: center;
+        background: $disabled_button;
+        outline: none;
+        color: $input_color;
+        width: 100px;
+    }
+
+    .enabled_button{
+        padding: 1em 2em;
+        text-align: center;
+        background: $text_color;
+        outline: none;
+        color: $input_color;
+        width: 100px;
+    }
+
+    p {
+        font-size: 4vmin;
+    }
+}
+
+.offline {
+    display: none;
+}
+
+@media only screen and (max-width: 800px) {
+    .wizzard {
+
+        width: 80vw;
+        margin-top: 10vh;
+
+        .row {
+            > * {
+                width: 100%;
+                margin: 0;
+                padding: 1em 0 0 0;
+            }
+
+            p {
+                text-align: center;
+            }
+        }
+
+        .profile_container{
+            width: 100%;
+
+            .profile_picture{
+                width:30%;
+                border-radius: 50%;
+                border: 3px solid $background_color;
+            }
+        }
+
+        .title{
+            display: none;
+        }
+    }
+}
+
+@media only screen and (max-device-width: 800px) {
+    .wizzard {
+
+        width: 80vw;
+
+        .row {
+            > * {
+                width: 100%;
+                margin: 0;
+                padding: 1em 0 0 0;
+            }
+
+            p {
+                text-align: center;
+            }
+        }
+
+        .profile_container{
+            width: 100%;
+
+            .profile_picture{
+                width:40%;
+                border-radius: 50%;
+                border: 3px solid $background_color;
+            }
+        }
+
+        .title{
+            display: none;
+        }
+    }
+}

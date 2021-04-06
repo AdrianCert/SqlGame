@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="ro">
+<head>
+    <link rel="stylesheet" href="../resources/css/profile.css">
+    <script src="../resources/js/profile.js"></script>
+    <title>Profile Page</title>
+</head>
+<body>
+    <div class="wizzard">
+        <h2 class="title">Profile Page</h2>
+        <div class="row">
+            <div class="profile_container">
+                <img id="profile_picture" class="profile_picture" src="." alt="Profile Picture">
+                <input type="file" id="change_profile_picture" accept="image/*" onchange="previewFile()" src="../resources/img/0001.jpg">
+                <br>
+                <button id="edit_button">Edit</button>
+            </div>
+            <div class="col_70">
+                <div class="col_30">
+                    <p>Nume: </p>
+                </div>
+                <div class="col_70">
+                    <input type="text" id="name" placeholder="Bordea" value="Bordea" required>
+                </div>
+            </div>
+            <div class="col_70">
+                <div class="col_30">
+                    <p>Prenume: </p>
+                </div>
+                <div class="col_70">
+                    <input type="text" id="surname" placeholder="Ion" value="Ion" required>
+                </div>
+            </div>
+            <div class="col_70">
+                <div class="col_30">
+                    <p>Username: </p>
+                </div>
+                <div class="col_70">
+                    <input type="text" id="username" placeholder="BoRdEa2@00" value="BoRdEa2@00" required>
+                </div>
+            </div>
+            <div class="col_70">
+                <div class="col_30">
+                    <p>Email: </p>
+                </div>
+                <div class="col_70">
+                    <input type="email" id="email" placeholder="ion@mail.com" value="ion@mail.com" required>
+                </div>
+            </div>
+            <div class="col_70">
+                <div class="col_30">
+                    <p>SQLitz: </p>
+                </div>
+                <div class="col_70">
+                    <input type="text" id="sqlid" placeholder="#" value="13" readonly>
+                </div>
+            </div>
+            <div class="col_70">
+                <div class="col_30">
+                    <p>Rank: </p>
+                </div>
+                <div class="col_70">
+                    <input type="text" id="rank" placeholder="#" value="#3" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
