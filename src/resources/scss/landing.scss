@@ -11,7 +11,7 @@ header{
     background-color: $header_color;
     
     @supports(background-blend-mode: multiply){
-        background-image: url("C:/Users/40749/OneDrive/Desktop/Facultate/ProiectTW/landing/background.png");
+        background-image: url('background.png');
         background-repeat: no-repeat;
         background-blend-mode: multiply;
     }
@@ -118,7 +118,7 @@ header{
 
 ::-webkit-scrollbar-track{
     border: 7px solid black;
-    box-shadow: $text_color;
+    box-shadow: none;
 }
 
 ::-webkit-scrollbar-thumb{

@@ -16,7 +16,7 @@ header {
 
 @supports (background-blend-mode: multiply) {
   header {
-    background-image: url("C:/Users/40749/OneDrive/Desktop/Facultate/ProiectTW/landing/background.png");
+    background-image: url("background.png");
     background-repeat: no-repeat;
     background-blend-mode: multiply;
   }
@@ -147,8 +147,8 @@ header .head-info .content .butoane h3 {
 
 ::-webkit-scrollbar-track {
   border: 7px solid black;
-  -webkit-box-shadow: #a2a391;
-          box-shadow: #a2a391;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 ::-webkit-scrollbar-thumb {
