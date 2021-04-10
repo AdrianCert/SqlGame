@@ -64,9 +64,9 @@ body {
 }
 
 .tag:hover {
-  cursor: default;
+  cursor: pointer;
   color: #e9f5fd;
-  background-color: #031724;
+  background-color: #052338;
 }
 
 .info {
@@ -158,7 +158,7 @@ body {
 
 .wizzard {
   background-color: #e9f5fd;
-  width: 65vw;
+  width: 60vw;
   margin-top: 10vh;
   height: auto;
   padding: 30px;
@@ -178,9 +178,25 @@ body {
   }
 }
 
-@media only screen and (max-device-width: 800px) {
-  .wizzard {
-    width: 80vw;
-  }
+::-webkit-scrollbar {
+  width: 15px;
 }
+
+::-webkit-scrollbar-track {
+  border: 7px solid black;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: -webkit-gradient(linear, left top, left bottom, from(#052338), to(#a2a391));
+  background: linear-gradient(#052338, #a2a391);
+  border-radius: 23px;
+}
+
+/*@media only screen and (max-device-width: 800px) {
+    .wizzard {
+        width: 80vw;
+    }
+}*/
 /*# sourceMappingURL=news.css.map */
