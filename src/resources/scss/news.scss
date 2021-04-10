@@ -70,9 +70,9 @@ body{
 }
 
 .tag:hover{
-    cursor: default;
+    cursor: pointer;
     color: $input_color;
-    background-color: $text_color;
+    background-color: $background_color;
 }
 
 .info {
@@ -162,7 +162,7 @@ body{
 
 .wizzard {
     background-color: $input_color;
-    width: 65vw;
+    width: 60vw;
     margin-top: 10vh;
     height: auto;
     padding: 30px;
@@ -182,8 +182,8 @@ body{
     }
 }
 
-@media only screen and (max-device-width: 800px) {
+/*@media only screen and (max-device-width: 800px) {
     .wizzard {
         width: 80vw;
     }
-}
+}*/
