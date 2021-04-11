@@ -182,6 +182,20 @@ body{
     }
 }
 
+::-webkit-scrollbar{
+    width: 15px;
+}
+
+::-webkit-scrollbar-track{
+    border: 7px solid black;
+    box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(#052338, #a2a391);
+    border-radius: 23px;
+}
+
 /*@media only screen and (max-device-width: 800px) {
     .wizzard {
         width: 80vw;
