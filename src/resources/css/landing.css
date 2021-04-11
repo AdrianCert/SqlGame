@@ -16,7 +16,7 @@ header {
 
 @supports (background-blend-mode: multiply) {
   header {
-    background-image: url("../resources/img/background.png");
+    background-image: url("../img/background.png");
     background-repeat: no-repeat;
     background-blend-mode: multiply;
   }
