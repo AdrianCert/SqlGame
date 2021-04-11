@@ -48,7 +48,7 @@ body{
 }
 img{
     width: 100%;
-    height: calc(#{width});
+    max-width: 300px;
     border-radius: 50%;
     border: 3px solid $background_color;
 }
