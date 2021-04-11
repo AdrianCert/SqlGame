@@ -22,7 +22,6 @@ function setProfileInfo(json){
 
     document.getElementById("profile_picture").src = "../resources/img/" + jsonDoc.id + ".png";
     document.getElementById("profile_picture").alt = document.getElementById("profile_picture").src;
-    document.getElementById("profile_picture").height = document.getElementById("profile_picture").width;
 
     document.getElementById("sqlid").placeholder = jsonDoc.sqlid;
     document.getElementById("sqlid").value = jsonDoc.sqlid;
@@ -48,9 +47,9 @@ function changeProfileInfo(){
         document.getElementById("surname").placeholder = document.getElementById("surname").value;
     }
 
-    if(!(document.getElementById("profile_picture").src == document.getElementById("profile_picture").alt)){
+    /*if(!(document.getElementById("profile_picture").src == document.getElementById("profile_picture").alt)){
         document.getElementById("profile_picture").alt = document.getElementById("profile_picture").src;
-    }
+    }*/
 
     document.getElementById("edit_button").classList.add("disabled_button");
     document.getElementById("edit_button").classList.remove("enabled_button");
@@ -92,11 +91,11 @@ function edited_photo(){
 }
 
 function edited(){
-    return edited_username() | edited_email() | edited_name() | edited_surname() | edited_photo();
+    return edited_username() | edited_email() | edited_name() | edited_surname() /*| edited_photo()*/;
 }
 
 function previewFile() {
-    const preview = document.getElementById('profile_picture');
+    /*const preview = document.getElementById('profile_picture');
     const file = document.getElementById('change_profile_picture').files[0];
     const reader = new FileReader();
   
@@ -114,12 +113,7 @@ function previewFile() {
             document.getElementById("edit_button").classList.remove("enabled_button");
         }
         
-    }
-}
-
-function resize_profile(){
-    document.getElementById("profile_picture").height = document.getElementById("profile_picture").width;
-    setTimeout(resize_profile, 500);
+    }*/
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -194,29 +188,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         photo_input.addEventListener("click", function(){
             document.getElementById("change_profile_picture").click();
         })
-
-        photo_input.addEventListener("onchange", function(){
-            document.getElementById("profile_picture").height = document.getElementById("profile_picture").width;
-        })
     }
-
-    document.getElementById("change_profile_picture").addEventListener("load", function(){
-
-    }, false);
 
     document.getElementById("edit_button").addEventListener("click", function(){
         if(document.getElementById("edit_button").classList.contains("enabled_button")){
             changeProfileInfo();
         }
     })
-
-    window.addEventListener("resize", function(){
-        document.getElementById("profile_picture").height = document.getElementById("profile_picture").width;
-    });
-
-    document.addEventListener("mousemove", function(){
-        document.getElementById("profile_picture").height = document.getElementById("profile_picture").width;
-    })
-
-    resize_profile();
 });
