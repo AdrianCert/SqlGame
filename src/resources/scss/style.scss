@@ -1,0 +1,125 @@
+@import "reset";
+@import "color";
+@include reset;
+
+// styling for basic tab
+@for $step from 1 through 6 {
+    h#{$step} {
+        // background-color: red;
+        font-size: #{9 - $step}em;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 80vw;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    margin: 0.25em;
+    color: inherit;
+    text-transform: uppercase;
+    white-space: normal;
+    border: 0;
+    border-radius: 0.2rem;
+    padding: 0.7em 1.4em;
+    font-size: 1em;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+
+    :not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+
+    &.btn-primary {
+        color: $c_white;
+        background-color: $c_primary !important;
+
+        &.btn-outline {
+            color: $c_primary !important;
+            background-color: transparent !important;
+            border: 2px solid $c_primary !important;
+        }
+    }
+    &.btn-default {
+        color: $c_white;
+        background-color: $c_default !important;
+
+        &.btn-outline {
+            color: $c_default !important;
+            background-color: transparent !important;
+            border: 2px solid $c_default !important;
+        }
+    }
+    &.btn-secundary {
+        color: $c_white;
+        background-color: $c_secundary !important;
+
+        &.btn-outline {
+            color: $c_secundary !important;
+            background-color: transparent !important;
+            border: 2px solid $c_secundary !important;
+        }
+    }
+    &.btn-success {
+        color: $c_white;
+        background-color: $c_success !important;
+
+        &.btn-outline {
+            color: $c_success !important;
+            background-color: transparent !important;
+            border: 2px solid $c_success !important;
+        }
+    }
+    &.btn-info {
+        color: $c_white;
+        background-color: $c_info !important;
+
+        &.btn-outline {
+            color: $c_info !important;
+            background-color: transparent !important;
+            border: 2px solid $c_info !important;
+        }
+    }
+    &.btn-warning {
+        color: $c_white;
+        background-color: $c_warning !important;
+
+        &.btn-outline {
+            color: $c_warning !important;
+            background-color: transparent !important;
+            border: 2px solid $c_warning !important;
+        }
+    }
+    &.btn-danger {
+        color: $c_white;
+        background-color: $c_danger !important;
+
+        &.btn-outline {
+            color: $c_danger !important;
+            background-color: transparent !important;
+            border: 2px solid $c_danger !important;
+        }
+    }
+
+    &.btn-round {
+        border-radius: 10em;
+    }
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.flow-off {
+    overflow: hidden;
+}
+
+.offline {
+    display: none;
+}

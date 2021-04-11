@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SqlGame Documentation</title>
+    <link rel="stylesheet" href="css/scholarly.min.css">
+    <script src="js/scholarly.min.js"></script>
+</head>
+
+<body prefix="schema: http://schema.org">
+    <header>
+        <h1>SqlGame Documentation</h1>
+    </header>
+    <div role="contentinfo">
+        <dl>
+            <dt>Autori</dt>
+            <dd>
+                <a href="https://github.com/AdrianCert/">Panaintescu Adrian-Valentin</a>
+                &amp;
+                <a href="https://github.com/Dragos101">Baciu Dragos</a>
+                &amp;
+                <a href="https://github.com/JohnBordea/">Bordea Ioan</a>
+            </dd>
+            <dt>License</dt>
+            <dd>
+                <a href="http://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+            </dd>
+        </dl>
+    </div>
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+        <h2>Abstract</h2>
+        <p> SQLGame este o aplicație web creată pentru a transforma procesul anevoios şi copleşitor de a învăţa SQL
+            într-o joacă și mult mai atractivă decât un curs clasic. Platforma este destinată pentru cei care doresc
+            să invețe sql și tot odată reprezintă un înstrument pentru grupuri formale prin crearea de borduri.
+            Aplicația se bazează pe întrebarări, care pot fii aduse și de către utizizatorii acestora.
+        </p>
+    </section>
+    <section id="introduction" role="doc-introduction">
+        <h2>Introducere</h2>
+        <p> SQLGames este proiectul pe care echipa noastră l-a ales cu scopul de a pune la îndemâna oricărui
+            elev/student o
+            platformă de E-Learning de care să se poată folosi pentru a înțelege în profunzime limbajul SQL.</p>
+    </section>
+    <section id="interfata" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+        <h2>Interfața</h2>
+        <section id="aspect" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h3>Aspect</h3>
+
+            <figure id="interfata-addq">
+                <img src="img/addq.png" width="900" height="400" alt="add page">
+                <figcaption>Adaugă o întrebare.</figcaption>
+            </figure>
+
+            <figure id="interfata-error">
+                <img src="img/error.png" width="900" height="400" alt="error page">
+                <figcaption>Pagina eroare.</figcaption>
+            </figure>
+
+            <figure id="interfata-history">
+                <img src="img/history.png" width="900" height="400" alt="history page">
+                <figcaption>Pagina Istoric.</figcaption>
+            </figure>
+
+            <figure id="interfata-landing">
+                <img src="img/landing.png" width="900" height="400" alt="landing page">
+                <figcaption>Pagina prezentare.</figcaption>
+            </figure>
+
+            <figure id="interfata-login">
+                <img src="img/login.png" width="900" height="400" alt="login page">
+                <figcaption>Pagina de logare.</figcaption>
+            </figure>
+
+            <figure id="interfata-signup">
+                <img src="img/signup.png" width="900" height="400" alt="singup page">
+                <figcaption>Pagina de înscriere.</figcaption>
+            </figure>
+
+            <figure id="interfata-news">
+                <img src="img/news.png" width="900" height="400" alt="news page">
+                <figcaption>Pagina de noutăți.</figcaption>
+            </figure>
+
+            <figure id="interfata-profile">
+                <img src="img/profile.png" width="900" height="400" alt="profile page" >
+                <figcaption>Pagina de profil.<figcaption>
+            </figure>
+
+            <figure typeof="schema:" role="doc-example" id="interfata-questions">
+                <img src="img/questions.png" width="900" height="400" alt="question page">
+                <figcaption>Pagina de întrebări.</figcaption>
+            </figure>
+        </section>
+        <section id="detalii" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Detalii interfețe</h2>
+            <section id="detalii-addq" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+                <h3>Detalii pagină adaugă o intrebare</h3>
+                <p>Utilizatorul are opțiunea de a adăuga o întrebare mai ușor ca niciodată. Interfața a fost
+                    creată prin
+                    intermediul HTML/CSS.</p>
+            </section>
+            <section id="detalii-error" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+                <h3>Detalii pagină eroare</h3>
+                <p>În cazul în care se întâmplă ceva neașteptat, pagina de eroare semnalează că ceva nu a fost
+                    în regulă.
+                    Interfața a fost creată prin intermediul HTML/CSS.</p>
+            </section>
+            <section id="detalii-history" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+                <h3>Detalii pagină istoric</h3>
+                <p>Utilizatorul își poate vedea fiecare acțiune pe pagina de istoric. Interfața a fost creată
+                    prin
+                    intermediul HTML/CSS.</p>
+            </section>
+            <section id="detalii-landing" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+                <h3>Detalii pagină prezentare</h3>
+                <p>Utilizatorul este întâmpinat de pagine de prezentare care are menirea atragerii publicului.
+                    Interfața a
+                    fost creată prin intermediul HTML/CSS.</p>
+            </section>
+            <section id="detalii-login" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+                <h3>Detalii pagină logare</h3>
+                <p>Utilizatorul se va putea loga pe site folosind pagina de login Interfața a fost creată prin
+                    intermediul
+                    HTML/CSS.</p>
+            </section>
+            <section id="detalii-signup" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+                <h3>Detalii pagină înscriere</h3>
+                <p>Utilizatorul se va putea înregistra folosind pagina de sign-up. Interfața a fost creată prin
+                    intermediul
+                    HTML/CSS.</p>
+            </section>
+            <section id="detalii-news" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+                <h3>Detalii pagină noutăți</h3>
+                <p>Utilizatorul va putea fi la curent cu tot ce se întâmplă nou pe site prin intermediul paginii
+                    "noutăți".
+                    Interfața a fost creată prin intermediul HTML/CSS.</p>
+            </section>
+            <section id="detalii-profile" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+                <h3>Detalii pagină profil</h3>
+                <p>Ofera posibilitatea de a-și vedea profilul. Interfața a fost creată prin intermediul
+                    HTML/CSS.</p>
+            </section>
+            <section id="detalii-questions" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+                <h3>Detalii pagină întrebări</h3>
+                <p>Pagina oferă posibilitatea de a viziona toate întrebarile existente pe platformă. De aici
+                    utilizatorul
+                    poate cumpăra și raspunde ulterior întrebării. Interfața a fost creată prin intermediul
+                    HTML/CSS.</p>
+            </section>
+        </section>
+    </section>
+    <section id="caracteristici" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+        <h2>Caracteristici</h2>
+        <section id="caracteristici-inregistrarea" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Înregistrarea</h2>
+            <p>
+                Utilizatorul care nu dispune de cont, poate să-și creeze unul nou. La momentul înregistrării, li se va
+                oferi 10-15 SQLizi. În locul SQLizilor, ar putea fi oferite 3 întrebări de nivel ușor care să poată
+                oferi utilizatorului o ințelegere a interfaței și a metodei de validare a răspunsului.
+            </p>
+        </section>
+        <section id="caracteristici-autentificare" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Autentificarea</h2>
+            <p>
+                Utilizatorii care dispun de cont, pot să se autentifice și să intre pe contul lor personal.
+            </p>
+        </section>
+        <section id="caracteristici-editarea-profilului" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Editarea Profilului</h2>
+            <p>
+                Fiecare utilizator poate să-și modifice profilul. Desigur, conform Politicii de Confidențialitate,
+                ceilalți utilizator vor fi capabili sa vizualizeze numele de utilizator, rank-ul, numărul de SQLizi și
+                imaginea de profil.
+            </p>
+        </section>
+        <section id="caracteristici-vizualizarea-profilului" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Vizualizarea Profilului</h2>
+            <p>
+                Utilizatorii vor fi capabili să își vizualizeze profilul. Ei vor fi capabili să vizualizeze istoricul în
+                care vor fi salvate toate încercările utilizatorului, reușite cât și nereușite, fiind ordonate în
+                ordinea efectuarii acțiunii, prima fiind cea mai recentă, ultima fiind prima actiune efectuată de către
+                utilizator.
+            </p>
+        </section>
+        <section id="caracteristici-vizualizarea-noutatilor" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Vizualizarea Noutăților</h2>
+            <p>
+                Utilizatorii vor fi capabili să vizualizeze noutățile, fiind capabili să lase comentarii și să răspundă
+                la comentariile altor utilizatori.
+            </p>
+        </section>
+        <section id="caracteristici-intrebare">
+            <h2>Interacțiunea cu Întrebări</h2>
+            <section id="caracteristici-intrebare-cumparere" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+                <h2>Cumpărarea Întrebărilor</h2>
+                <p>
+                    Fiecare utilizator va fi capabil să cumpere o întrebare, dacă își va permite.
+                </p>
+            </section>
+            <section id="caracteristici-intrebare-raspunde" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+                <h2>Răspunderea la Întrebări</h2>
+                <p>
+                    Fiecare utilizator va fi capabil să răspundă la întrebări. La răspunderea corectă la întrebare,
+                    utilizatorului i se va oferi numarul de SQLizi egal cu costul întrebării inmulțit cu 1.5, dacă
+                    întrebarea este de dificultate ușoară sau medie, cu 2, dacă întrebarea este de dificultate grea.
+                </p>
+            </section>
+            <section id="caracteristici-intrebare-creare" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+                <h2>Crearea Întrebărilor</h2>
+                <p>
+                    Fiecare utilizator va fi capabil să creeze o întrebare, dacă își va permite. Întrebările mai
+                    populare vor fi salvate, celelalte fiind șterse după trecerea unei perioade de timp.
+                </p>
+            </section>
+        </section>
+    </section>
+    <section id="infrastructura" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+        <h2>Infrastructura</h2>
+        <p>
+            Aplicația este o aplicație scalabilă bazată pe microservicii și este alcătuită din următoarele componente:
+        <ul>
+            <li>Server web</li>
+            <li>Server api</li>
+            <li>Gateway</li>
+            <li>Naming Service</li>
+            <li>Programable Worker Service</li>
+            <li>Sql Preprocessing Service</li>
+            <li>Sql Processing Service</li>
+        </ul>
+        </p>
+        <figure id="interfata-signup">
+            <img src="img/arhitectura.jpg" width="732" height="931px" alt="singup page">
+            <figcaption>Arhitectura aplicaţiei</figcaption>
+        </figure>
+        <section id="infrastructura-web" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Server web</h2>
+            <p>
+                Serverul web este componenta plincipală a plicaţieri. Acesta serveşte clienţilor care se connectează
+                pagini html și conținut static ( foi de stil, documente JavaScript, ect.). Aici se generează paginile
+                html folosind un template engine și se livrează clienților.
+            </p>
+        </section>
+        <section id="infrastructura-api" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Server api</h2>
+            <p>
+                Serverul api este componenta cea mai intens folosită din aplicație. Aceasta serveste raspunsuri sub
+                forma json a cerințelor efectuate de codul JavaScript care rulează pe browserul clientului. Astefel
+                paginile încărcate devin dinamice și se permite trecerea către o aplicație de tip WPA ( web progresive
+                application).
+            </p>
+        </section>
+        <section id="infrastructura-gateway" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Gateway</h2>
+            <p>
+                În contextul unei aplicații scalabile introducem această componentă prin care datele/ cererile sunt
+                rutate. Dacă este nevoie de a apela la un microserviciu, cererea v-a fii preluată de către această
+                componentă iar aceasta v-a furniza răspunsul primit de către microserviciu înapoi. Pentru scalabilitate
+                se v-a folosii de naming services, care asigură că orice cerere primește un răspuns (exceptand cazutile
+                excepționale când tot sistemul eșuiază).
+            </p>
+        </section>
+        <section id="infrastructura-naming-service" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Naming Service</h2>
+            <p>
+                Pe scurt naming services este un serviciu care monitorijează microserviciile din ecositem, echilibează
+                sarcinile primite. Fiecare microserviciu la pornire anuntă că este online. Este nevoie de un nume unicâ
+                prin care se identifică. Aceasta v-a fii monitorizat. Load Balancing se face prin prelucrarea în oridine
+                a cerințelor de către un microserviciu de același tip (Rount-Robbin).
+            </p>
+        </section>
+        <section id="infrastructura-programable-worker-service" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Programable Worker Service</h2>
+            <p>
+                Programable Worker Service asigură că unele acțiuni sunt efactuate la un anumit moment de timp. Această
+                preia o cerere obisnuită și o întârzie până când se ajunge la timpul dorit( data/ oră/ înterval orar).
+            </p>
+        </section>
+        <section id="infrastructura-preprocesor-service" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Sql Preprocessing Service</h2>
+            <p>
+                Interogarile Sql vor fi preprocesate pentru a stabilii corectitutinea sintatica si a de prevenii
+                efecatuarea
+                actiunilor rau intentionate.
+            </p>
+        </section>
+        <section id="infrastructura-processing-service" typeof="sa:MaterialsAndMethods" role="doc-chapter">
+            <h2>Sql Processing Service</h2>
+            <p>
+                Rezultatele unei interogari sql vor fii date de catre acest microserviciu.
+            </p>
+        </section>
+    </section>
+    <section typeof="sa:ReferenceList" id="biblio-references" role="doc-bibliography">
+        <h2>Referinţe</h2>
+        <ol>
+            <li property="schema:citation" role="doc-biblioentry" typeof="schema:ScholarlyArticle"  id="Scholarly-html"
+            resource="https://w3c.github.io/scholarly-html/">
+                <cite property="schema:name">
+                    <a href="https://w3c.github.io/scholarly-html/">Scholarly HTML</a>
+                </cite>,
+                <span property="schema:author" typeof="schema:Person">
+                    <span property="schema:name">Tzviya Siegman (Wiley)</span>&amp;
+                    <span property="schema:name">Robin Berjon</span>
+                </span>
+            </li>
+        </ol>
+    </section>
+</body>
+
+</html>
