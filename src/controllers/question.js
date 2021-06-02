@@ -1,4 +1,4 @@
-const {path} = require('./../routing');
+const Router = require('./../routing');
 const fs = require('fs').promises;
 
 async function homeView(req, res) {
@@ -12,11 +12,9 @@ async function homeView(req, res) {
 
 
 async function questionController(req, res) {
-    const pack = { 
-        "request" : req,
-        "response" : res
-    };
-    return path(pack, "/question/", homeView);
+    return new Router()
+        .path("/question/", homeView)
+        .route(req, res);
 }
 
 module.exports = questionController
