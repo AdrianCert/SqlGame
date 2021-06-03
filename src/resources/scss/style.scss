@@ -6,7 +6,86 @@
 @for $step from 1 through 6 {
     h#{$step} {
         // background-color: red;
-        font-size: #{9 - $step}em;
+        font-size: #{25 - $step}px;
+    }
+}
+
+#main {
+    float: left;
+    width: 75%;
+    margin: 12px auto;
+}
+
+#side {
+    float: left;
+    width: 25%;
+    background-color: #f1f1f1;
+    padding-left: 20px;
+}
+
+.question-slot {
+    float: left;
+    padding: 0 8px;
+}
+
+.question-box {
+    float: left;
+    width: 100%;
+    max-height: 250px;
+    background-color: white;
+    margin-top: 8px;
+    padding: 0 0 4px 2px;
+    border-radius: 12px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    border: 1px solid #BFBFBF;
+
+    &:hover {
+        background-color: #f1f1f1;
+        box-shadow: 6px 6px 5px #aaaaaa;
+    }
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+footer {
+padding: 20px;
+text-align: center;
+margin-top: 20px;
+}
+
+@media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {
+      width: 100%;
+      padding: 0;
+    }
+}
+
+body {
+    background: #f1f1f1;
+}
+
+main {
+    margin: 0 auto;
+    max-width: 95vw;
+    display: flex;
+    //float: left;
+
+    nav {
+        display: inline;
     }
 }
 
@@ -17,6 +96,20 @@
     padding-right: 1em;
     margin-left: auto;
     margin-right: auto;
+}
+
+.box {
+    background-color: $color-box;
+    border-radius: 1em 1em;
+    margin: 0em;
+    padding: 1em;
+    font-size: 2em;
+    > * {
+        margin: 0 auto;
+    }
+    a {
+        text-decoration: none;
+    }
 }
 
 .btn {
