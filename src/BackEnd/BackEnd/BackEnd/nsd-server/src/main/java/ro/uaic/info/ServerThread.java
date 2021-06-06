@@ -32,7 +32,7 @@ public class ServerThread implements Runnable {
         ServiceController.class,
         InstanceController.class,
         WebController.class,
-        UserController.class,
+        UserTableController.class,
         BoardController.class,
         BoardMembershipController.class,
         BoardPublishController.class,

@@ -4,61 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5deb625-3433-4083-b6e2-eae5b67c20b3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/BoardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/BoardMembershipController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/BoardPublishController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/HistoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/PaymentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/PostController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/QuestionAnswearController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/QuestionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/QuestionSecController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/RoleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/SchemaLocationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/SchemaTableController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/UserPermisionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/UserSecController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/UserWalletController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/WalletController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/BoardMembershipRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/BoardPublishRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/BoardRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/HistoryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/PaymentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/PostRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/QuestionAnswerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/QuestionRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/QuestionSecRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/RoleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/SchemaLocationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/SchemaTableRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/UserPermisionRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/UserSecRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/UserWalletRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/WalletRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/ServerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/BoardBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/BoardBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/BoardMembershipBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/BoardMembershipBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/BoardPublishBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/BoardPublishBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/HistoryBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/HistoryBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/PaymentBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/PaymentBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/PostBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/PostBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/QuestionAnswerBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/QuestionAnswerBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/QuestionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/QuestionBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/QuestionSecBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/QuestionSecBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/RoleBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/RoleBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/SchemaLocationBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/SchemaLocationBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/SchemaTableBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/SchemaTableBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/UserPermisionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/UserPermisionBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/UserSecBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/UserSecBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/UserWalletBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/UserWalletBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/WalletBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/builder/WalletBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/entity/SchemaTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/entity/SchemaTable.java" afterDir="false" />
-    </list>
+    <list default="true" id="d5deb625-3433-4083-b6e2-eae5b67c20b3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,7 +97,7 @@
       <workItem from="1622711192933" duration="13000" />
       <workItem from="1622790524279" duration="11384000" />
       <workItem from="1622958201027" duration="6137000" />
-      <workItem from="1623006207156" duration="6581000" />
+      <workItem from="1623006207156" duration="6935000" />
     </task>
     <servers />
   </component>
