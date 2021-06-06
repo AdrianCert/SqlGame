@@ -2,6 +2,7 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ro.uaic.info.builder.QuestionBuilder;
 import ro.uaic.info.builder.QuestionSecBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.QuestionSec;
@@ -16,8 +17,8 @@ public class QuestionSecRepository {
         statement.setInt(1, Integer.parseInt(id));
         ResultSet rd = statement.executeQuery();
         ObjectMapper objectMapper = new ObjectMapper();
-        QuestionSec question = new QuestionSecBuilder(rd);
-        return objectMapper.writeValueAsString(question);
+        if(rd.next()) return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(new QuestionSecBuilder(rd));
+        return "null";
     }
 
     public static String update(String id, String body) throws SQLException, JsonProcessingException {

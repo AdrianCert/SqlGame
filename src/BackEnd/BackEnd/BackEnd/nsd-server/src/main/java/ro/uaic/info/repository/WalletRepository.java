@@ -2,6 +2,7 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ro.uaic.info.builder.UserWalletBuilder;
 import ro.uaic.info.builder.WalletBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.Wallet;
@@ -19,8 +20,8 @@ public class WalletRepository {
         statement.setInt(1, Integer.parseInt(id));
         ResultSet rd = statement.executeQuery();
         ObjectMapper objectMapper = new ObjectMapper();
-        Wallet wallet = new WalletBuilder(rd);
-        return objectMapper.writeValueAsString(wallet);
+        if(rd.next()) return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(new WalletBuilder(rd));
+        return "null";
     }
 
     public static String update(String id, String body) throws SQLException, JsonProcessingException {

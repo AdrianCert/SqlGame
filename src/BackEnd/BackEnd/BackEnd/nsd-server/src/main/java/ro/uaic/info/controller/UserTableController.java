@@ -31,7 +31,7 @@ public class UserTableController implements DispatcherController{
                         return getById(appName);  //get by id/
                     }
                     if (method.equals(HttpMessage.METHOD.POST)) {
-                        return addUser(); //add
+                        return addUser(); //add -
                     }
                     if (method.equals(HttpMessage.METHOD.PUT)) {
                         return updateUser(appName); //update
@@ -40,11 +40,12 @@ public class UserTableController implements DispatcherController{
                         return deleteUser(appName); //delete
                     }
                 } else {
+                    System.out.println("AM INTRAT BAI");
                     if (method.equals(HttpMessage.METHOD.GET)) {
                         return viewAll(); //get all
                     }
                     if (method.equals(HttpMessage.METHOD.POST)) {
-                        return addUser();
+                        return addUser(); // ?
                     }
 
                     // todo Method not allowed

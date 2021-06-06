@@ -2,6 +2,7 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ro.uaic.info.builder.PaymentBuilder;
 import ro.uaic.info.builder.PostBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.Post;
@@ -19,8 +20,8 @@ public class PostRepository {
         statement.setInt(1, Integer.parseInt(id));
         ResultSet rd = statement.executeQuery();
         ObjectMapper objectMapper = new ObjectMapper();
-        Post post = new PostBuilder(rd);
-        return objectMapper.writeValueAsString(post);
+        if(rd.next()) return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(new PostBuilder(rd));
+        return "null";
     }
 
     public static String update(String id, String body) throws SQLException, JsonProcessingException {

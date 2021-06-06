@@ -2,6 +2,7 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ro.uaic.info.builder.UserPermisionBuilder;
 import ro.uaic.info.builder.UserSecBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.UserSec;
@@ -16,8 +17,8 @@ public class UserSecRepository {
         statement.setInt(1, Integer.parseInt(id));
         ResultSet rd = statement.executeQuery();
         ObjectMapper objectMapper = new ObjectMapper();
-        UserSec userSec = new UserSecBuilder(rd);
-        return objectMapper.writeValueAsString(userSec);
+        if(rd.next()) return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(new UserSecBuilder(rd));
+        return "null";
     }
 
     public static String update(String id, String body) throws SQLException, JsonProcessingException {

@@ -2,6 +2,7 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ro.uaic.info.builder.SchemaLocationBuilder;
 import ro.uaic.info.builder.SchemaTableBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.SchemaTable;
@@ -19,8 +20,8 @@ public class SchemaTableRepository {
         statement.setInt(1, Integer.parseInt(id));
         ResultSet rd = statement.executeQuery();
         ObjectMapper objectMapper = new ObjectMapper();
-        SchemaTable schemaTable = new SchemaTableBuilder(rd);
-        return objectMapper.writeValueAsString(schemaTable);
+        if(rd.next()) return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(new SchemaTableBuilder(rd));
+        return "null";
     }
 
     public static String update(String id, String body) throws SQLException, JsonProcessingException {

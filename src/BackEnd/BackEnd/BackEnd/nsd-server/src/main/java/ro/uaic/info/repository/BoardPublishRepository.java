@@ -2,6 +2,7 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ro.uaic.info.builder.BoardMembershipBuilder;
 import ro.uaic.info.builder.BoardPublishBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.BoardPublish;
@@ -16,8 +17,8 @@ public class BoardPublishRepository {
         statement.setInt(1, Integer.parseInt(id));
         ResultSet rd = statement.executeQuery();
         ObjectMapper objectMapper = new ObjectMapper();
-        BoardPublish board = new BoardPublishBuilder(rd);
-        return objectMapper.writeValueAsString(board);
+        if(rd.next()) return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(new BoardPublishBuilder(rd));
+        return "null";
     }
 
     public static String update(String id, String body) throws SQLException, JsonProcessingException {

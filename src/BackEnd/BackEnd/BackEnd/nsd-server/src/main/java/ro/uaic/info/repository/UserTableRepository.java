@@ -16,12 +16,12 @@ import java.util.List;
 public class UserTableRepository {
 
     public static String getById(String id) throws SQLException, JsonProcessingException {
-        PreparedStatement statement = Database.getConnection().prepareStatement("SELECT * FROM UserTable WHERE id=?");
+        PreparedStatement statement = Database.getConnection().prepareStatement("SELECT * FROM UserTable WHERE ID = ?");
         statement.setInt(1, Integer.parseInt(id));
         ResultSet rd = statement.executeQuery();
         ObjectMapper objectMapper = new ObjectMapper();
-        UserTable userTable = new UserTableBuilder(rd);
-        return objectMapper.writeValueAsString(userTable);
+        if(rd.next()) return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(new UserTableBuilder(rd));
+        return "null";
     }
 
     public static String update(String id, String body) throws SQLException, JsonProcessingException {

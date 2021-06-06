@@ -2,6 +2,7 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ro.uaic.info.builder.BoardBuilder;
 import ro.uaic.info.builder.HistoryBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.History;
@@ -16,8 +17,8 @@ public class HistoryRepository {
         statement.setInt(1, Integer.parseInt(id));
         ResultSet rd = statement.executeQuery();
         ObjectMapper objectMapper = new ObjectMapper();
-        History history = new HistoryBuilder(rd);
-        return objectMapper.writeValueAsString(history);
+        if(rd.next()) return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(new HistoryBuilder(rd));
+        return "null";
     }
 
     public static String update(String id, String body) throws SQLException, JsonProcessingException {
