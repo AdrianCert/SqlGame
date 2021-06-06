@@ -2,7 +2,16 @@ package ro.uaic.info.builder;
 
 import ro.uaic.info.entity.Role;
 
+import java.sql.ResultSet;
+
 public class RoleBuilder extends Role {
+
+    public RoleBuilder(){}
+
+    public RoleBuilder(ResultSet resultSet){
+        bind(resultSet);
+    }
+
     public RoleBuilder ID(Integer ID) {
         setID(ID);
         return this;

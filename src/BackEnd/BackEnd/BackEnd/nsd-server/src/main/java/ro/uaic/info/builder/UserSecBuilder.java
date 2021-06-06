@@ -2,9 +2,17 @@ package ro.uaic.info.builder;
 
 import ro.uaic.info.entity.UserSec;
 
+import java.sql.ResultSet;
 import java.util.Date;
 
 public class UserSecBuilder extends UserSec {
+
+    public UserSecBuilder(){}
+
+    public UserSecBuilder(ResultSet resultSet){
+        bind(resultSet);
+    }
+
     public UserSecBuilder ID(Integer ID) {
         setID(ID);
         return this;

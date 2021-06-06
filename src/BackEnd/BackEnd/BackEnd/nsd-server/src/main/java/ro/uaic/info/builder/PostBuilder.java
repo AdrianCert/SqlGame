@@ -2,7 +2,16 @@ package ro.uaic.info.builder;
 
 import ro.uaic.info.entity.Post;
 
+import java.sql.ResultSet;
+
 public class PostBuilder extends Post {
+
+    public PostBuilder(){}
+
+    public PostBuilder(ResultSet resultSet){
+        bind(resultSet);
+    }
+
     public PostBuilder ID(Integer ID) {
         setID(ID);
         return this;

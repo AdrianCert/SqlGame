@@ -32,7 +32,23 @@ public class ServerThread implements Runnable {
         ServiceController.class,
         InstanceController.class,
         WebController.class,
-        UserController.class
+        UserController.class,
+        BoardController.class,
+        BoardMembershipController.class,
+        BoardPublishController.class,
+        HistoryController.class,
+        PaymentController.class,
+        PostController.class,
+        QuestionController.class,
+        QuestionAnswearController.class,
+        QuestionSecController.class,
+        RoleController.class,
+        SchemaLocationController.class,
+        SchemaTableController.class,
+        UserPermisionController.class,
+        UserSecController.class,
+        UserWalletController.class,
+        WalletController.class
     ).collect(Collectors.toCollection(LinkedList::new));
 
     /**

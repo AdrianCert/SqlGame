@@ -2,7 +2,16 @@ package ro.uaic.info.builder;
 
 import ro.uaic.info.entity.Payment;
 
+import java.sql.ResultSet;
+
 public class PaymentBuilder extends Payment {
+
+    public PaymentBuilder(){}
+
+    public PaymentBuilder(ResultSet resultSet){
+        bind(resultSet);
+    }
+
     public PaymentBuilder ID(Integer ID) {
         setID(ID);
         return this;

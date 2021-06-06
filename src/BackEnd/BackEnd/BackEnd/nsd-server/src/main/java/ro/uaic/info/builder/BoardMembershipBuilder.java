@@ -2,7 +2,16 @@ package ro.uaic.info.builder;
 
 import ro.uaic.info.entity.BoardMembership;
 
+import java.sql.ResultSet;
+
 public class BoardMembershipBuilder extends BoardMembership {
+
+    public BoardMembershipBuilder(){}
+
+    public BoardMembershipBuilder(ResultSet resultSet){
+        bind(resultSet);
+    }
+
     public BoardMembershipBuilder id(Integer ID) {
         setID(ID);
         return this;

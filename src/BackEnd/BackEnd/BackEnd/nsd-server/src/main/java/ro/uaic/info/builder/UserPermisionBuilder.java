@@ -2,9 +2,17 @@ package ro.uaic.info.builder;
 
 import ro.uaic.info.entity.UserPermision;
 
+import java.sql.ResultSet;
 import java.util.Date;
 
 public class UserPermisionBuilder extends UserPermision {
+
+    public UserPermisionBuilder(){}
+
+    public UserPermisionBuilder(ResultSet resultSet){
+        bind(resultSet);
+    }
+
     public UserPermisionBuilder ID(Integer ID) {
         setID(ID);
         return this;

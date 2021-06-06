@@ -6,16 +6,15 @@ import ro.uaic.info.HttpMessage.HttpMessageNotFoundException;
 import ro.uaic.info.HttpMessage.HttpMessageRequest;
 import ro.uaic.info.HttpMessage.HttpMessageResponse;
 import ro.uaic.info.Service.AppInstanceService;
+import ro.uaic.info.repository.UserTableRepository;
 
+import java.sql.SQLException;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserController implements DispatcherController{
-
-    public static String mapRegex = "/user(.*)";
     private HttpMessageRequest request;
-    private final AppInstanceService service = new AppInstanceService();
 
     @Override
     public HttpMessageResponse dispatch(HttpMessageRequest httpRequest) throws HttpMessageNotFoundException {
@@ -29,94 +28,54 @@ public class UserController implements DispatcherController{
                 String appName = matcher.group(1);
                 if (!appName.isEmpty()) {
                     if (method.equals(HttpMessage.METHOD.GET)) {
-                        return viewInstanceService(appName);
+                        return getById(appName);  //get by id/
                     }
                     if (method.equals(HttpMessage.METHOD.POST)) {
-                        return registerInstanceService(appName);
+                        return addUser(); //add
                     }
                     if (method.equals(HttpMessage.METHOD.PUT)) {
-                        return updateInstanceService(appName);
+                        return updateUser(appName); //update
                     }
                     if (method.equals(HttpMessage.METHOD.DELETE)) {
-                        return deleteInstanceService(appName);
+                        return deleteUser(appName); //delete
                     }
                 } else {
                     if (method.equals(HttpMessage.METHOD.GET)) {
-                        return viewAllServices();
+                        return viewAll(); //get all
                     }
                     if (method.equals(HttpMessage.METHOD.POST)) {
-                        return registerInstanceService(appName);
+                        return addUser();
                     }
 
                     // todo Method not allowed
                     throw new AssertionError();
                 }
             }
-        } catch (JsonProcessingException e) {
+        } catch (JsonProcessingException | SQLException e) {
             e.printStackTrace();
             throw new HttpMessageNotFoundException();
         }
         throw new HttpMessageNotFoundException();
     }
 
-    /**
-     * Create operation: Add an app instance into repository
-     * @param appName The app name
-     * @return JsonResponse with the object created
-     * @throws JsonProcessingException Exception on processing instance
-     */
-    public HttpMessageResponse registerInstanceService(String appName) throws JsonProcessingException {
-        return HttpMessage.JsonResponse(service.add(appName, request.getBody()));
+    public  HttpMessageResponse getById(String appName) throws SQLException, JsonProcessingException {
+        return HttpMessage.JsonResponse(UserTableRepository.getById(appName));
     }
 
-    /**
-     * View all App instances
-     * @return JsonResponse with the list
-     * @throws JsonProcessingException Exception on processing instance
-     */
-    public HttpMessageResponse viewAllServices() throws JsonProcessingException{
-        return HttpMessage.JsonResponse(service.getAll());
+    public HttpMessageResponse updateUser(String appName) throws SQLException, JsonProcessingException {
+        return HttpMessage.JsonResponse(UserTableRepository.update(appName, request.getBody()));
     }
 
-    /**
-     * View apps list or app by id
-     * @param appName required app
-     * @return JsonResponse
-     * @throws JsonProcessingException Exception on processing instance
-     */
-    public HttpMessageResponse viewInstanceService(String appName) throws JsonProcessingException {
-        Pattern pattern = Pattern.compile(".+:(\\d+).*");
-        Matcher matcher = pattern.matcher(appName);
-        if (matcher.matches()) {
-            return HttpMessage.JsonResponse(service.getAppInstance(Integer.valueOf(matcher.group(1))));
-        }
-        return HttpMessage.JsonResponse(service.getApp(appName));
+    public HttpMessageResponse addUser() throws SQLException, JsonProcessingException {
+        return HttpMessage.JsonResponse(UserTableRepository.add(request.getBody()));
     }
 
-    /**
-     * Update operation for an instance
-     * @param appName App id
-     * @return JsonResponse with updated data
-     * @throws JsonProcessingException Exception on processing json
-     * @throws HttpMessageNotFoundException Exception on data not found
-     */
-    public HttpMessageResponse updateInstanceService(String appName)
-            throws JsonProcessingException, HttpMessageNotFoundException {
-        StringTokenizer tkn = new StringTokenizer(appName, "?:/");
-        tkn.nextToken();
-        String instanceId = tkn.nextToken();
-        return HttpMessage.JsonResponse(service.update(Integer.valueOf(instanceId),request.getBody()));
+    public HttpMessageResponse deleteUser(String appName) throws SQLException {
+        return HttpMessage.JsonResponse(UserTableRepository.delete(Integer.parseInt(appName)));
     }
 
-    /**
-     * Delete operation for an instance
-     * @param appName App id
-     * @return JsonResponse with the status
-     */
-    public HttpMessageResponse deleteInstanceService(String appName) {
-        StringTokenizer tkn = new StringTokenizer(appName, "?:/");
-        tkn.nextToken();
-        String instanceId = tkn.nextToken();
-        return HttpMessage.JsonResponse(service.delete(Integer.valueOf(instanceId)));
+    public HttpMessageResponse viewAll() throws JsonProcessingException {
+        return HttpMessage.JsonResponse(UserTableRepository.getAll());
     }
+
 }

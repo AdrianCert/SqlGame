@@ -2,9 +2,17 @@ package ro.uaic.info.builder;
 
 import ro.uaic.info.entity.UserWallet;
 
+import java.sql.ResultSet;
 import java.util.Date;
 
 public class UserWalletBuilder extends UserWallet {
+
+    public UserWalletBuilder(){}
+
+    public UserWalletBuilder(ResultSet resultSet){
+        bind(resultSet);
+    }
+
     public UserWalletBuilder ID(Integer ID) {
         setID(ID);
         return this;

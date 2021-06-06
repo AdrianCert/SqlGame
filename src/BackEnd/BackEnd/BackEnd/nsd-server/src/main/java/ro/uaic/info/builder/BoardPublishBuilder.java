@@ -2,9 +2,17 @@ package ro.uaic.info.builder;
 
 import ro.uaic.info.entity.BoardPublish;
 
+import java.sql.ResultSet;
 import java.util.Date;
 
 public class BoardPublishBuilder extends BoardPublish {
+
+    public BoardPublishBuilder(){}
+
+    public BoardPublishBuilder(ResultSet resultSet){
+        bind(resultSet);
+    }
+
     public BoardPublishBuilder ID(Integer ID) {
         setID(ID);
         return this;

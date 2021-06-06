@@ -2,7 +2,16 @@ package ro.uaic.info.builder;
 
 import ro.uaic.info.entity.History;
 
+import java.sql.ResultSet;
+
 public class HistoryBuilder extends History {
+
+    public HistoryBuilder(){}
+
+    public HistoryBuilder(ResultSet resultSet){
+        bind(resultSet);
+    }
+
     public HistoryBuilder ID(Integer ID) {
         setID(ID);
         return this;

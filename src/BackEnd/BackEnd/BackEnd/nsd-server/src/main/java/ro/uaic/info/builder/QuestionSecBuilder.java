@@ -2,9 +2,17 @@ package ro.uaic.info.builder;
 
 import ro.uaic.info.entity.QuestionSec;
 
+import java.sql.ResultSet;
 import java.util.Date;
 
 public class QuestionSecBuilder extends QuestionSec {
+
+    public QuestionSecBuilder(){}
+
+    public QuestionSecBuilder(ResultSet resultSet){
+        bind(resultSet);
+    }
+
     public QuestionSecBuilder ID(Integer ID) {
         setID(ID);
         return this;

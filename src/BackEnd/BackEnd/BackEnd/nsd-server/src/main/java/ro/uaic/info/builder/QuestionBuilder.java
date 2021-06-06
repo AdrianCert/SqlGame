@@ -2,7 +2,16 @@ package ro.uaic.info.builder;
 
 import ro.uaic.info.entity.Question;
 
+import java.sql.ResultSet;
+
 public class QuestionBuilder extends Question {
+
+    public QuestionBuilder(){}
+
+    public QuestionBuilder(ResultSet resultSet){
+        bind(resultSet);
+    }
+
     public QuestionBuilder ID(Integer ID) {
         setID(ID);
         return this;

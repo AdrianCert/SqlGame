@@ -2,7 +2,16 @@ package ro.uaic.info.builder;
 
 import ro.uaic.info.entity.Board;
 
+import java.sql.ResultSet;
+
 public class BoardBuilder extends Board {
+
+    public BoardBuilder(){}
+
+    public BoardBuilder(ResultSet resultSet){
+        bind(resultSet);
+    }
+
     public BoardBuilder id(Integer ID) {
         setID(ID);
         return this;
