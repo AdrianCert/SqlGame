@@ -3,7 +3,6 @@ package ro.uaic.info.repository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ro.uaic.info.builder.BoardBuilder;
-import ro.uaic.info.builder.BoardPublishBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.Board;
 
@@ -51,11 +50,13 @@ public class BoardRepository {
         Statement statement = Database.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT MAX(ID) FROM Board");
 
-        preparedStatement.setInt(1, rs.getInt(1) + 1);
-        preparedStatement.setString(2, board.getName());
-        preparedStatement.setString(3, board.getDescription());
-        preparedStatement.setInt(4, board.getOwner());
-        if(preparedStatement.executeUpdate() != 0) throw new SQLException();
+        if(rs.next()){
+            preparedStatement.setInt(1, rs.getInt(1) + 1);
+            preparedStatement.setString(2, board.getName());
+            preparedStatement.setString(3, board.getDescription());
+            preparedStatement.setInt(4, board.getOwner());
+            if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        }
 
         preparedStatement.close();
         rs.close();

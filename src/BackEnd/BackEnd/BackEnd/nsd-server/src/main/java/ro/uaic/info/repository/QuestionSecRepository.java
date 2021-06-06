@@ -2,7 +2,6 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ro.uaic.info.builder.QuestionBuilder;
 import ro.uaic.info.builder.QuestionSecBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.QuestionSec;
@@ -49,12 +48,14 @@ public class QuestionSecRepository {
         Statement statement = Database.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT MAX(ID) FROM QuestionSec");
 
-        preparedStatement.setInt(1, rs.getInt(1) + 1);
-        preparedStatement.setInt(2, questionSec.getQuestion_id());
-        preparedStatement.setInt(3, questionSec.getUser_id());
-        preparedStatement.setInt(4, questionSec.getSchema_id());
-        preparedStatement.setString(5, questionSec.getDml_permission());
-        if(preparedStatement.executeUpdate() != 0) throw new SQLException();
+        if(rs.next()){
+            preparedStatement.setInt(1, rs.getInt(1) + 1);
+            preparedStatement.setInt(2, questionSec.getQuestion_id());
+            preparedStatement.setInt(3, questionSec.getUser_id());
+            preparedStatement.setInt(4, questionSec.getSchema_id());
+            preparedStatement.setString(5, questionSec.getDml_permission());
+            if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        }
 
         preparedStatement.close();
         rs.close();

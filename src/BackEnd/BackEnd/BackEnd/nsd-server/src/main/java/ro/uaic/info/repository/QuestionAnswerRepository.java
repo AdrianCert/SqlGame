@@ -2,7 +2,6 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ro.uaic.info.builder.PostBuilder;
 import ro.uaic.info.builder.QuestionAnswerBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.QuestionAnswer;
@@ -50,13 +49,15 @@ public class QuestionAnswerRepository {
         Statement statement = Database.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT MAX(ID) FROM QuestionAnswer");
 
-        preparedStatement.setInt(1, rs.getInt(1) + 1);
-        preparedStatement.setString(2, questionAnswer.getValue());
-        preparedStatement.setInt(3, questionAnswer.getQuestion_id());
-        preparedStatement.setInt(4, questionAnswer.getUser_id());
-        preparedStatement.setDate(5, (Date) questionAnswer.getSubmit_time());
-        preparedStatement.setString(6, questionAnswer.getStatus());
-        if(preparedStatement.executeUpdate() != 0) throw new SQLException();
+        if(rs.next()){
+            preparedStatement.setInt(1, rs.getInt(1) + 1);
+            preparedStatement.setString(2, questionAnswer.getValue());
+            preparedStatement.setInt(3, questionAnswer.getQuestion_id());
+            preparedStatement.setInt(4, questionAnswer.getUser_id());
+            preparedStatement.setDate(5, (Date) questionAnswer.getSubmit_time());
+            preparedStatement.setString(6, questionAnswer.getStatus());
+            if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        }
 
         preparedStatement.close();
         rs.close();

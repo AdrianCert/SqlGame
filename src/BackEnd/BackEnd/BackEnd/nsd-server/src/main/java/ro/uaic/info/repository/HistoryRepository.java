@@ -2,7 +2,6 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ro.uaic.info.builder.BoardBuilder;
 import ro.uaic.info.builder.HistoryBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.History;
@@ -47,10 +46,12 @@ public class HistoryRepository {
         Statement statement = Database.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT MAX(ID) FROM History");
 
-        preparedStatement.setInt(1, rs.getInt(1) + 1);
-        preparedStatement.setInt(2, history.getUser_id());
-        preparedStatement.setString(3, history.getAction());
-        if(preparedStatement.executeUpdate() != 0) throw new SQLException();
+        if(rs.next()){
+            preparedStatement.setInt(1, rs.getInt(1) + 1);
+            preparedStatement.setInt(2, history.getUser_id());
+            preparedStatement.setString(3, history.getAction());
+            if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        }
 
         preparedStatement.close();
         rs.close();

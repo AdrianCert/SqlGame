@@ -2,7 +2,6 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ro.uaic.info.builder.RoleBuilder;
 import ro.uaic.info.builder.SchemaLocationBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.SchemaLocation;
@@ -50,10 +49,12 @@ public class SchemaLocationRepository {
         Statement statement = Database.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT MAX(ID) FROM SchemaLocation");
 
-        preparedStatement.setInt(1, rs.getInt(1) + 1);
-        preparedStatement.setInt(2, schemaLocation.getSchema_id());
-        preparedStatement.setString(3, schemaLocation.getCredidential());
-        if(preparedStatement.executeUpdate() != 0) throw new SQLException();
+        if(rs.next()){
+            preparedStatement.setInt(1, rs.getInt(1) + 1);
+            preparedStatement.setInt(2, schemaLocation.getSchema_id());
+            preparedStatement.setString(3, schemaLocation.getCredidential());
+            if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        }
 
         preparedStatement.close();
         rs.close();

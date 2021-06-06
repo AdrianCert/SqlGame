@@ -51,13 +51,15 @@ public class UserTableRepository {
         Statement statement = Database.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT MAX(ID) FROM USERTABLE");
 
-        preparedStatement.setInt(1, rs.getInt(1) + 1);
-        preparedStatement.setString(2, userTable.getName());
-        preparedStatement.setString(3, userTable.getSurname());
-        preparedStatement.setString(4, userTable.getUser_name());
-        preparedStatement.setString(5, userTable.getMail());
-        preparedStatement.setString(6, userTable.getDetails());
-        if(preparedStatement.executeUpdate() != 0) throw new SQLException();
+        if(rs.next()){
+            preparedStatement.setInt(1, rs.getInt(1) + 1);
+            preparedStatement.setString(2, userTable.getName());
+            preparedStatement.setString(3, userTable.getSurname());
+            preparedStatement.setString(4, userTable.getUser_name());
+            preparedStatement.setString(5, userTable.getMail());
+            preparedStatement.setString(6, userTable.getDetails());
+            if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        }
 
         preparedStatement.close();
         rs.close();
@@ -69,7 +71,7 @@ public class UserTableRepository {
         PreparedStatement preparedStatement = Database.getConnection()
                 .prepareStatement("DELETE FROM UserTable WHERE ID = ?");
         preparedStatement.setInt(1, id);
-        if(preparedStatement.executeUpdate() != 0) throw new SQLException();
+        if(preparedStatement.executeUpdate() == 0) throw new SQLException();
         preparedStatement.close();
         return "deleted";
     }

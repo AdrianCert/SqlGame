@@ -2,7 +2,6 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ro.uaic.info.builder.BoardMembershipBuilder;
 import ro.uaic.info.builder.BoardPublishBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.BoardPublish;
@@ -52,15 +51,17 @@ public class BoardPublishRepository {
         Statement statement = Database.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT MAX(ID) FROM BoardPublish");
 
-        preparedStatement.setInt(1, rs.getInt(1) + 1);
-        preparedStatement.setDate(2, (Date) boardPublish.getPublish_at());
-        preparedStatement.setInt(3, boardPublish.getUser_id());
-        preparedStatement.setInt(4, boardPublish.getBoard_id());
-        preparedStatement.setInt(5, boardPublish.getQuestion_id());
-        preparedStatement.setInt(6, boardPublish.getPost_id());
-        preparedStatement.setString(7, boardPublish.getValid_field());
-        preparedStatement.setString(8, boardPublish.getPublic_field());
-        if(preparedStatement.executeUpdate() != 0) throw new SQLException();
+        if(rs.next()){
+            preparedStatement.setInt(1, rs.getInt(1) + 1);
+            preparedStatement.setDate(2, (Date) boardPublish.getPublish_at());
+            preparedStatement.setInt(3, boardPublish.getUser_id());
+            preparedStatement.setInt(4, boardPublish.getBoard_id());
+            preparedStatement.setInt(5, boardPublish.getQuestion_id());
+            preparedStatement.setInt(6, boardPublish.getPost_id());
+            preparedStatement.setString(7, boardPublish.getValid_field());
+            preparedStatement.setString(8, boardPublish.getPublic_field());
+            if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        }
 
         preparedStatement.close();
         rs.close();

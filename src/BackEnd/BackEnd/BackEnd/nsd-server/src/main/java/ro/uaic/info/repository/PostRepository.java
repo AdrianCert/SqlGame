@@ -2,7 +2,6 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ro.uaic.info.builder.PaymentBuilder;
 import ro.uaic.info.builder.PostBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.Post;
@@ -52,12 +51,14 @@ public class PostRepository {
         Statement statement = Database.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT MAX(ID) FROM Post");
 
-        preparedStatement.setInt(1, rs.getInt(1) + 1);
-        preparedStatement.setInt(2, post.getUser_id());
-        preparedStatement.setString(3, post.getTitle());
-        preparedStatement.setString(4, post.getContent());
-        preparedStatement.setString(5, post.getComments());
-        if(preparedStatement.executeUpdate() != 0) throw new SQLException();
+        if(rs.next()){
+            preparedStatement.setInt(1, rs.getInt(1) + 1);
+            preparedStatement.setInt(2, post.getUser_id());
+            preparedStatement.setString(3, post.getTitle());
+            preparedStatement.setString(4, post.getContent());
+            preparedStatement.setString(5, post.getComments());
+            if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        }
 
         preparedStatement.close();
         rs.close();

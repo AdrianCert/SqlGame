@@ -6,25 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d5deb625-3433-4083-b6e2-eae5b67c20b3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/UserTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/controller/UserTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/BoardMembershipRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/BoardMembershipRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/BoardPublishRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/BoardPublishRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/BoardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/BoardRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/HistoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/HistoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/PaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/PaymentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/PostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/QuestionAnswerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/QuestionAnswerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/QuestionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/QuestionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/QuestionSecRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/QuestionSecRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/RoleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/SchemaLocationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/SchemaLocationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/SchemaTableRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/SchemaTableRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/UserPermisionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/UserPermisionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/UserSecRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/UserSecRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/UserTableRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/UserTableRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/UserWalletRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/UserWalletRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/WalletRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/nsd-server/src/main/java/ro/uaic/info/repository/WalletRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +43,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ro.uaic.info.Main" />
       <module name="nsd-server" />
@@ -102,8 +83,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -118,7 +99,7 @@
       <workItem from="1622711192933" duration="13000" />
       <workItem from="1622790524279" duration="11384000" />
       <workItem from="1622958201027" duration="6137000" />
-      <workItem from="1623006207156" duration="8488000" />
+      <workItem from="1623006207156" duration="10128000" />
     </task>
     <servers />
   </component>

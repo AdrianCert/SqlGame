@@ -2,7 +2,6 @@ package ro.uaic.info.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ro.uaic.info.builder.UserPermisionBuilder;
 import ro.uaic.info.builder.UserSecBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.UserSec;
@@ -50,13 +49,15 @@ public class UserSecRepository {
         Statement statement = Database.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT MAX(ID) FROM UserSec");
 
-        preparedStatement.setInt(1, rs.getInt(1) + 1);
-        preparedStatement.setInt(2, userSec.getUser_id());
-        preparedStatement.setString(3, userSec.getPass());
-        preparedStatement.setDate(4, (Date) userSec.getPass_update_at());
-        preparedStatement.setString(5, userSec.getRecovery_mail());
-        preparedStatement.setString(6, userSec.getRecovery_code());
-        if(preparedStatement.executeUpdate() != 0) throw new SQLException();
+        if(rs.next()){
+            preparedStatement.setInt(1, rs.getInt(1) + 1);
+            preparedStatement.setInt(2, userSec.getUser_id());
+            preparedStatement.setString(3, userSec.getPass());
+            preparedStatement.setDate(4, (Date) userSec.getPass_update_at());
+            preparedStatement.setString(5, userSec.getRecovery_mail());
+            preparedStatement.setString(6, userSec.getRecovery_code());
+            if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        }
 
         preparedStatement.close();
         rs.close();

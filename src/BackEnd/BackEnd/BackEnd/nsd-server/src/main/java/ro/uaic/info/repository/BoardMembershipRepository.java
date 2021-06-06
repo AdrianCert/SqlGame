@@ -3,7 +3,6 @@ package ro.uaic.info.repository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ro.uaic.info.builder.BoardMembershipBuilder;
-import ro.uaic.info.builder.UserTableBuilder;
 import ro.uaic.info.database.Database;
 import ro.uaic.info.entity.BoardMembership;
 
@@ -50,10 +49,12 @@ public class BoardMembershipRepository {
         Statement statement = Database.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT MAX(ID) FROM BoardMembership");
 
-        preparedStatement.setInt(1, rs.getInt(1) + 1);
-        preparedStatement.setInt(2, boardMembership.getUser_id());
-        preparedStatement.setInt(3, boardMembership.getRole_id());
-        if(preparedStatement.executeUpdate() != 0) throw new SQLException();
+        if(rs.next()){
+            preparedStatement.setInt(1, rs.getInt(1) + 1);
+            preparedStatement.setInt(2, boardMembership.getUser_id());
+            preparedStatement.setInt(3, boardMembership.getRole_id());
+            if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        }
 
         preparedStatement.close();
         rs.close();
