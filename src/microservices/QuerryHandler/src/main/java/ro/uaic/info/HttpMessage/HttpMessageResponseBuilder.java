@@ -128,6 +128,7 @@ public class HttpMessageResponseBuilder extends HttpMessageResponse {
                         con.disconnectToDatabase();
                     } catch (SQLException e) {
                         System.out.println(e.getMessage());
+                        setStatusCode(400);
                     }
                 }
             }
