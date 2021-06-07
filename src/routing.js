@@ -1,6 +1,7 @@
 class Router {
     constructor() {
         this.paths = [];
+        this.log = false;
         return this;
     }
 }
@@ -13,7 +14,7 @@ Router.prototype.path = function (url, f) {
     return this;
 };
 
-Router.prototype.route = async function (req, res) {
+Router.prototype.route = function (req, res) {
     let found = false;
     for (let p of this.paths) {
         if (req.url.match(new RegExp(p.url))) {
@@ -28,7 +29,16 @@ Router.prototype.route = async function (req, res) {
         res.end();
     }
 
-    console.log(`${res.statusCode} HTTP/${req.httpVersion} ${req.method} ${req.url}`);
+    if( this.enabled_log) {
+        console.log(`${res.statusCode} HTTP/${req.httpVersion} ${req.method} ${req.url}`);
+    }
+
+    return this;
 };
+
+Router.prototype.showlog = function (stat = true) {
+    this.enabled_log = stat;
+    return this;
+}
 
 module.exports = Router;

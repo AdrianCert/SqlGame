@@ -28,6 +28,13 @@
     padding: 0 8px;
 }
 
+.space-around {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
 .question-box {
     float: left;
     width: 100%;
@@ -119,8 +126,8 @@ main {
     white-space: normal;
     border: 0;
     border-radius: 0.2rem;
-    padding: 0.7em 1.4em;
-    font-size: 1em;
+    padding: 0.2em 0.4em;
+    font-size: 1.25em;
     font-weight: 400;
     text-align: center;
     vertical-align: middle;

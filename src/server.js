@@ -7,6 +7,7 @@ const serveController = require('./controllers/serve');
 const PORT = config.port || 5000;
 
 var app = new Router();
+app.showlog();
 app.path("/question/", questionController);
 app.path(/\.[^.\W]+$/gm, serveController);
 app.path("/", (inp, out) => {
