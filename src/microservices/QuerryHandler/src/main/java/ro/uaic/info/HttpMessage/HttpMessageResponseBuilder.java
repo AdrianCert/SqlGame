@@ -110,31 +110,36 @@ public class HttpMessageResponseBuilder extends HttpMessageResponse {
         return this;
     }
 
-    public void constructResponse(String method, String uri) {
-        String querry = "";
-
-        if (method == null || uri == null)
-            setStatusCode(400);
-        else if (method.equals("GET")) {
+    public HttpMessageResponseBuilder constructResponse(String method, String uri, String body) {
+        setStatusCode(400);
+        if (method != null && uri != null && method.equals("GET"))
             if (uri.equals("/querry")) {
-                JSONObject jo = new JSONObject(new String(this.getBody(), StandardCharsets.UTF_8));
-                if (!jo.has("querry") || jo.getString("querry").isEmpty())
-                    setStatusCode(400);
-                else {
+                JSONObject jo = new JSONObject(body);
+
+                if (jo.has("querry") && !jo.getString("querry").isEmpty())
                     try {
-                        setStatusCode(200);
                         ConnectionToDB con = new ConnectionToDB("jdbc:oracle:thin:@localhost:1521:XE", "STUDENT", "QWERTY");
-                        querry = con.returnJsonFromSQL(jo.getString("querry"));
+                        String querry = con.returnJsonFromSQL(jo.getString("querry"));
+                        this.body(querry)
+                                .status(200);
                         con.disconnectToDatabase();
                     } catch (SQLException e) {
                         System.out.println(e.getMessage());
-                        setStatusCode(400);
                     }
-                }
-            } else
-                setStatusCode(400);
-        } else
-            setStatusCode(400);
-        this.setBody(querry);
+            } else if (uri.equals("/verification")) {
+                JSONObject jo = new JSONObject(body);
+
+                if ((jo.has("sendQuerry") && !jo.getString("sendQuerry").isEmpty()) &&
+                        (jo.has("correctQuerry") && !jo.getString("correctQuerry").isEmpty()))
+                    try {
+                        ConnectionToDB con = new ConnectionToDB("jdbc:oracle:thin:@localhost:1521:XE", "STUDENT", "QWERTY");
+                        if (con.correctSQL(jo.getString("sendQuerry"), jo.getString("correctQuerry")))
+                            this.status(200);
+                        con.disconnectToDatabase();
+                    } catch (SQLException e) {
+                        //System.out.println(e.getMessage());
+                    }
+            }
+        return this;
     }
 }

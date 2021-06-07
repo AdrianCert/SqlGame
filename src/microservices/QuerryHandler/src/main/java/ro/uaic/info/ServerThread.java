@@ -25,10 +25,10 @@ public class ServerThread implements Runnable {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             httpRequest = HttpMessageRequest.of(bufferedReader);
             HttpMessageResponseBuilder httpMessageResponseBuilder = new HttpMessageResponseBuilder();
-            httpMessageResponseBuilder.body(httpRequest.getBody());
-            httpMessageResponseBuilder.setHttpVersion(httpRequest.getHttpVersion());
-            httpMessageResponseBuilder.constructResponse(httpRequest.getMethod(), httpRequest.getUri());
-            httpMessageResponseBuilder.send(socket);
+            httpMessageResponseBuilder
+                    .body("")
+                    .constructResponse(httpRequest.getMethod(), httpRequest.getUri(), httpRequest.getBody())
+                    .send(socket);
 
         } catch (IOException e) {
             System.err.println("[ERROR] Server Client Thread:" + e.getMessage());
