@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/BackEnd.iml" filepath="$PROJECT_DIR$/.idea/BackEnd.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BackEnd/nsd-server/nsd-server.iml" filepath="$PROJECT_DIR$/BackEnd/nsd-server/nsd-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/NSD.iml" filepath="$PROJECT_DIR$/.idea/NSD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nsd-server/nsd-server.iml" filepath="$PROJECT_DIR$/nsd-server/nsd-server.iml" />
     </modules>
   </component>
 </project>
