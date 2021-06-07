@@ -131,7 +131,8 @@ public class HttpMessageResponseBuilder extends HttpMessageResponse {
                         setStatusCode(400);
                     }
                 }
-            }
+            } else
+                setStatusCode(400);
         } else
             setStatusCode(400);
         this.setBody(querry);
