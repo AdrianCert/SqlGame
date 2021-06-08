@@ -111,7 +111,7 @@ public class HttpMessageResponseBuilder extends HttpMessageResponse {
     }
 
     public HttpMessageResponseBuilder constructResponse(String method, String uri, String body) {
-        setStatusCode(400);
+        /*setStatusCode(400);
         if (method != null && uri != null && method.equals("GET"))
             if (uri.equals("/querry")) {
                 JSONObject jo = new JSONObject(body);
@@ -139,7 +139,7 @@ public class HttpMessageResponseBuilder extends HttpMessageResponse {
                     } catch (SQLException e) {
                         //System.out.println(e.getMessage());
                     }
-            }
+            }*/
         return this;
     }
 }

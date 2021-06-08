@@ -25,9 +25,11 @@ public class ServerThread implements Runnable {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             httpRequest = HttpMessageRequest.of(bufferedReader);
             HttpMessageResponseBuilder httpMessageResponseBuilder = new HttpMessageResponseBuilder();
+            ConnectionToDB conn = new ConnectionToDB(httpRequest);
+            conn.constructResponse();
             httpMessageResponseBuilder
-                    .body("")
-                    .constructResponse(httpRequest.getMethod(), httpRequest.getUri(), httpRequest.getBody())
+                    .body(conn.getBody())
+                    .status(conn.getStatusCode())
                     .send(socket);
 
         } catch (IOException e) {

@@ -1,5 +1,9 @@
 package ro.uaic.info;
 
+import org.json.JSONObject;
+import ro.uaic.info.HttpMessage.HttpMessage;
+import ro.uaic.info.HttpMessage.HttpMessageRequest;
+
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.LinkedList;
@@ -9,10 +13,31 @@ import java.util.LinkedList;
  */
 public class ConnectionToDB {
 
-    Connection conn;
+    private Connection conn;
+    private HttpMessageRequest request;
+    private String statusCode;
+    private String body;
 
-    public ConnectionToDB(String url, String user, String pass) throws SQLException {
-        this.conn = DriverManager.getConnection(url, user, pass);
+    public ConnectionToDB(HttpMessageRequest request) {
+        this.request = request;
+        this.body = "";
+        setStatusCode(400);
+    }
+
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public void setStatusCode(Integer statusCode) {
+        this.statusCode = String.valueOf(statusCode);
+    }
+
+    public String getStatusCode() {
+        return statusCode;
+    }
+
+    public String getBody() {
+        return body;
     }
 
     private Boolean matchingRow(ResultSet rs1, ResultSet rs2, ResultSetMetaData rsmd, Integer columnNumber) throws SQLException {
@@ -74,11 +99,14 @@ public class ConnectionToDB {
                 return false;
         }
 
-        if (sentRS.next())
+        if (correctRS.getRow() == 0)
             return false;
 
-        if (correctRS.next())
-            return false;
+        if (sentRS.getRow() == 0) {
+            correctRS.next();
+            if (correctRS.getRow() != 0)
+                return false;
+        }
 
         return true;
     }
@@ -134,6 +162,74 @@ public class ConnectionToDB {
             response = "[" + response + "]";
         }
         return response;
+    }
+
+    public void constructResponse() {
+        if (request.getBody().isEmpty())
+            return;
+
+        JSONObject jo = new JSONObject(request.getBody());
+
+        if (!queryHasCredentials(jo))
+            return;
+
+        if (request.getMethod() != null && request.getUri() != null && request.getMethod().equals("POST"))
+            if (request.getUri().equals("/query")) {
+
+                if (jo.has("query") && !jo.getString("query").isEmpty())
+                    try {
+                        connectToDatabase(jo);
+                        this.body = returnJsonFromSQL(jo.getString("query"));
+                        setStatusCode(200);
+                        disconnectToDatabase();
+                    } catch (SQLException e) {
+                        System.err.println(e.getMessage());
+                        this.body = "";
+                        setStatusCode(400);
+                    }
+            } else if (request.getUri().equals("/verification")) {
+
+                if ((jo.has("sendQuery") && !jo.getString("sendQuery").isEmpty()) &&
+                        (jo.has("correctQuery") && !jo.getString("correctQuery").isEmpty()))
+                    try {
+                        connectToDatabase(jo);
+                        setStatusCode(200);
+                        if (correctSQL(jo.getString("sendQuery"), jo.getString("correctQuery"))) {
+                            this.body = "{\"accepted\":true}";
+                        } else {
+                            this.body = "{\"accepted\":false}";
+                        }
+                        disconnectToDatabase();
+                    } catch (SQLException e) {
+                        System.err.println(e.getMessage());
+                        this.body = "";
+                        setStatusCode(400);
+                    }
+            }
+    }
+
+    private Boolean queryHasCredentials(JSONObject jo) {
+        return jo.has("sgbd") && !jo.getString("sgbd").isEmpty() && jo.has("credentials")
+                && jo.getJSONObject("credentials").has("user")
+                && !jo.getJSONObject("credentials").getString("user").isEmpty()
+                && jo.getJSONObject("credentials").has("pass")
+                && !jo.getJSONObject("credentials").getString("pass").isEmpty();
+    }
+
+    private String getDBConnectionURL(String name) {
+        switch (name.toUpperCase()) {
+            case "ORACLE":
+                return "jdbc:oracle:thin:@localhost:1521:XE";
+            case "MYSQL":
+                return "jdbc:mysql://localhost:3306/usertest";
+            default:
+                return null;
+        }
+    }
+
+    public void connectToDatabase(JSONObject jo) throws SQLException {
+        this.conn = DriverManager.getConnection(getDBConnectionURL(jo.getString("sgbd")),
+                jo.getJSONObject("credentials").getString("user"), jo.getJSONObject("credentials").getString("pass"));
     }
 
     public void disconnectToDatabase() throws SQLException {
