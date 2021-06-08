@@ -15,14 +15,14 @@ import java.util.regex.Pattern;
 
 public class UserWalletController implements DispatcherController{
     private HttpMessageRequest request;
-    public static String mapRegex = "/userW(.*)";
+    public static String mapRegex = "/wuser(.*)";
     private final UserWalletService service = new UserWalletService();
 
     @Override
     public HttpMessageResponse dispatch(HttpMessageRequest httpRequest) throws HttpMessageNotFoundException {
         String path = httpRequest.getUri();
         String method = httpRequest.getMethod();
-        Pattern pattern = Pattern.compile("/userW/(.*)");
+        Pattern pattern = Pattern.compile("/wuser/(.*)");
         Matcher matcher = pattern.matcher(path);
         this.request = httpRequest;
         try {

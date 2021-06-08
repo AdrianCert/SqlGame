@@ -14,14 +14,14 @@ import java.util.regex.Pattern;
 
 public class UserSecController implements DispatcherController{
     private HttpMessageRequest request;
-    public static String mapRegex = "/userS(.*)";
+    public static String mapRegex = "/suser(.*)";
     private final UserSecService service = new UserSecService();
 
     @Override
     public HttpMessageResponse dispatch(HttpMessageRequest httpRequest) throws HttpMessageNotFoundException {
         String path = httpRequest.getUri();
         String method = httpRequest.getMethod();
-        Pattern pattern = Pattern.compile("/userS/(.*)");
+        Pattern pattern = Pattern.compile("/suser/(.*)");
         Matcher matcher = pattern.matcher(path);
         this.request = httpRequest;
         try {

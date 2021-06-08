@@ -30,8 +30,6 @@ public class ServerThread implements Runnable {
      * Collection of active controllers
      */
     private final static Collection<Class<? extends DispatcherController>> dispatcherControllers = Stream.of(
-        ServiceController.class,
-        InstanceController.class,
         UserTableController.class,
         BoardController.class,
         BoardMembershipController.class,

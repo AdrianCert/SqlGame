@@ -14,14 +14,14 @@ import java.util.regex.Pattern;
 
 public class QuestionAnswearController implements DispatcherController{
     private HttpMessageRequest request;
-    public static String mapRegex = "/questionA(.*)";
+    public static String mapRegex = "/aquestion(.*)";
     private final QuestionAnswerService service = new QuestionAnswerService();
 
     @Override
     public HttpMessageResponse dispatch(HttpMessageRequest httpRequest) throws HttpMessageNotFoundException {
         String path = httpRequest.getUri();
         String method = httpRequest.getMethod();
-        Pattern pattern = Pattern.compile("/questionA/(.*)");
+        Pattern pattern = Pattern.compile("/aquestion/(.*)");
         Matcher matcher = pattern.matcher(path);
         this.request = httpRequest;
         try {

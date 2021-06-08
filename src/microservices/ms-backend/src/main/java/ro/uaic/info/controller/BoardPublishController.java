@@ -14,14 +14,14 @@ import java.util.regex.Pattern;
 
 public class BoardPublishController implements DispatcherController{
     private HttpMessageRequest request;
-    public static String mapRegex = "/boardP(.*)";
+    public static String mapRegex = "/bpublish(.*)";
     private final BoardMembershipService service = new BoardMembershipService();
 
     @Override
     public HttpMessageResponse dispatch(HttpMessageRequest httpRequest) throws HttpMessageNotFoundException {
         String path = httpRequest.getUri();
         String method = httpRequest.getMethod();
-        Pattern pattern = Pattern.compile("/boardP/(.*)");
+        Pattern pattern = Pattern.compile("/bpublish/(.*)");
         Matcher matcher = pattern.matcher(path);
         this.request = httpRequest;
         try {
