@@ -62,17 +62,25 @@ function htmlNotProcessing(document, dic) {
 }
 
 function htmlProcessingItereting(document, dic) {
-    return Buffer.from(processNodeByNode( {
+    return Buffer.from(htmlProcessingIteretingString(document, dic));
+}
+
+function htmlProcessingIteretingString(document, dic, indexes = []) {
+    return processNodeByNode( {
         "doc" : document.toString(),
-        "dic" : dic
-    }));
+        "dic" : dic,
+        "indexes" : indexes
+    });
 }
 
 function processNodeByNode(pack) {
     let node; 
     pack.rstack = [];
+    re.token.lastIndex = 0;
     while( (node = re.token.exec(pack.doc))) {
+        pack.indexes.push(re.token.lastIndex);
         processNode(pack, node[0]);
+        re.token.lastIndex = pack.indexes.pop();
     }
     return pack.rstack.reduce((a, c) => a + c, '')
 }
@@ -110,7 +118,7 @@ function nodeControlExecute(pack, node) {
         case 'partial' :
             if(!('parts' in pack.dic)) break;
             if(m[1] in pack.dic.parts) {
-                pack.rstack.push(pack.dic.parts[m[1]])
+                pack.rstack.push(htmlProcessingIteretingString(pack.dic.parts[m[1]], pack.dic, pack.indexes));
             }
             break;
         case 'id':
