@@ -14,7 +14,7 @@ body {
 
 @supports (background-blend-mode: multiply) {
   body {
-    background-image: url("../img/background.png");
+    background-image: url("background.png");
     background-repeat: no-repeat;
     background-blend-mode: multiply;
   }
@@ -170,4 +170,3 @@ section .clasament .row_button button {
   background: linear-gradient(#052338, #a2a391);
   border-radius: 23px;
 }
-/*# sourceMappingURL=questionpage.css.map */
