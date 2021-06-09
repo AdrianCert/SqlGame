@@ -22,11 +22,14 @@ const data = (ev) => {
     //trimit request ul
     let response = fetch(url,{
         method : 'POST',
+        mode:'no-cors',
         headers:{
             'Content-Type': 'application/json;charset=utf-8'
         },
         body : JSON.stringify(send_body)
     })
+    let result = response.catch();
+    console.warn(result);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
