@@ -4,6 +4,7 @@ const Router = require('./routing');
 const auth = require('./authenticate');
 const cookies = require('./utils/cookies');
 
+const createQuestionController = require('./controllers/createQuestionController');
 const questionController = require('./controllers/question');
 const serveController = require('./controllers/serve');
 
@@ -23,6 +24,8 @@ app.prefilter((i, o) => {
         o.end("ok");
     }
 });
+
+app.path("/createQuestion/", createQuestionController);
 app.path("/question/", questionController);
 app.path(/\.[^.\W]+$/gm, serveController);
 app.path("/", (inp, out) => {
