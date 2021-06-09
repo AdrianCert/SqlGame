@@ -16,7 +16,7 @@ header {
 
 @supports (background-blend-mode: multiply) {
   header {
-    background-image: url("../img/background.png");
+    background-image: url("background.png");
     background-repeat: no-repeat;
     background-blend-mode: multiply;
   }
@@ -156,4 +156,3 @@ header .head-info .content .butoane h3 {
   background: linear-gradient(#052338, #a2a391);
   border-radius: 23px;
 }
-/*# sourceMappingURL=landing.css.map */

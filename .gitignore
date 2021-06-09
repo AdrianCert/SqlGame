@@ -1,0 +1,6 @@
+# node js modules
+/src/node_modules
+package-lock.json
+*.class
+*.jar
+target
