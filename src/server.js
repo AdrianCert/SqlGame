@@ -2,7 +2,7 @@ const http = require('http');
 const config = require('./config.json');
 const Router = require('./routing');
 const auth = require('./authenticate');
-const cookies = require('./utils/cookies')
+const cookies = require('./utils/cookies');
 
 const questionController = require('./controllers/question');
 const serveController = require('./controllers/serve');

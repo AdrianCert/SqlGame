@@ -14,13 +14,7 @@
 
 <body>
     <nav class="main-navigation">
-        <ul>
-            <li><a href="/" class="active">Home</a></li>
-            <li><a href="/question/">Questions</a></li>
-            <li><a href="/board/">Boards</a></li>
-            <li><a href="/create/">Create</a></li>
-            <li><a href="/profil/">Profil</a></li>
-        </ul>
+        <% partial nav %>
     </nav>
     <main>
         <div id="main">
@@ -40,15 +34,7 @@
         </div>
     </main>
 
-    <footer>
-        <aria>
-            <p>
-                <a href="#">Terms of Use</a> |
-                <a href="#">Privacy Policy</a>
-            </p>
-        </aria>
-        <p>Copyright &copy; 2021 SqlGame</p>
-    </footer>
+    <% partial footer %>
 </body>
 
 </html>

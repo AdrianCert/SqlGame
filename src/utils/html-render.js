@@ -14,32 +14,47 @@ const re_node_name_end = /<\s*\/(.*)>/gm;
 const re_node_name_start = /^<(\w+)/gm;
 const re_node_name = /\w+/gm;
 
+const buildpartials = require('./html-parts');
+
 function HtmlRender(document, dic) {
     return applyStrategyParse(document, dic);
+}
+
+const val = {
+    "strategy" : "__strategy"
 }
 
 const re = {
     "token" : /<.*>.+<\/.*>|<[^<>]+>/gm,
     "node" : {
-        "start" : /<\s*[^$/].*>/gm,
+        "start" : /<\s*[^%/].*>/gm,
         "end" : /<\s*\/([^/]*)>/gm,
         "name" : /\w+/gm
     },
     "control" : {
-        "variable" : /{{\s*([\w_]+)\s*}}/gm
+        "node" : /<%\s*[^<>%]+\s+%>/gm,
+        "variable" : /{{\s*([\w_]+)\s*}}/gm,
+        "symbol" : /\w[\w\d_]*/gm
     }
 }
 
 function applyStrategyParse(document, dic) {
     let strategy = [
+        htmlProcessingIteretingWithParts,
         htmlProcessingItereting,
         htmlNotProcessing
     ];
 
-    let choice = 0;
+    let choice = val.strategy in dic ? dic[val.strategy] : 0;
+    choice = choice >= strategy.length ? 0 : choice;
 
     return strategy[choice](document, dic);
 
+}
+
+function htmlProcessingIteretingWithParts(document, dic) {
+    dic = buildpartials(dic);
+    return htmlProcessingItereting(document, dic)
 }
 
 function htmlNotProcessing(document, dic) {
@@ -66,6 +81,9 @@ function processNode(pack, node) {
     if( node.match(re.node.start)) {
         pack.rstack.push(nodeReplaceVariable(node, pack.dic));
     } else
+    if(node.match(re.control.node)) {
+        nodeControlExecute(pack, node);
+    } else
     if( node.match(re.node.end)) {
         let node_name = node.match(re.node.name)[0];
         let node_childs = [node];
@@ -82,6 +100,23 @@ function processNode(pack, node) {
                 break;
             }
         }
+    }
+}
+
+function nodeControlExecute(pack, node) {
+    let m = node.match(re.control.symbol);
+    if(m === null) return;
+    switch(m[0]) {
+        case 'partial' :
+            if(!('parts' in pack.dic)) break;
+            if(m[1] in pack.dic.parts) {
+                pack.rstack.push(pack.dic.parts[m[1]])
+            }
+            break;
+        case 'id':
+            break;
+        case 'endif':
+            break;
     }
 }
 
