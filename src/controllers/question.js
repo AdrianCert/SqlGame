@@ -10,7 +10,7 @@ async function homeView(req, res) {
 async function questionView(req, res) {
     let qid  = /\/question\/(\d+)/gm.exec(req.url)[1];
     console.log(qid);
-    render(res, "addquestion.html", {
+    render(res, "questionpage.html", {
         "title" : "Question"
     });
 }
