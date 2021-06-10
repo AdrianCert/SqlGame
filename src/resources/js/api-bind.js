@@ -8,12 +8,10 @@ const models = [
     "post",
     "aquestion",
     "question",
-    "squestion",
     "role",
     "schemaL",
     "schemaT",
     "puser",
-    "suser",
     "user",
     "wuser",
     "wallet"
@@ -24,11 +22,11 @@ const binder_api = bindControllers();
 function bindController(controler) {
     let url = `${getLocation()}/${controler}/`
     return {
-        "add" : (data) => feth_add(url, data),
-        "getAll" : () => feth_all(url),
-        "get" : (id) => feth_get(`${url}${id}`),
-        "update" : (id, data) => feth_update(`${url}${id}`, data),
-        "delete" : (id) => feth_delete(`${url}${id}`)
+        "add" : (data) => fetch_add(url, data),
+        "getAll" : () => fetch_all(url),
+        "get" : (id) => fetch_get(`${url}${id}`),
+        "update" : (id, data) => fetch_update(`${url}${id}`, data),
+        "delete" : (id) => fetch_delete(`${url}${id}`)
     }
 }
 
@@ -38,7 +36,7 @@ function bindControllers() {
     return r;
 }
 
-function add(url, data) {
+function fetch_add(url, data) {
     return fetch(url, {
         method : 'POST',
         headers:{
@@ -48,16 +46,15 @@ function add(url, data) {
     })
 }
 
-function feth_all(url) {
-    console.log(url);
+function fetch_all(url) {
     return fetch(url);
 }
 
-function feth_get(url) {
+function fetch_get(url) {
     return fetch(url);
 }
 
-function feth_update(url, data) {
+function fetch_update(url, data) {
     return fetch(url, {
         method : 'PUT',
         headers:{
@@ -67,7 +64,7 @@ function feth_update(url, data) {
     })
 }
 
-function feth_delete(url) {
+function fetch_delete(url) {
     return fetch(url, {
         method : 'DELETE',
         headers:{
@@ -78,5 +75,5 @@ function feth_delete(url) {
 }
 
 function getLocation() {
-    return "http://localhost:2021";
+    return "/api/";
 }
