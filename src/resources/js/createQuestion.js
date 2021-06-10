@@ -1,9 +1,9 @@
 let url = "http://localhost:2021/question/";
 let send_body = {
     'id': 0,
-    'title' : "vine enuntu",
-    'description' : "Be aware of the demon",
-    'solution' : "vine solutia",
+    'title' : "",
+    'description' : "",
+    'solution' : "",
     'value' : 20,
     'reward' : 40
 }
