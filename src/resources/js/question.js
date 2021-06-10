@@ -1,46 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => writeQuestions(5));
 
-let __questions__ = [
-    {
-        "id" : "1",
-        "title" : "Facturile de astazi",
-        "description" : "Afisati toate facturile din ziua curenta"
-    },
-    {
-        "id" : "2",
-        "title" : "Clienti Restanta",
-        "description" : "Afisati clienti restanti"
-    },
-    {
-        "id" : "3",
-        "description" : "Calculeaza incasarile totale pentru fiecare luna"
-    },
-    {
-        "id" : "4",
-        "title" : "Best Furnizori",
-        "description" : "Afiseaza furnizori cei cautati"
-    },
-    {
-        "id" : "5",
-        "title" : "Produse expirate",
-        "description" : "Creaza o lista cu produsele care urmeaza sa expire in urmatoarele 14 zile"
-    },
-    {
-        "id" : "6",
-        "title" : "Eroare",
-        "description" : "Din depozit a plecat o cutie cu marfa gresit. Incarca sa identifici acea cutie. Pe factura apare ca a fost livrat dar in inventar acea cutie lipseste."
-    },
-    {
-        "id" : "7",
-        "description" : "Afiseza stocul actual de napolitane cu valinie"
-    }
-];
+let __questions__ = null;
+
+async function getInfo(){
+    __questions__ = await binder_api.question.getAll().then(r => r.json());
+    console.log(__questions__);
+    return [...__questions__];
+}
 
 function getQuestions() {
-    return __questions__;
+    return getInfo();
 }
 
 function getQuestion(id) {
+    id = parseInt(id);
     return __questions__.filter( q => q.id === id)[0];
 }
 
@@ -98,20 +71,21 @@ function showQuestionModal(e) {
     let buy_btn = document.createElement('button');
     buy_btn.type = 'button';
     buy_btn.className = btn_classes;
-    buy_btn.textContent = `${question_data.id} coins`;
+    buy_btn.textContent = `${question_data.value} coins`;
     buy_btn.addEventListener('click' , () => {
         window.location = '/';
     });
     buttons.appendChild(buy_btn);
 
-    if( modal.querySelector(".modal-footer").firstChild == null) {
-        modal.querySelector(".modal-footer").appendChild(buttons);
+    if( modal.querySelector(".modal-footer").firstChild !== null){
+        modal.querySelector(".modal-footer").firstChild.remove();
     }
-    modal.querySelector(".modal-footer").firstChild = buttons;
+    modal.querySelector(".modal-footer").appendChild(buttons);
 }
 
-function writeQuestions(n) {
-    let data = getQuestions();
+async function writeQuestions(n) {
+    let data = await getQuestions();
+    console.log(data);
     let container = document.getElementById('main');
     let curr = 0;
 
@@ -130,7 +104,7 @@ function writeQuestions(n) {
         slots[curr++].appendChild(createQuestionBox(q))
     });
 
-    /* dublicate data for layout dev */
+    /* dublicate data for layout dev * /
     [...Array(100).keys()].forEach( () => {
         [...data].forEach( q => {
             if( curr === n) curr = 0;

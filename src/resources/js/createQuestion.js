@@ -8,6 +8,14 @@ let send_body = {
     'reward' : 0
 }
 
+function build_body(entity){
+    send_body["title"] = entity["title"];
+    send_body["description"] = entity["enunt"];
+    send_body["solution"] = entity["solutia"];
+    send_body["value"] = parseInt(entity["costa"]);
+    send_body["reward"] = entity["costa"] * 2;
+}
+
 const data = (ev) => {
     ev.preventDefault();
     let entity = {
@@ -18,26 +26,19 @@ const data = (ev) => {
     }
     console.warn('added', {entity});
     //construiesc send_body
-    send_body["title"] = entity["title"];
-    send_body["description"] = entity["enunt"];
-    send_body["solution"] = entity["solutia"];
-    send_body["value"] = entity["costa"];
-    send_body["reward"] = entity["costa"] * 2;
+    build_body(entity);
     console.warn('added', {send_body});
     //trimit request ul
     let response = fetch(url,{
         method : 'POST',
-        mode:'no-cors',
-        headers:{
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body : JSON.stringify(send_body)
-    }).then(r => {
+        body : JSON.stringify(send_body),
+
+    }).then(r => r.json()).then(r => {
+        console.log(r);
         document.getElementById("solutia").value = '';
         document.getElementById("enunt").value = ''
+        window.location = '/question/';
     });
-    let result = response.catch();
-    console.warn(result);
 }
 
 document.addEventListener("DOMContentLoaded", () => {

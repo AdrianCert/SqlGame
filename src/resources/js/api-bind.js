@@ -75,5 +75,5 @@ function fetch_delete(url) {
 }
 
 function getLocation() {
-    return "/api/";
+    return "http://localhost:2021";
 }
