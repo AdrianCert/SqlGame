@@ -154,19 +154,3 @@ section .clasament .row_button button {
   color: #a2a391;
   border-radius: 23px;
 }
-
-::-webkit-scrollbar {
-  width: 15px;
-}
-
-::-webkit-scrollbar-track {
-  border: 7px solid black;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-::-webkit-scrollbar-thumb {
-  background: -webkit-gradient(linear, left top, left bottom, from(#052338), to(#a2a391));
-  background: linear-gradient(#052338, #a2a391);
-  border-radius: 23px;
-}

@@ -2,10 +2,12 @@
 
 <html lang = "ro">
 <head>
-    <link rel="stylesheet" href="../resources/css/questionpage.css">
-    <title>Intrebari</title>
+    <link rel="stylesheet" href="../resources/css/addquestion.css">
+    <link rel="stylesheet" href="../resources/css/menu.min.css">
+    <title>Adaugă o întrebare</title>
 </head>
 <body>
+    <% partial nav %>
     <section>
         <div class="profil">
             <h2>Profil</h2>
@@ -36,7 +38,7 @@
                 </div>
                 <div class="row">
                     <div class="informatie">
-                        <p> * Întrebări validate:</p>
+                        <p> * Intrebari validate:</p>
                     </div>
                     <div class="date">
                         <p>10</p>
@@ -44,7 +46,7 @@
                 </div>
                 <div class="row">
                     <div class="informatie">
-                        <p> * Întrebari create:</p>
+                        <p> * Intrebari create:</p>
                     </div>
                     <div class="date">
                         <p>2</p>
@@ -56,35 +58,54 @@
                 </div>
             </div>
         </div>
-        <div class="intrebari">
+        <div class="adauga_intrebare">
             <div class="header">
-                <h1>Intrebari</h1> 
+                <h1>Adaugă o întrebare</h1>
             </div>
-            <div class="container_intrebari">
-                <div class="col">
-                    <div class="intrebare">Câți studenti au macar o nota de 10?</div>
-                    <div class="intrebare">Afiseaza data de nastere a studentului cu numarul matricol 100</div>
-                    <div class="intrebare">Afiseaza studentii care primesc bursa</div>
-                    <div class="intrebare">Afiseaza studentii care primesc bursa</div>
-                    <div class="intrebare">Câți studenti au macar o nota de 10?</div>
-                    <div class="intrebare">Afiseaza studentii care primesc bursa</div>
+            <div class="add_info">
+                <div class="row">
+                    <div class="col_1">
+                        <p>Titlu:</p>
+                    </div>
+                    <div class="col_2">
+                        <input  id="titlu" cols="10" rows="5" placeholder="Titlu..." required></input>
+                    </div>
                 </div>
-                <div class="col">
-                    <div class="intrebare">Câți studenti au macar o nota de 10?</div>
-                    <div class="intrebare">Afiseaza studentii care primesc bursa</div>    
-                    <div class="intrebare">Afiseaza studentii care primesc bursa</div>
-                    <div class="intrebare">Afiseaza studentii care primesc bursa</div>
-                    <div class="intrebare">Afiseaza data de nastere a studentului cu numarul matricol 100</div>
-                    <div class="intrebare">Afiseaza data de nastere a studentului cu numarul matricol 100</div>
+                <div class="row">
+                    <div class="col_1">
+                        <p>Enunț:</p>
+                    </div>
+                    <div class="col_2">
+                        <textarea  id="enunt" cols="50" rows="5" placeholder="Enunt..." required></textarea>
+                    </div>
                 </div>
-                <div class="col">
-                    <div class="intrebare">Afiseaza studentii care primesc bursa</div>
-                    <div class="intrebare">Afiseaza data de nastere a studentului cu numarul matricol 100</div>
-                    <div class="intrebare">Afiseaza data de nastere a studentului cu numarul matricol 100</div>
-                    <div class="intrebare">Afiseaza data de nastere a studentului cu numarul matricol 100</div>
-                    <div class="intrebare">Afiseaza studentii care primesc bursa</div>
-                    <div class="intrebare">Câți studenti au macar o nota de 10?</div>
+                <div class="row">
+                    <div class="col_1">
+                        <p>Soluția:</p>
+                    </div>
+                    <div class="col_2">
+                        <textarea  id="solutia" cols="50" rows="5" placeholder="Solutia..." required></textarea>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col_1">
+                        <p>Costa:</p>
+                    </div>
+                    <div class="col_2">
+                        <select id="costa">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row_button">
+                    <button id="submit">Încarcă întrebarea</button>
+                </div>
+            </div>
+            <div class="specificatii">
+                <h3>Atenție!</h3>
+                <p>Intrebarea se poate găsi pe panoul de întrebări.</p>
             </div>
         </div>
         <div class="clasament">
@@ -110,8 +131,6 @@
             </div>
         </div>
     </section>
-
-    <div class="simpleModal"></div>
-
 </body>
+
 </html>
