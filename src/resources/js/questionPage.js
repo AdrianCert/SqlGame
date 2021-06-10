@@ -2,8 +2,8 @@
  * imi ia solutia trimisa de user -> o verifica 
  */
 
-let url = "http://localhost:2021/querry/{querry}";
-
+const url = "http://localhost:2021/querry/{querry}";
+const url_2 = "http://localhost:2021/question/{id}";
 let verify = (ev) => {
     ev.preventDefault();
     let entity = {
@@ -25,3 +25,19 @@ let verify = (ev) => {
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("submit").addEventListener('click', verify);
 });
+
+/**
+ * Functie de preluare a informatiilor dupa un anumit ID
+ */
+
+async function get_info(ID){
+    let url_ = url_2.replace("{id}", id);
+    const response = await fetch(url_, {
+        method : 'GET',
+        mode : 'cors',
+        headers:{
+            'Content-Type' : 'application/json'
+        }
+    });
+    return response.json();
+}
