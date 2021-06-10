@@ -27,7 +27,10 @@ const data = (ev) => {
             'Content-Type': 'application/json;charset=utf-8'
         },
         body : JSON.stringify(send_body)
-    })
+    }).then(r => {
+        document.getElementById("solutia").value = '';
+        document.getElementById("enunt").value = ''
+    });
     let result = response.catch();
     console.warn(result);
 }
