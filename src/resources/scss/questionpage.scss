@@ -64,7 +64,7 @@ section{
 
     }
     
-    .adauga_intrebare{
+    .intrebare{
         border: 3px solid $text_color;
         background-color: $text_color;
         width: 55%;
@@ -72,19 +72,14 @@ section{
         height: fit-content;
         flex-direction: column;
 
-        .header{
-            width: 100%;
-            margin-top: 1em;
-            margin-bottom: 1em;
-            text-align: center;
-        }
-
         .add_info{
             width: 100%;
             display: flex;
             flex-direction: inherit;
             .row{    
                 margin-top: 1.4em;
+                width: 100%;
+                text-align: center;
                 .col_1{
                     width: 30%;
                     float: left;
@@ -110,14 +105,14 @@ section{
                 align-items: center;
                 padding: 1em;
                 margin-top: 1em;
-            button{
-                padding: 1em 1em;
-                text-align: center;
-                background: $background_color;
-                outline: none;
-                color: $text_color;
-                border-radius: 23px;
-            }
+                button{
+                    padding: 1em 1em;
+                    text-align: center;
+                    background: $background_color;
+                    outline: none;
+                    color: $text_color;
+                    border-radius: 23px;
+                }
             }
         }
 

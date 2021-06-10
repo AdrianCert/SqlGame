@@ -7,7 +7,7 @@
     <title>Adaugă o întrebare</title>
 </head>
 <body>
-    <% partial nav %>
+    
     <section>
         <div class="profil">
             <h2>Profil</h2>
@@ -58,26 +58,14 @@
                 </div>
             </div>
         </div>
-        <div class="adauga_intrebare">
-            <div class="header">
-                <h1>Adaugă o întrebare</h1>
-            </div>
+        <div class="intrebare">
+        
             <div class="add_info">
                 <div class="row">
-                    <div class="col_1">
-                        <p>Titlu:</p>
-                    </div>
-                    <div class="col_2">
-                        <input  id="titlu" cols="10" rows="5" placeholder="Titlu..." required></input>
-                    </div>
+                   <p>{titlu}</p>
                 </div>
                 <div class="row">
-                    <div class="col_1">
-                        <p>Enunț:</p>
-                    </div>
-                    <div class="col_2">
-                        <textarea  id="enunt" cols="50" rows="5" placeholder="Enunt..." required></textarea>
-                    </div>
+                    <p>{enunt}</p>
                 </div>
                 <div class="row">
                     <div class="col_1">
@@ -87,20 +75,8 @@
                         <textarea  id="solutia" cols="50" rows="5" placeholder="Solutia..." required></textarea>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col_1">
-                        <p>Costa:</p>
-                    </div>
-                    <div class="col_2">
-                        <select id="costa">
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="row_button">
-                    <button id="submit">Încarcă întrebarea</button>
+                    <button id="submit">Submit raspuns</button>
                 </div>
             </div>
             

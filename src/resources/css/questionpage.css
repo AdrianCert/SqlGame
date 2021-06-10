@@ -67,7 +67,7 @@ section .profil .body_profil .row .date {
   font-style: italic;
 }
 
-section .adauga_intrebare {
+section .intrebare {
   border: 3px solid #a2a391;
   background-color: #a2a391;
   width: 55%;
@@ -81,14 +81,7 @@ section .adauga_intrebare {
           flex-direction: column;
 }
 
-section .adauga_intrebare .header {
-  width: 100%;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  text-align: center;
-}
-
-section .adauga_intrebare .add_info {
+section .intrebare .add_info {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -99,11 +92,13 @@ section .adauga_intrebare .add_info {
           flex-direction: inherit;
 }
 
-section .adauga_intrebare .add_info .row {
+section .intrebare .add_info .row {
   margin-top: 1.4em;
+  width: 100%;
+  text-align: center;
 }
 
-section .adauga_intrebare .add_info .row .col_1 {
+section .intrebare .add_info .row .col_1 {
   width: 30%;
   float: left;
   -webkit-box-orient: vertical;
@@ -117,19 +112,19 @@ section .adauga_intrebare .add_info .row .col_1 {
       justify-content: space-around;
 }
 
-section .adauga_intrebare .add_info .row .col_2 {
+section .intrebare .add_info .row .col_2 {
   width: 70%;
   float: right;
 }
 
-section .adauga_intrebare .add_info .row .col_2 textarea {
+section .intrebare .add_info .row .col_2 textarea {
   resize: none;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 90%;
 }
 
-section .adauga_intrebare .add_info .row_button {
+section .intrebare .add_info .row_button {
   width: 100%;
   text-align: center;
   -webkit-box-align: center;
@@ -139,7 +134,7 @@ section .adauga_intrebare .add_info .row_button {
   margin-top: 1em;
 }
 
-section .adauga_intrebare .add_info .row_button button {
+section .intrebare .add_info .row_button button {
   padding: 1em 1em;
   text-align: center;
   background: #052338;
