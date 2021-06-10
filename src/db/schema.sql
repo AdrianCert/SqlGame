@@ -37,7 +37,7 @@ CREATE TABLE Question(
 CREATE TABLE UserSec(
     ID int not null primary key,
     user_id int not null,
-    pass varchar(50) not null,
+    pass varchar(100) not null,
     pass_update_at date not null,
     recovery_mail varchar(50) not null,
     recovery_code char(10) not null

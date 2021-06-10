@@ -14,7 +14,6 @@ let verify = (ev) => {
     console.log(url_);
     let response = fetch(url_, {
         method : 'GET',
-        mode : 'no-cors'
     }).then(r => {
         document.getElementById('solutia').value = '';
     });
