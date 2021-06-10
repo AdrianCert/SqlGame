@@ -7,6 +7,7 @@ const cookies = require('./utils/cookies');
 const signupController = require('./controllers/signupController');
 const pageQuestionController = require('./controllers/pageQuestionController');
 const createQuestionController = require('./controllers/createQuestionController');
+const profileController = require('./controllers/profile');
 const questionController = require('./controllers/question');
 const serveController = require('./controllers/serve');
 
@@ -26,7 +27,7 @@ app.prefilter((i, o) => {
         o.end("ok");
     }
 });
-
+app.path("/myProfile/", profileController);
 app.path("/signup/", signupController);
 app.path("/pageQuestion/", pageQuestionController);
 app.path("/createQuestion/", createQuestionController);

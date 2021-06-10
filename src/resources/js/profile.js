@@ -1,4 +1,47 @@
+let url = "http://localhost:2021/myProfile/";
+let send_body = {
+    'id': 0,
+    'name' : "",
+    'surname' : "",
+    'username' : "",
+    'mail' : "",
+    'sqlizi' : 0
+}
 var edit = false;
+
+const data = (ev) => {
+    if(document.getElementById("edit_button").classList.contains("enabled_button")){
+        ev.preventDefault();
+        let entity = {
+            'name' : document.getElementById("name").value,
+            'surname': document.getElementById("surname").value,
+            'username' : document.getElementById("username").value,
+            'mail' : document.getElementById("email").value
+        }
+        console.warn('added', {entity});
+        //construiesc send_body
+        send_body["name"] = entity["name"];
+        send_body["surname"] = entity["surname"];
+        send_body["username"] = entity["username"];
+        send_body["mail"] = entity["mail"];
+        
+        console.warn('added', {send_body});
+        //trimit request ul
+        let response = fetch(url,{
+            method : 'POST',
+            mode:'no-cors',
+            headers:{
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body : JSON.stringify(send_body)
+        }).then(r => {
+            
+        });
+        let result = response.catch();
+        console.warn(result);
+        changeProfileInfo();
+    }
+}
 
 var profile_email, profile_name, profile_surname, profile_username, profile_id;
 
@@ -31,12 +74,11 @@ function setProfileInfo(json){
 }
 
 function changeProfileInfo(){
-    if(!(document.getElementById("username").value == "" || document.getElementById("username").value == document.getElementById("username").placeholder)){
-        document.getElementById("username").placeholder = document.getElementById("username").value;
-    }
+    document.getElementById("username").placeholder = document.getElementById("username").value;
+    document.getElementById("email").placeholder = document.getElementById("email").value;
 
     if(!(document.getElementById("email").value == "" || document.getElementById("email").value == document.getElementById("email").placeholder)){
-        document.getElementById("email").placeholder = document.getElementById("email").value;
+        
     }
 
     if(!(document.getElementById("name").value == "" || document.getElementById("name").value == document.getElementById("name").placeholder)){
@@ -92,28 +134,6 @@ function edited_photo(){
 
 function edited(){
     return edited_username() | edited_email() | edited_name() | edited_surname() /*| edited_photo()*/;
-}
-
-function previewFile() {
-    /*const preview = document.getElementById('profile_picture');
-    const file = document.getElementById('change_profile_picture').files[0];
-    const reader = new FileReader();
-  
-    reader.addEventListener("load", function () {
-        preview.src = reader.result;
-    }, false);
-
-    if (file) {
-        reader.readAsDataURL(file);
-        if(!edited_photo()){
-            document.getElementById("edit_button").classList.add("enabled_button");
-            document.getElementById("edit_button").classList.remove("disabled_button");
-        }else{
-            document.getElementById("edit_button").classList.add("disabled_button");
-            document.getElementById("edit_button").classList.remove("enabled_button");
-        }
-        
-    }*/
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -190,9 +210,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
         })
     }
 
-    document.getElementById("edit_button").addEventListener("click", function(){
-        if(document.getElementById("edit_button").classList.contains("enabled_button")){
-            changeProfileInfo();
-        }
-    })
+    document.getElementById("edit_button").addEventListener("click", data)
 });
