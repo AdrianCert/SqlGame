@@ -5,19 +5,23 @@ const models = [
     "query"
 ]
 
-const api = bindControllers();
+const queryApi = bindControllers();
 
 /**
- * USAGE const api = require('./binder/queryHandler');
- * let response = api.verification.post({"sendQuery":"SELECT * FROM studenti WHERE rownum<1","correctQuery":"SELECT * FROM studenti WHERE rownum<1","sgbd" : "Oracle","credentials": {"user" : "STUDENT","pass" : "QWERTY"}}).then(response => response.json()).then(result => console.log(result)).catch(error => console.error(error));
+ * USAGE const queryApi = require('./binder/queryHandler');
+ * let response = queryApi.verification.post({"sendQuery":"SELECT * FROM studenti WHERE rownum<1","correctQuery":"SELECT * FROM studenti WHERE rownum<1","sgbd" : "Oracle","credentials": {"user" : "STUDENT","pass" : "QWERTY"}}).then(response => response.json()).then(result => console.log(result)).catch(error => console.error(error));
  * and will return the user with id user
  */
-module.exports = api;
+module.exports = queryApi;
 
 function bindController(controler) {
     let url = `${getLocation()}/${controler}`
+    if(controler == "verification")
     return {
-        "post" : (data) => fetch_add(url, data)
+        "post" : (sendQuery, correctQuery, sgbd, user, pass) => fetchDataV(url, sendQuery, correctQuery, sgbd, user, pass)
+    }
+    else return {
+        "post" : (query, sgbd, user, pass) => fetchDataQ(url, query, sgbd, user, pass)
     }
 }
 
@@ -27,13 +31,40 @@ function bindControllers() {
     return r;
 }
 
-function fetch_add(url, data) {
+function fetchDataQ(url, query, sgbd, user, pass) {
+    dataToSend = {
+        query : query,
+        sgbd : sgbd,
+        credentials : {
+            user : user,
+            pass : pass
+        }
+    }
     return fetch(url, {
         method : 'POST',
         headers:{
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body : JSON.stringify(data)
+        body : JSON.stringify(dataToSend)
+    })
+}
+
+function fetchDataV(url, sendQuery, correctQuery, sgbd, user, pass) {
+    dataToSend = {
+        sendQuery : sendQuery,
+        correctQuery : correctQuery,
+        sgbd : sgbd,
+        credentials : {
+            user : user,
+            pass : pass
+        }
+    }
+    return fetch(url, {
+        method : 'POST',
+        headers:{
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body : JSON.stringify(dataToSend)
     })
 }
 
