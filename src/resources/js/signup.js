@@ -2,6 +2,7 @@ const url = "http://localhost:2021/user/";
 const url_2 = "http://localhost:2021/suser/"; 
 const url_3 = "http://localhost:2021/wallet/";
 const ulr_4 = "http://localhost:2021/wuser/";
+const ulr_5 = "http://localhost:2021/puser/";
 
 function intitiateWizard() {
     [...document.querySelectorAll("button[data-wizrole]")].forEach( el => {
@@ -49,18 +50,21 @@ let suser_body = {
     'recovery_mail' : '',
     'recovery_code' : ''
 }
-
 let wallet_body = {
     'id' : 0,
     'balancing' : 100
 }
-
 let uwallet_body = {
     'id' : 0,
     'user_id' : 0,
     'wallet_id' : 0
 }
-
+let userPerm_body = {
+    'id' : 0,
+    'user_id' : 0,
+    'role_id' : 1,
+    'expiration' : ''
+}
 //+wallet -> user_wallet
 function get_data(){
     return entity = {
@@ -117,7 +121,6 @@ async function create_suser(){
 
 async function create_uwallet(wallet_id){
     uwallet_body['wallet_id'] = parseInt(wallet_id);
-    console.log(uwallet_body);
     let response = await fetch(ulr_4, {
         method : 'POST',
         body : JSON.stringify(uwallet_body)
@@ -132,14 +135,24 @@ async function create_wallet(){
     create_uwallet(response['id']);
 }
 
-async function create_uw(ID_user){
+async function create_rolePer(){
+    let response = await fetch(ulr_5, {
+        method : 'POST',
+        body : JSON.stringify(userPerm_body)
+    }).then(r => r.json());
+}
+
+async function create_uwr(ID_user){
     var today = new Date();
 
     suser_body['user_id'] = ID_user;
     suser_body["pass_update_at"] = today;
     uwallet_body['user_id'] = ID_user;
+    userPerm_body['user_id'] = ID_user;
+
     create_suser();
     create_wallet();
+    create_rolePer();
 }
 
 let verify = async (ev) => {
@@ -148,7 +161,6 @@ let verify = async (ev) => {
     
     bind_user(entity);
     bind_suser(entity);
-    console.log(suser_body); 
 
     if(verify_pass(entity) == 0){
         console.warn("eroare la parola"); //facem ceva sa-i trimitem un modal 
@@ -161,7 +173,7 @@ let verify = async (ev) => {
     }).then(r => r.json())
     clear(document);
 
-    create_uw(parseInt(new_user['id']));
+    create_uwr(parseInt(new_user['id']));
 
 }
 
