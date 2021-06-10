@@ -1,5 +1,7 @@
 const url = "http://localhost:2021/user/"; 
 const url_2 = "http://localhost:2021/suser/"; 
+const url_3 = "http://localhost:2021/wallet/";
+const ulr_4 = "http://localhost:2021/wuser/";
 
 function intitiateWizard() {
     [...document.querySelectorAll("button[data-wizrole]")].forEach( el => {
@@ -50,7 +52,7 @@ let suser_body = {
 
 let wallet_body = {
     'id' : 0,
-    'balancing':0
+    'balancing' : 100
 }
 
 let uwallet_body = {
@@ -113,18 +115,31 @@ async function create_suser(){
     }).then(r => r.json())
 }
 
-async function create_wallet(){
-    
+async function create_uwallet(wallet_id){
+    uwallet_body['wallet_id'] = parseInt(wallet_id);
+    console.log(uwallet_body);
+    let response = await fetch(ulr_4, {
+        method : 'POST',
+        body : JSON.stringify(uwallet_body)
+    }).then(r => r.json())
 }
 
-async function create_uw(ID){
-    //primesc ID ul de la new_user
+async function create_wallet(){
+    let response = await fetch(url_3, {
+        method : 'POST',
+        body : JSON.stringify(wallet_body)
+    }).then(r => r.json())
+    create_uwallet(response['id']);
+}
+
+async function create_uw(ID_user){
     var today = new Date();
 
-    suser_body['user_id'] = ID;
+    suser_body['user_id'] = ID_user;
     suser_body["pass_update_at"] = today;
-    console.log(suser_body); 
+    uwallet_body['user_id'] = ID_user;
     create_suser();
+    create_wallet();
 }
 
 let verify = async (ev) => {
@@ -133,7 +148,7 @@ let verify = async (ev) => {
     
     bind_user(entity);
     bind_suser(entity);
-    console.log(suser_body);
+    console.log(suser_body); 
 
     if(verify_pass(entity) == 0){
         console.warn("eroare la parola"); //facem ceva sa-i trimitem un modal 
