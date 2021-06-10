@@ -26,18 +26,3 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("submit").addEventListener('click', verify);
 });
 
-/**
- * Functie de preluare a informatiilor dupa un anumit ID
- */
-
-async function get_info(ID){
-    let url_ = url_2.replace("{id}", id);
-    const response = await fetch(url_, {
-        method : 'GET',
-        mode : 'cors',
-        headers:{
-            'Content-Type' : 'application/json'
-        }
-    });
-    return response.json();
-}
