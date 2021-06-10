@@ -2,15 +2,15 @@ const Router = require('./../routing');
 const render = require('./../utils/html-response').HtmlRespone;
 
 async function homeView(req, res){
-    render(res, "addquestion.html",{
+    render(res, "signup.html",{
         "title" : "Create question"
     });
 }
 
-async function createQuestionController(req, res) {
+async function signupController(req, res) {
     return new Router()
-        .path(/\/createQuestion\/$/gm, homeView)
+        .path(/\/signup\/$/gm, homeView)
         .route(req, res);
 }
 
-module.exports = createQuestionController
+module.exports = signupController
