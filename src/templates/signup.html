@@ -4,7 +4,7 @@
 <head>
     <link rel="icon" href="imagine_tab.png">
     <link rel="stylesheet" href="../resources/css/signup.css">
-    <script src="signup.js"></script>
+    <script src='../resources/js/signup.js'></script>
     <title>Sign Up</title>
 </head>
 <body>
@@ -13,26 +13,26 @@
             <h2>Detalii</h2>
             <div class="row">
                 <div class="col_30">
-                    <p>Email: </p>
+                    <p>Username: </p>
                 </div>
                 <div class="col_70">
-                    <input type="email" id="email" placeholder="example@email.com" required>
+                    <input type="text" id="username" placeholder="generator202" required>
                 </div>
             </div>
             <div class="row">
                 <div class="col_30">
-                    <p>Parola: </p>
+                    <p>Nume: </p>
                 </div>
                 <div class="col_70">
-                    <input type="password" id = "password" placeholder="enter password" required>
+                    <input type="text" id = "nume" placeholder="ex. Popescu" required>
                 </div>
             </div>
             <div class="row">
                 <div class="col_30">
-                    <p>Parola: </p>
+                    <p>Prenume: </p>
                 </div>
                 <div class="col_70">
-                    <input type="password" id = "c_password" placeholder="re-enter password" required>
+                    <input type="text" id = "prenume" placeholder="ex. Dragos" required>
                 </div>
             </div>  
             <div class="row">
@@ -45,26 +45,26 @@
             <h2>Informatii personale</h2>
             <div class = "row">
                 <div class="col_30">
-                    <p>Nume</p>
+                    <p>Email</p>
                 </div>
                 <div class="col_70">
-                    <input type="text" id = "nume" placeholder="ex. Popescu" required>
+                    <input type="email" id = "email" placeholder="ex. hello@address.com" required>
                 </div>
             </div>
             <div class = "row">
                 <div class="col_30">
-                    <p>Prenume</p>
+                    <p>Parola</p>
                 </div>
                 <div class="col_70">
-                    <input type="text" id = "prenume" placeholder="ex. Cezar" required>
+                    <input type="password" id = "parola" placeholder="Parola..." required>
                 </div>
             </div>
-            <div class="row">
+            <div class = "row">
                 <div class="col_30">
-                    <p>Dată naștere</p>
+                    <p>Parola</p>
                 </div>
                 <div class="col_70">
-                    <input type="date" id="birthday">
+                    <input type="password" id = "parola_c" placeholder="Aceeasi parola..." required>
                 </div>
             </div>
             <div class="row">
@@ -80,22 +80,6 @@
             <h2>Informatii personale</h2>
             <div class="row">
                 <div class="col_30">
-                    <p>Oraș</p>
-                </div>
-                <div class="col_70">
-                    <input type="text" id="oras" placeholder="ex. Vaslui">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col_30">
-                    <p>Învățământ</p>
-                </div>
-                <div class="col_70">
-                    <input type="text" id="scoala" placeholder="ex. UAIC / ex. Scoala 6">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col_30">
                     <p>Descriere:</p>
                 </div>
                 <div class="col_70">
@@ -107,7 +91,7 @@
                     <button data-wizrole="last_page">Pagina precedentă</button>
                 </div>
                 <div class="col_50_2">
-                    <button data-wizrole="submit">Trimite</button>
+                    <button data-wizrole="submit" id = "submit">Trimite</button>
                 </div>
             </div>
         </div>

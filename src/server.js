@@ -4,6 +4,7 @@ const Router = require('./routing');
 const auth = require('./authenticate');
 const cookies = require('./utils/cookies');
 
+const signupController = require('./controllers/signupController');
 const pageQuestionController = require('./controllers/pageQuestionController');
 const createQuestionController = require('./controllers/createQuestionController');
 const questionController = require('./controllers/question');
@@ -26,6 +27,7 @@ app.prefilter((i, o) => {
     }
 });
 
+app.path("/signup/", signupController);
 app.path("/pageQuestion/", pageQuestionController);
 app.path("/createQuestion/", createQuestionController);
 app.path("/question/", questionController);
