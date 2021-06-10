@@ -8,6 +8,7 @@ $text_color: #a2a391;
     box-sizing: border-box;
 }
 
+
 body{
     background-color: $background_color;
     @supports(background-blend-mode: multiply){
@@ -63,36 +64,60 @@ section{
 
     }
     
-    .intrebari{
+    .adauga_intrebare{
         border: 3px solid $text_color;
-        width: 55%;
-        display: flex;
-        flex-direction: column; 
-        border-radius: 23px;
         background-color: $text_color;
-        overflow-y: scroll;
-        height: 70vh;
+        width: 55%;
+        border-radius: 23px;
+        height: fit-content;
+        flex-direction: column;
+
         .header{
             width: 100%;
+            margin-top: 1em;
+            margin-bottom: 1em;
             text-align: center;
-            
         }
-        .container_intrebari{
+
+        .add_info{
             width: 100%;
             display: flex;
+            flex-direction: inherit;
+            .row{    
+                margin-top: 1.4em;
+                .col_1{
+                    width: 30%;
+                    float: left;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-around;
+                }
+                .col_2{
+                    width: 70%;
+                    float:right;
 
-            .intrebare{
-                overflow-wrap: normal;
-                padding: 1em;
-                border: 3px solid orange;
-                background-color: olive;
-                margin: 1em;
-                opacity: 70%;
-                border-radius: 23px;
-                &:hover{
-                    opacity: 100%;
+                    textarea{
+                        resize: none;
+                        box-sizing: border-box;
+                        width: 90%;
+                    }
                 }
 
+            }
+            .row_button{
+                width: 100%;
+                text-align: center;
+                align-items: center;
+                padding: 1em;
+                margin-top: 1em;
+            button{
+                padding: 1em 1em;
+                text-align: center;
+                background: $background_color;
+                outline: none;
+                color: $text_color;
+                border-radius: 23px;
+            }
             }
         }
 
@@ -108,7 +133,6 @@ section{
         h2{
             text-align: center;
         }
-
         .row{
             p{
                 width: 100%;
@@ -118,13 +142,11 @@ section{
                 font-weight: bold;
             }
         }
-
         hr{
             height: 2px;
             background-color: orange;
             outline: none;
         }
-
         .row_button{
             width: 100%;
             text-align: center;
@@ -142,4 +164,18 @@ section{
 
         }
     }
+}
+
+::-webkit-scrollbar{
+    width: 15px;
+}
+
+::-webkit-scrollbar-track{
+    border: 7px solid black;
+    box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(#052338, #a2a391);
+    border-radius: 23px;
 }
