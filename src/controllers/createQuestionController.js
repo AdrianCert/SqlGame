@@ -14,15 +14,3 @@ async function createQuestionController(req, res) {
 }
 
 module.exports = createQuestionController
-
-/**
- * 
- * div_class : adauga_intrebare
- * 
- * Pe pagina adauga o intrebare avem asa
- * text aread enunt / solutia 
- * select dificultate
- * 
- * buton submit - preia informatiile -> spre comanda sql ...
- * 
- */
