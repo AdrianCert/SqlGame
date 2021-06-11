@@ -20,10 +20,13 @@ Router.prototype.route = function (req, res) {
     let found = false;
     for (let p of this.paths) {
         if (req.url.match(new RegExp(p.url))) {
-            applyFilters(req, res, this.prefilters);
-            p.function(req, res);
-            applyFilters(req, res, this.postfilters);
             found = true;
+            applyFilters(req, res, this.prefilters).then(() => {
+                if(res.finished) return
+                p.function(req, res);
+            }).then(() => {
+                applyFilters(req, res, this.postfilters);
+            });
             break;
         }
     }
@@ -59,10 +62,11 @@ Router.prototype.showlog = function (stat = true) {
     return this;
 }
 
-function applyFilters(req, res, filters = []) {
+async function applyFilters(req, res, filters = []) {
     if( !filters) return;
     for(let filter of filters) {
-        filter.function(req, res);
+        if(res.finished) break;
+        await filter.function(req, res);
     }
 }
 

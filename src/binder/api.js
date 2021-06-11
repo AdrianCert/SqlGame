@@ -33,11 +33,11 @@ module.exports = api;
 function bindController(controler) {
     let url = `${getLocation()}/${controler}/`
     return {
-        "add" : (data) => fetch_add(url, data),
-        "getAll" : () => fetch_all(url),
-        "get" : (id) => fetch_get(`${url}${id}`),
-        "update" : (id, data) => fetch_update(`${url}${id}`, data),
-        "delete" : (id) => fetch_delete(`${url}${id}`)
+        "add" : (data) => fetch_add(url, data).then(r => r.json()),
+        "getAll" : () => fetch_all(url).then(r => r.json()),
+        "get" : (id) => fetch_get(`${url}${id}`).then(r => r.json()),
+        "update" : (id, data) => fetch_update(`${url}${id}`, data).then(r => r.json()),
+        "delete" : (id) => fetch_delete(`${url}${id}`).then(r => r.json())
     }
 }
 
@@ -58,7 +58,6 @@ function fetch_add(url, data) {
 }
 
 function fetch_all(url) {
-    console.log(url);
     return fetch(url);
 }
 
