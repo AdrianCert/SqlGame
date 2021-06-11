@@ -14,7 +14,7 @@ function getMimeTypeByExtension(file) {
 }
 
 async function serveController(req, res) {
-    fs.readFile(`${__dirname}./../${req.url}`)
+    return await fs.readFile(`${__dirname}./../${req.url}`)
         .then(contents => {
             res.setHeader("Content-Type", getMimeTypeByExtension(req.url));
             res.writeHead(200);

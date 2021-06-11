@@ -1,7 +1,7 @@
 const http = require('http');
 const config = require('./config.json');
 const Router = require('./routing');
-const auth = require('./authenticate');
+const {auth, login } = require('./authenticate');
 const cookies = require('./utils/cookies');
 
 const signupController = require('./controllers/signupController');
@@ -10,29 +10,23 @@ const createQuestionController = require('./controllers/createQuestionController
 const profileController = require('./controllers/profile');
 const questionController = require('./controllers/question');
 const serveController = require('./controllers/serve');
+const authController = require('./controllers/auth');
 
 const PORT = config.port || 5000;
 
 var app = new Router();
 app.showlog();
+app.prefilter(staticChain)
 app.prefilter(processCookies);
 app.prefilter(processAuth);
-app.prefilter((i, o) => {
-    console.log(i.headers.auth);
-    if(!i.headers.auth.is_authenticated) {
-        o.writeHead(200, {
-            'Set-Cookie': 'sid=UUID;path=/',
-            'Content-Type': 'text/plain'
-        })
-        o.end("ok");
-    }
-});
-app.path("/myProfile/", profileController);
+app.prefilter(authWall);
+
 app.path("/signup/", signupController);
 app.path("/pageQuestion/", pageQuestionController);
 app.path("/createQuestion/", createQuestionController);
+app.path("/myProfile/", profileController);
 app.path("/question/", questionController);
-app.path(/\.[^.\W]+$/gm, serveController);
+app.path("/auth/", authController);
 app.path("/", (inp, out) => {
     console.log(`REDIRECT HTTP/${inp.httpVersion} ${inp.method} ${inp.url}`);
     out.setHeader("Location", "/question/");
@@ -46,6 +40,31 @@ function processCookies(i, o) {
 
 function processAuth(i, o) {
     i.headers.auth = auth(i.headers.cookies);
+}
+
+async function staticChain(req, res) {
+    if( req.url.match(/\.[^.\W]+$/gm)) {
+        await serveController(req, res);
+    }
+}
+
+function authWall(req, res) {
+    let allow_r = [
+        "/",
+        "/auth/login",
+        "/auth/register"
+    ];
+
+    if( !req.headers.auth.is_authenticated) {
+        for(let i of allow_r) {
+            if (i === req.url) {
+                return;
+            }
+        }
+        res.setHeader("Location", "/auth/login");
+        res.writeHead(308);
+        res.end();
+    }
 }
 
 http.createServer((i, o) => app.route(i, o)).listen(PORT, () => {
