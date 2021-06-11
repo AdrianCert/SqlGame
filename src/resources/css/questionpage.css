@@ -14,7 +14,7 @@ body {
 
 @supports (background-blend-mode: multiply) {
   body {
-    background-image: url("background.png");
+    background-image: url("../img/background.png");
     background-repeat: no-repeat;
     background-blend-mode: multiply;
   }
@@ -67,46 +67,80 @@ section .profil .body_profil .row .date {
   font-style: italic;
 }
 
-section .intrebari {
+section .intrebare {
   border: 3px solid #a2a391;
+  background-color: #a2a391;
   width: 55%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  border-radius: 23px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  border-radius: 23px;
-  background-color: #a2a391;
-  overflow-y: scroll;
-  height: 70vh;
 }
 
-section .intrebari .header {
-  width: 100%;
-  text-align: center;
-}
-
-section .intrebari .container_intrebari {
+section .intrebare .add_info {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: inherit;
+  -webkit-box-direction: inherit;
+      -ms-flex-direction: inherit;
+          flex-direction: inherit;
 }
 
-section .intrebari .container_intrebari .intrebare {
-  overflow-wrap: normal;
+section .intrebare .add_info .row {
+  margin-top: 1.4em;
+  width: 100%;
+  text-align: center;
+}
+
+section .intrebare .add_info .row .col_1 {
+  width: 30%;
+  float: left;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+section .intrebare .add_info .row .col_2 {
+  width: 70%;
+  float: right;
+}
+
+section .intrebare .add_info .row .col_2 textarea {
+  resize: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 90%;
+}
+
+section .intrebare .add_info .row_button {
+  width: 100%;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 1em;
-  border: 3px solid orange;
-  background-color: olive;
-  margin: 1em;
-  opacity: 70%;
-  border-radius: 23px;
+  margin-top: 1em;
 }
 
-section .intrebari .container_intrebari .intrebare:hover {
-  opacity: 100%;
+section .intrebare .add_info .row_button button {
+  padding: 1em 1em;
+  text-align: center;
+  background: #052338;
+  outline: none;
+  color: #a2a391;
+  border-radius: 23px;
 }
 
 section .clasament {

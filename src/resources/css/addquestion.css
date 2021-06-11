@@ -14,7 +14,7 @@ body {
 
 @supports (background-blend-mode: multiply) {
   body {
-    background-image: url("background.png");
+    background-image: url("../img/background.png");
     background-repeat: no-repeat;
     background-blend-mode: multiply;
   }
