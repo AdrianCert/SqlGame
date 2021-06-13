@@ -1,17 +1,18 @@
-$body_color:#245f78;
-$h1_color:black;
-$form_color:#a2a391;
-$text_color:#a2a391;
+// $body_color:#245f78;
+// $h1_color:black;
+// $form_color:#fff;//#a2a391;
+// $text_color:#a2a391;
+@import "color";
 
 body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-color: $body_color;    
+    background-color: $color-secondary;
 }
 
 .wizzard{
-    background-color: $form_color;
+    background-color: $c_white;
     width: 30vmax;
     padding: 30px;
     position: absolute;
@@ -24,19 +25,24 @@ body{
 
 .login-forum{
 
+    > * {
+        margin-top: 10px;
+    }
+
     .row{
         width: 100%;
     }
 
     h1{
-        color: $body_color;
+        color: $c_primary;
+        font-size: 40px;
     }
 
     input{
         text-align: center;
         background: none;
         outline: none;
-        border: 3px solid $background_color;
+        border: 3px solid $color-primary;
         width: 70%;
         border-radius: 23px;
         resize: none;
@@ -44,15 +50,16 @@ body{
         &:focus{
             width: calc(70% + 10px);
         }
+        &:-webkit-autofill{
+            font-size: 2em;
+        }
     }
 
     button{
-        padding: 1em 1em;
         text-align: center;
-        background: $form_color;
+        background: $c_white;
         outline: none;
-        color: $input_color;
-        width: 100px;
+        color: $color-primary;
         float: center;
     }
 }

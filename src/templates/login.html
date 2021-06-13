@@ -2,9 +2,15 @@
 <html lang="ro">
 
 <head>
+    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/login.css">
     <link rel="icon" href="imagine_tab.png">
-    <title>LoginPage</title>
+    <title>Login</title>
+    <script>
+        function goregist() {
+            window.location = '/auth/register';
+        }
+    </script>
 </head>
 
 <body>
@@ -19,7 +25,8 @@
                     <input type="password" id="password" placeholder="Your password" name="pass" required>
                 </div>
                 <div class="row">
-                    <button type="submit" value="Login">Login</button>
+                    <button type="submit" class="btn btn-primary" value="Login">Login</button>
+                    <button type="button" class="btn btn-primary" onclick="goregist();">Register</button>
                 </div>
             </div>
         </form>

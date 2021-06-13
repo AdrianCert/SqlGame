@@ -4,3 +4,6 @@ package-lock.json
 *.class
 *.jar
 target
+/.idea
+*/.idea
+src/microservices/ms-backend/.idea/workspace.xml
