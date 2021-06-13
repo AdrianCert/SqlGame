@@ -28,7 +28,7 @@ function makeLogin(req, res) {
                 res.setHeader( 'Set-Cookie', `sid=${l.key};path=/`);
                 return render(res, "redirect.html", noprocess);
             } else {
-                return render(res, "login.html", noprocess);
+                return render(res, "login.html", {"mess" : l.reason });
             }
         });
     });

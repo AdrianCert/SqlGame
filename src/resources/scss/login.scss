@@ -38,6 +38,14 @@ body{
         font-size: 40px;
     }
 
+    .error {
+        color: #f00;
+
+        &:not(.active) {
+            display: none;
+        }
+    }
+
     input{
         text-align: center;
         background: none;

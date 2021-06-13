@@ -31,6 +31,14 @@ body {
   font-size: 40px;
 }
 
+.login-forum .error {
+  color: #f00;
+}
+
+.login-forum .error:not(.active) {
+  display: none;
+}
+
 .login-forum input {
   text-align: center;
   background: none;

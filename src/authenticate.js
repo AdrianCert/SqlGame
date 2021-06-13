@@ -49,7 +49,7 @@ async function verify_credentials(data) {
     }
     user = user[0];
     let user_sec = await api.suser.getAll().then( r => r.filter(u => u.user_id === user.id));
-    if(user_sec === 0) {
+    if(user_sec.length === 0) {
         return {
             "stat" : 2,
             "mess" : "no user sec associated"
