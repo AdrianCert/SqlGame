@@ -103,13 +103,4 @@ async function writeQuestions(n) {
         if( curr === n) curr = 0;
         slots[curr++].appendChild(createQuestionBox(q))
     });
-
-    /* dublicate data for layout dev * /
-    [...Array(100).keys()].forEach( () => {
-        [...data].forEach( q => {
-            if( curr === n) curr = 0;
-            slots[curr++].appendChild(createQuestionBox(q))
-        });
-    });
-    /* end dublicate data */
 }

@@ -32,8 +32,6 @@ function intitiateWizard() {
     });
 }
 
-// post imi returneaza un json cu body ul/entitatea introdusa in BD
-
 let user_body = {
     'id' : 0,
     'name' : '',
@@ -52,7 +50,7 @@ let suser_body = {
 }
 let wallet_body = {
     'id' : 0,
-    'balancing' : 100
+    'balancing' : Math.random() * (100, 1000) + 1
 }
 let uwallet_body = {
     'id' : 0,
