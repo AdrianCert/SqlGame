@@ -3,7 +3,7 @@ package ro.uaic.info.builder;
 import ro.uaic.info.entity.UserSec;
 
 import java.sql.ResultSet;
-import java.util.Date;
+import java.sql.Date;
 
 public class UserSecBuilder extends UserSec {
 
