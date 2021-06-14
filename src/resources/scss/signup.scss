@@ -2,11 +2,13 @@ $background_color: #245f78;
 $input_color:#a2a391;
 $text_color:#1a2f30;
 
+@import "color";
+
 body{
     margin: 0px;
     padding: 0px;
     font-family: sans-serif;
-    background-color: $background_color;
+    background-color: $color-secondary;
 }
 
 //pentru details
@@ -35,7 +37,7 @@ body{
 
 .col_50_1{
     width: 50%;
-    float: left;    
+    float: left;
 }
 
 .col_50_2{
@@ -49,7 +51,7 @@ body{
 }
 
 .wizzard {
-    background-color: $input_color;
+    background-color: $c_white;
     width: 70vw;
     height: auto;
     padding: 30px;
@@ -60,6 +62,11 @@ body{
     text-align: center;
     border-radius: 23px;
     transition: 0.15s;
+
+    h1 {
+        color: #4285f4;
+        font-size: 40px;
+    }
 
     input, textarea {
         text-align: center;
@@ -76,12 +83,10 @@ body{
     }
 
     button{
-        padding: 1em 1em;
         text-align: center;
         background: $background_color;
         outline: none;
         color: $input_color;
-        width: 100px;
         float: center;
     }
 
@@ -92,6 +97,14 @@ body{
 
 .offline {
     display: none;
+}
+
+.error {
+    color: #f00;
+
+    &:not(.active) {
+        display: none;
+    }
 }
 
 @media only screen and (max-device-width: 800px) {

@@ -1,6 +1,6 @@
 const Router = require('../routing');
 const render = require('../utils/html-response').HtmlRespone;
-const {auth, login } = require('./../authenticate');
+const { login , register } = require('./../authenticate');
 
 const noprocess = {
     "__strategy" : 2
@@ -42,7 +42,24 @@ function makeSignup(req, res) {
         body.push(chunk);
     }).on('end', () => {
         body = Buffer.concat(body).toString();
-        console.log(body);
+        register(JSON.parse(body)).then(r => {
+            if( r.auth) {
+                res.setHeader( 'Set-Cookie', `sid=${r.key};path=/`);
+                res.setHeader("Content-Type", "application/json");
+                res.writeHead(200);
+                res.end(JSON.stringify({
+                    "mess" : "ok",
+                    "succes" : true
+                }));
+            } else {
+                res.setHeader("Content-Type", "application/json");
+                res.writeHead(200);
+                res.end(JSON.stringify({
+                    "mess" : r.reason,
+                    "succes" : false
+                }));
+            }
+        });
     });
 }
 
