@@ -3,6 +3,7 @@ const config = require('./config.json');
 const Router = require('./routing');
 const {auth, login } = require('./authenticate');
 const cookies = require('./utils/cookies');
+const migrate = require('./migrate');
 
 const landingController = require('./controllers/landingController');
 const signupController = require('./controllers/signupController');
@@ -72,4 +73,5 @@ function authWall(req, res) {
 
 http.createServer((i, o) => app.route(i, o)).listen(PORT, () => {
     console.log(`Server up on port ${PORT}`);
+    migrate();
 });
