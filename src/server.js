@@ -4,6 +4,7 @@ const Router = require('./routing');
 const {auth, login } = require('./authenticate');
 const cookies = require('./utils/cookies');
 
+const landingController = require('./controllers/landingController');
 const signupController = require('./controllers/signupController');
 const pageQuestionController = require('./controllers/pageQuestionController');
 const createQuestionController = require('./controllers/createQuestionController');
@@ -21,6 +22,7 @@ app.prefilter(processCookies);
 app.prefilter(processAuth);
 app.prefilter(authWall);
 
+app.path("/landing/", landingController);
 app.path("/signup/", signupController);
 app.path("/pageQuestion/", pageQuestionController);
 app.path("/createQuestion/", createQuestionController);
@@ -51,6 +53,7 @@ async function staticChain(req, res) {
 function authWall(req, res) {
     let allow_r = [
         "/",
+        "/landing/",
         "/auth/login",
         "/auth/register"
     ];
