@@ -1,5 +1,20 @@
 const url_question_by_id = "http://localhost:2021/question/{id}";
 
+/**
+ * bun trimit un request de tipul
+ * {
+ *    'querry' : 'SELECT * FROM YESSIR;'
+ * }
+ * 
+ * trece prin filtru lui adrian care intoarce un raspuns / da sau nu ? ce intoarce? cand trebuie sa descarc fisierul?
+ * 
+ */
+
+function querrySender(){
+    let querry = document.getElementById("solutia").value;
+    console.log(querry);
+}
+
 function getCurrentQuestionId(){
     return parseInt(window.location.pathname.replace("/question/", ""));
 }
@@ -42,9 +57,9 @@ async function pageQuestion_replace(){
 }
 
 document.addEventListener("DOMContentLoaded", async() => {
-    console.log("DOM loaded on questionPage");
     let current_user_id = await didIGetIt();
     writeProfileCard(current_user_id.id);
     writeClassamentCard();
     pageQuestion_replace();
+    document.getElementById("submit_raspuns").addEventListener("click", querrySender());
 });

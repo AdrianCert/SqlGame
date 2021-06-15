@@ -41,9 +41,9 @@ const data = (ev) => {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOM loaded on createQuestion");
-    writeProfileCard(30);
+document.addEventListener("DOMContentLoaded", async() => {
+    let current_user_id = await didIGetIt();
+    writeProfileCard(current_user_id.id);
     writeClassamentCard();
     document.getElementById("submit").addEventListener('click', data);
 });
