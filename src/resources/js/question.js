@@ -1,15 +1,10 @@
-document.addEventListener("DOMContentLoaded", () => writeQuestions(5));
+document.addEventListener("DOMContentLoaded", () => writeQuestions(3));
 
 let __questions__ = null;
 
-async function getInfo(){
-    __questions__ = await binder_api.question.getAll().then(r => r.json());
-    console.log(__questions__);
+async function getQuestions() {
+    __questions__ = __questions__ === null ? await binder_api.question.getAll().then(r => r.json()) : __questions__;
     return [...__questions__];
-}
-
-function getQuestions() {
-    return getInfo();
 }
 
 function getQuestion(id) {
@@ -30,6 +25,12 @@ function createQuestionBox(data) {
     let description = document.createElement('p');
     description.innerHTML = data.description;
     doc.appendChild(description);
+
+    let nfobox = document.createElement('div');
+    nfobox.classList.add('nfo');
+    doc.appendChild(nfobox);
+
+    nfobox.appendChild(document.createRange().createContextualFragment(`<p>#${data.id}</p><p>by Adrian</p><p>${data.value}/${data.reward}</p>`));
 
     doc.addEventListener("click", showQuestionModal);
 
