@@ -51,9 +51,6 @@ async function getClassament(){
     let user = await getUsers();
     let uwallet =  await getUWallet();
     let wallet = await getWallet();
-
-    debugger;
-
     let classament = makeClassament(user, uwallet, wallet);
     sortClassament(classament);
     let i = 0;

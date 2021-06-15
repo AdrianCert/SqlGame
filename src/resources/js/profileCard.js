@@ -9,7 +9,6 @@ async function getInfo(ID){
 }
 
 function replaceProfileCard(info){
-    console.log(info);
     document.getElementById("text1").innerHTML = info.nickname;
     document.getElementById("text2").innerHTML = info.coins;
     document.getElementById("text3").innerHTML = info.poz_clasament;
