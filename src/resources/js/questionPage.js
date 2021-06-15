@@ -1,4 +1,5 @@
 const url_question_by_id = "http://localhost:2021/question/{id}";
+const url_API = "http://localhost/api/check";
 
 /**
  * bun trimit un request de tipul
@@ -10,9 +11,20 @@ const url_question_by_id = "http://localhost:2021/question/{id}";
  * 
  */
 
-function querrySender(){
-    let querry = document.getElementById("solutia").value;
-    console.log(querry);
+async function sendRequestAPI(data){
+    //trimit catre API un request cu DATA
+    let raspuns = await fetch(url_API, {
+        method : "POST",
+        body : JSON.stringify(data)
+    }).then(r => r.json);
+}
+
+const querrySender = (ev) => {
+    ev.preventDefault();
+    let entity = {
+        'querry' : document.getElementById("solutia").value
+    }
+    //sendRequestAPI(entity); 
 }
 
 function getCurrentQuestionId(){
@@ -61,5 +73,5 @@ document.addEventListener("DOMContentLoaded", async() => {
     writeProfileCard(current_user_id.id);
     writeClassamentCard();
     pageQuestion_replace();
-    document.getElementById("submit_raspuns").addEventListener("click", querrySender());
+    document.getElementById("raspuns").addEventListener("click", querrySender);
 });
