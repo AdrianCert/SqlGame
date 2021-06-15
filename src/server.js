@@ -67,7 +67,7 @@ function authWall(req, res) {
                 return;
             }
         }
-        res.setHeader("Location", "/auth/login");
+        res.setHeader("Location", "/landing/");
         res.writeHead(307);
         res.end();
     }
