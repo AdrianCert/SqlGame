@@ -2,6 +2,8 @@
 
 <html lang = "ro">
 <head>
+    <script src="../resources/js/classament.js"></script>
+    <script src="../resources/js/profileCard.js"></script>
     <script src="../resources/js/createQuestion.js"></script>
     <link rel="stylesheet" href="../resources/css/addquestion.css">
     <link rel="stylesheet" href="../resources/css/menu.min.css">
@@ -12,50 +14,30 @@
     <section>
         <div class="profil">
             <h2>Profil</h2>
-            <div class="body_profil">
+            <div class="body_profil" id = "profil">
                 <div class="row">
                     <div class="informatie">
                         <p> * Nume utilizator:</p>
                     </div>
-                    <div class="date">
-                        <p>Dragos101</p>
+                    <div class="date" id = "username">
+                        <p id = "text1">{username}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="informatie">
                         <p> * SQLCoins:</p>
                     </div>
-                    <div class="date">
-                        <p>110</p>
+                    <div class="date" id = "user_coins">
+                        <p id = "text2">{coins}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="informatie">
                         <p> * Poz. clasament:</p>
                     </div>
-                    <div class="date">
-                        <p>3</p>
+                    <div class="date" id = "poz_clasament">
+                        <p id = "text3">{pozclas}</p>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="informatie">
-                        <p> * Intrebari validate:</p>
-                    </div>
-                    <div class="date">
-                        <p>10</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="informatie">
-                        <p> * Intrebari create:</p>
-                    </div>
-                    <div class="date">
-                        <p>2</p>
-                    </div>
-                </div>
-                <div class="informatie">
-                </div>
-                <div class="date">
                 </div>
             </div>
         </div>
@@ -112,24 +94,21 @@
         <div class="clasament">
             <h2>Clasament</h2>
             <div class="row">
-                <p>1. Andrei202</p>
+                <p>1. {user1}</p>
             </div>
             <div class="row">
-                <p>2. Salam</p>
+                <p>2. {user2}</p>
             </div>
             <div class="row">
-                <p>3. Ionut5000</p>
+                <p>3. {user3}</p>
             </div>
             <div class="row">
-                <p>4. DragosS</p>
+                <p>4. {user4}</p>
             </div>
             <div class="row">
-                <p>5. Dada</p>
+                <p>5. {user5}</p>
             </div>
-            <hr>
-            <div class="row_button">
-                <button class="more" id="view_more"> Mai mult...</button>
-            </div>
+            
         </div>
     </section>
 </body>

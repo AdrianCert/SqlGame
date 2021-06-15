@@ -33,30 +33,47 @@ function intitiateWizard() {
     });
 }
 
-/**
- * Show on screen the error
- * @param {String} err error message
- */
-function logErr(err) {
-    if (VERBOSE) {
-        console.warn(err);
-    }
-    let err_box = document.querySelector('.error');
-    err_box.innerHTML = err;
-    err_box.classList.add('active');
+let user_body = {
+    'id' : 0,
+    'name' : '',
+    'surname' : '',
+    'user_name': '',
+    'mail' : '',
+    'details' : ''
 }
-
-/**
- * Sent the data to server
- * @param {Event} e event
- * @returns 
- */
-async function sendRegister(e) {
-    e.preventDefault();
-    let entity = readData();
-
-    if ( entity['parola'] !== entity['parola_c']) {
-        return logErr("Parolele trebuie sa coiencid")
+let suser_body = {
+    'id' : 0,
+    'user_id' : 0,
+    'pass' : '',
+    'pass_update_at': 0,
+    'recovery_mail' : '',
+    'recovery_code' : ''
+}
+let wallet_body = {
+    'id' : 0,
+    'balancing' : Math.random() * (100, 1000) + 1
+}
+let uwallet_body = {
+    'id' : 0,
+    'user_id' : 0,
+    'wallet_id' : 0
+}
+let userPerm_body = {
+    'id' : 0,
+    'user_id' : 0,
+    'role_id' : 1,
+    'expiration' : ''
+}
+//+wallet -> user_wallet
+function get_data(){
+    return entity = {
+        'username' : document.getElementById("username").value,
+        'nume' : document.getElementById("nume").value,
+        'prenume' : document.getElementById("prenume").value,
+        'email' : document.getElementById("email").value,
+        'parola' : document.getElementById("parola").value,
+        'parola_c' : document.getElementById("parola_c").value,
+        'descriere' : document.getElementById("descriere").value
     }
 }
 
