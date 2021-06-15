@@ -42,5 +42,8 @@ const data = (ev) => {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM loaded on createQuestion");
+    writeProfileCard(30);
+    writeClassamentCard();
     document.getElementById("submit").addEventListener('click', data);
 });
