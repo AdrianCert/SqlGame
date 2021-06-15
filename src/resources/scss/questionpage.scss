@@ -114,7 +114,12 @@ section{
                     color: $text_color;
                     border-radius: 23px;
                 }
+                &.inline_buttons{
+                    display: flex;
+                    justify-content: space-around;
+                }
             }
+            
         }
         
     }
@@ -177,10 +182,6 @@ section{
     border-radius: 23px;
 }
 
-#descarcaButton{
-    display: none;
-    
-}
 #validare{
     display: none;
 }

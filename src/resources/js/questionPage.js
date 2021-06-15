@@ -1,28 +1,16 @@
 const url_question_by_id = "http://localhost:2021/question/{id}";
-const url_API = "http://localhost/api/check";
-
-async function sendRequestAPI(data){
-    //trimit catre API un request cu DATA
-    return await fetch(url_API, {
-        method : "POST",
-        body : JSON.stringify(data)
-    }).then(r => r.json);
-}
+const url_API = `/api/query/check/${getCurrentQuestionId()}`;
 
 const descarcaFisier = async(ev) =>{
-    ev.preventDefault();
-    console.log("da");
 }
 
 const querrySender = async(ev) => {
     ev.preventDefault();
-    let entity = {
-        'querry' : document.getElementById("solutia").value
-    }
-    //tof = await sendRequestAPI(entity); 
-    tof = {
-        'status' : 'ok'
-    }
+    let tof = await fetch(url_API, {
+        method : "POST",
+        body : document.getElementById("solutia").value
+    }).then(r => r.json());
+    console.log(tof);
     sendMessageToUser(tof);
 }
 
@@ -45,10 +33,9 @@ function eroare(){
 function sendMessageToUser(tof){
     let container = document.getElementById("validare");
     while(container.firstChild) container.firstChild.remove();
-    if(tof.status == 'ok') container.appendChild(valid());
+    if(tof.accepted) container.appendChild(valid());
     else container.appendChild(eroare());
     document.getElementById("validare").style.display = 'block';
-    document.getElementById("descarcaButton").style.display = 'block';
 }
 
 function getCurrentQuestionId(){
