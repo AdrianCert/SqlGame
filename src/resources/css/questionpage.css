@@ -204,3 +204,11 @@ section .clasament .row_button button {
   background: linear-gradient(#052338, #a2a391);
   border-radius: 23px;
 }
+
+#descarcaButton {
+  display: none;
+}
+
+#validare {
+  display: none;
+}

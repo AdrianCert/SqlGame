@@ -76,6 +76,7 @@ section{
             width: 100%;
             display: flex;
             flex-direction: inherit;
+            
             .row{    
                 margin-top: 1.4em;
                 width: 100%;
@@ -115,7 +116,7 @@ section{
                 }
             }
         }
-
+        
     }
 
     .clasament{
@@ -155,6 +156,7 @@ section{
                 outline: none;
                 color: $text_color;
                 border-radius: 23px;
+                
             }
 
         }
@@ -173,4 +175,12 @@ section{
 ::-webkit-scrollbar-thumb{
     background:linear-gradient(#052338, #a2a391);
     border-radius: 23px;
+}
+
+#descarcaButton{
+    display: none;
+    
+}
+#validare{
+    display: none;
 }

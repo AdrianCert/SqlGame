@@ -3,18 +3,52 @@ const url_API = "http://localhost/api/check";
 
 async function sendRequestAPI(data){
     //trimit catre API un request cu DATA
-    let raspuns = await fetch(url_API, {
+    return await fetch(url_API, {
         method : "POST",
         body : JSON.stringify(data)
     }).then(r => r.json);
 }
 
-const querrySender = (ev) => {
+const descarcaFisier = async(ev) =>{
+    ev.preventDefault();
+    console.log("da");
+}
+
+const querrySender = async(ev) => {
     ev.preventDefault();
     let entity = {
         'querry' : document.getElementById("solutia").value
     }
-    //sendRequestAPI(entity); 
+    //tof = await sendRequestAPI(entity); 
+    tof = {
+        'status' : 'ok'
+    }
+    sendMessageToUser(tof);
+}
+
+function valid(){
+    return getFragment(
+        `
+        <p style="color:green">VALID</p>
+        `
+    );
+}
+
+function eroare(){
+    return getFragment(
+        `
+        <p style="color:red">EROARE</p>
+        `
+    )
+}
+
+function sendMessageToUser(tof){
+    let container = document.getElementById("validare");
+    while(container.firstChild) container.firstChild.remove();
+    if(tof.status == 'ok') container.appendChild(valid());
+    else container.appendChild(eroare());
+    document.getElementById("validare").style.display = 'block';
+    document.getElementById("descarcaButton").style.display = 'block';
 }
 
 function getCurrentQuestionId(){
@@ -64,4 +98,5 @@ document.addEventListener("DOMContentLoaded", async() => {
     writeClassamentCard();
     pageQuestion_replace();
     document.getElementById("raspuns").addEventListener("click", querrySender);
+    document.getElementById("descarcaFisier").addEventListener("click", descarcaFisier());
 });
