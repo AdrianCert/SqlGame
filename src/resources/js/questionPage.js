@@ -1,5 +1,8 @@
-const url = "http://localhost:2021/querry/{querry}";
-const url_2 = "http://localhost:2021/question/{id}";
 
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM loaded on questionPage");
+    writeProfileCard(40);
+    writeClassamentCard();
+});
