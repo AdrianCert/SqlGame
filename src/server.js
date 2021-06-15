@@ -13,6 +13,7 @@ const profileController = require('./controllers/profile');
 const questionController = require('./controllers/question');
 const serveController = require('./controllers/serve');
 const authController = require('./controllers/auth');
+const apiController = require('./controllers/api');
 
 const PORT = config.port || 5000;
 
@@ -30,6 +31,7 @@ app.path("/createQuestion/", createQuestionController);
 app.path("/myProfile/", profileController);
 app.path("/question/", questionController);
 app.path("/auth/", authController);
+app.path("/api/", apiController);
 app.path("/", (inp, out) => {
     console.log(`REDIRECT HTTP/${inp.httpVersion} ${inp.method} ${inp.url}`);
     out.setHeader("Location", "/question/");
@@ -59,6 +61,7 @@ function authWall(req, res) {
         "/auth/register"
     ];
 
+    console.log(req.headers.auth.is_authenticated);
     if( !req.headers.auth.is_authenticated) {
         for(let i of allow_r) {
             if (i === req.url) {
@@ -66,7 +69,7 @@ function authWall(req, res) {
             }
         }
         res.setHeader("Location", "/auth/login");
-        res.writeHead(308);
+        res.writeHead(307);
         res.end();
     }
 }

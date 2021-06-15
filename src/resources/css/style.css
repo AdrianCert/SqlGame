@@ -136,10 +136,25 @@ h6 {
   border: 1px solid #BFBFBF;
 }
 
+.question-box > p {
+  font-style: oblique;
+  font-size: 20px;
+}
+
 .question-box:hover {
   background-color: #f1f1f1;
   -webkit-box-shadow: 6px 6px 5px #aaaaaa;
           box-shadow: 6px 6px 5px #aaaaaa;
+}
+
+.question-box div.nfo {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .card {

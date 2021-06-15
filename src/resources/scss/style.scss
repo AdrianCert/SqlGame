@@ -69,9 +69,20 @@
     justify-content: space-between;
     border: 1px solid #BFBFBF;
 
+    > p {
+        font-style: oblique;
+        font-size: 20px;
+    }
+
     &:hover {
         background-color: #f1f1f1;
         box-shadow: 6px 6px 5px #aaaaaa;
+    }
+
+    div.nfo {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
     }
 }
 
