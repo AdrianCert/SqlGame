@@ -34,7 +34,7 @@ public class ServerThread implements Runnable {
                     PostController.class, QuestionController.class, QuestionAnswearController.class,
                     QuestionSecController.class, RoleController.class, SchemaLocationController.class,
                     SchemaTableController.class, UserPermisionController.class, UserSecController.class,
-                    UserWalletController.class, WalletController.class)
+                    UserWalletController.class, WalletController.class, QuestionsOwnedController.class)
             .collect(Collectors.toCollection(LinkedList::new));
 
     /**
