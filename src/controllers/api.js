@@ -34,16 +34,14 @@ async function checkQuestionAnswer(req, res) {
         return;
     }
 
-    
     let body = [];
-    
     req.on('error', (err) => {
         console.error(err);
     }).on('data', (chunk) => {
         body.push(chunk);
     }).on('end', async () => {
         body = Buffer.concat(body).toString();
-        let qid = /\/api\/query\/check\/(\d+)/gm.exec(req.url)[1];
+        let qid = /\/api\/querry\/check\/(\d+)/gm.exec(req.url)[1];
         let question = await api.question.get(qid);
         let nfo = await getQuestionCredidentials(qid);
         let anwser = await queryApi.verificate(body, question.solution, nfo.sgbd, nfo.user, nfo.pass);
@@ -66,7 +64,7 @@ async function apiController(req, res) {
     return new Router()
         .path(/\/api\/$/gm, homeView)
         .path(/\/api\/whoIAm$/gm, whoIAm)
-        .path("/api/query/check/", checkQuestionAnswer)
+        .path("/api/querry/check/", checkQuestionAnswer)
         .route(req, res);
 }
 
