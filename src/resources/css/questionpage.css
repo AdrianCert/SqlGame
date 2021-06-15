@@ -143,6 +143,14 @@ section .intrebare .add_info .row_button button {
   border-radius: 23px;
 }
 
+section .intrebare .add_info .row_button.inline_buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
 section .clasament {
   border: 3px solid #a2a391;
   background-color: #a2a391;
@@ -203,10 +211,6 @@ section .clasament .row_button button {
   background: -webkit-gradient(linear, left top, left bottom, from(#052338), to(#a2a391));
   background: linear-gradient(#052338, #a2a391);
   border-radius: 23px;
-}
-
-#descarcaButton {
-  display: none;
 }
 
 #validare {
