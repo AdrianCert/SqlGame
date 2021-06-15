@@ -7,14 +7,20 @@ function homeView(req, res) {
     JsonRespone(res, );
 }
 
+async function whoIAm(req, res) {
+    let data = await api.user.get(req.headers.auth.info.user);
+    return JsonRespone(res, data);
+}
+
 async function apiController(req, res) {
     let nrout = /\/api\/(\w+)\/(.*)/gm.exec(req.url);
-    if(locations.includes(nrout[1])) {
+    if(nrout !== null && locations.includes(nrout[1])) {
         return serveApi(req, res, nrout);
     }
 
     return new Router()
         .path(/\/api\/$/gm, homeView)
+        .path(/\/api\/whoIAm$/gm, whoIAm)
         .route(req, res);
 }
 
