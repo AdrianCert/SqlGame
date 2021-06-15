@@ -179,13 +179,13 @@ public class ConnectionToDB {
                 if (jo.has("query") && !jo.getString("query").isEmpty())
                     try {
                         connectToDatabase(jo);
-                        this.body = returnJsonFromSQL(jo.getString("query"));
+                        this.body = "{\"error\":false, \"entity\":"+returnJsonFromSQL(jo.getString("query")) + "}";
                         setStatusCode(200);
                         disconnectToDatabase();
                     } catch (SQLException e) {
                         System.err.println(e.getMessage());
-                        this.body = "";
-                        setStatusCode(400);
+                        this.body = "{\"error\":true}";
+                        setStatusCode(200);
                     }
             } else if (request.getUri().equals("/verification")) {
 
@@ -195,15 +195,15 @@ public class ConnectionToDB {
                         connectToDatabase(jo);
                         setStatusCode(200);
                         if (correctSQL(jo.getString("sendQuery"), jo.getString("correctQuery"))) {
-                            this.body = "{\"accepted\":true}";
+                            this.body = "{\"accepted\":true, \"error\":false}";
                         } else {
-                            this.body = "{\"accepted\":false}";
+                            this.body = "{\"accepted\":false, \"error\":false}";
                         }
                         disconnectToDatabase();
                     } catch (SQLException e) {
                         System.err.println(e.getMessage());
-                        this.body = "";
-                        setStatusCode(400);
+                        this.body = "{\"accepted\":false, \"error\":true}";
+                        setStatusCode(200);
                     }
             }
     }
