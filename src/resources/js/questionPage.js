@@ -1,16 +1,6 @@
 const url_question_by_id = "http://localhost:2021/question/{id}";
 const url_API = "http://localhost/api/check";
 
-/**
- * bun trimit un request de tipul
- * {
- *    'querry' : 'SELECT * FROM YESSIR;'
- * }
- * 
- * trece prin filtru lui adrian care intoarce un raspuns / da sau nu ? ce intoarce? cand trebuie sa descarc fisierul?
- * 
- */
-
 async function sendRequestAPI(data){
     //trimit catre API un request cu DATA
     let raspuns = await fetch(url_API, {
