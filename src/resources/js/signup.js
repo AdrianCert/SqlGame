@@ -58,18 +58,6 @@ async function sendRegister(e) {
     if ( entity['parola'] !== entity['parola_c']) {
         return logErr("Parolele trebuie sa coiencid")
     }
-
-    fetch('/auth/register', {
-        method : 'POST',
-        body : JSON.stringify(entity)
-    }).then( r => r.json()).then( r => {
-        if(r.succes) {
-            window.location = '/';
-        } else {
-            logErr(r.mess);
-        }
-    });
-
 }
 
 /**
