@@ -61,7 +61,6 @@ function authWall(req, res) {
         "/auth/register"
     ];
 
-    console.log(req.headers.auth.is_authenticated);
     if( !req.headers.auth.is_authenticated) {
         for(let i of allow_r) {
             if (i === req.url) {
