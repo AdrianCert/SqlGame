@@ -84,6 +84,7 @@ function serveApi(req, res, unit) {
         body.push(chunk);
     }).on('end', async () => {
         body = Buffer.concat(body).toString();
+        body = JSON.parse(body);
         let cttr = api[unit[1]];
         if(unit[2].length === 0) {
             if(req.method === 'GET') {

@@ -1,5 +1,5 @@
 
-const url_update_user = "http://localhost:2021/user/{id}";
+const url_update_user = "/api/user/{id}";
 
 function loadDetails(user){
     document.getElementById("name").value = user.name;
