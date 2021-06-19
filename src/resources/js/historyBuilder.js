@@ -5,9 +5,9 @@ function remove(date){
     return cdate.replace("GMT+0300 (Eastern European Summer Time)", "");
 }
 
-async function builderHistoryCreate(id_user){
+async function builderHistoryCreate(id_user, question_id){
     var date = Date();
-    let action = `Created question - ${remove(date)}`;
+    let action = `Created question ${question_id} - ${remove(date)}`;
     let body = {
         'id' : 0,
         'user_id' : parseInt(id_user),

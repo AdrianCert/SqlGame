@@ -42,7 +42,7 @@ const data = async (ev) => {
         document.getElementById("solutia").value = '';
         document.getElementById("enunt").value = ''
         if(r.status != 404){
-            builderHistoryCreate(parseInt(current_user_id.id));
+            builderHistoryCreate(parseInt(current_user_id.id), parseInt(r.id));
             window.location = '/question/';
         }
     });
