@@ -1,4 +1,4 @@
-
+const url_history_list = "http://localhost:2021/history/";
 const url_update_user = "/api/user/{id}";
 
 function loadDetails(user){
@@ -26,7 +26,10 @@ let updateUser = async(ev) =>{
     curret_user.user_name = document.getElementById("username").value;
     curret_user.mail = document.getElementById("email").value;
     let x = await tryUpdate(curret_user, parseInt(curret_user.id));
-    console.log(x);
+    if(x.status != 404){
+        builderHistoryProfileChange(parseInt(curret_user.id));
+        window.location = "/myProfile/";
+    }
 }
 
 async function tryUpdate(data, ID){
@@ -37,16 +40,30 @@ async function tryUpdate(data, ID){
     }).then(r => r.json());
 }
 
-function loadIstoric(istoric){
-    //dau load
+function getFragment(str){
+    return document.createRange().createContextualFragment(str);
 }
 
+function text(i, Text){
+    return getFragment(
+        `
+        <h4>${i} -> ${Text}</h4>
+        `
+    );
+}
+
+async function loadIstoric(istoric){
+    let doc = document.getElementById("history");
+    let i = 0, j = 1;
+    while(doc.firstChild) doc.firstChild.remove();
+    while(i != istoric.length)
+        doc.appendChild(text(j++, istoric[i++].action));
+}
 
 document.addEventListener("DOMContentLoaded", async() => {
     var current_user = await didIGetIt();
     var classament = await getClassament();
     var istoric = await getHistory(parseInt(current_user.id));
-    console.log(istoric);
     loadProfile(current_user, classament);
     loadIstoric(istoric);
     document.getElementById("edit_button").addEventListener("click", updateUser);

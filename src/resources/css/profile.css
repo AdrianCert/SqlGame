@@ -172,5 +172,5 @@ body {
 }
 
 .disable {
-  display: none;
+  display: block;
 }

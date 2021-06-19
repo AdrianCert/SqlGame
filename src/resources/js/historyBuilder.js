@@ -1,4 +1,4 @@
-let url_history = "http://localhost:2021/history/";
+let url_history_Builder = "http://localhost:2021/history/";
 
 function remove(date){
     let cdate = date.toString();
@@ -14,7 +14,7 @@ async function builderHistoryCreate(id_user, question_id){
         'action' : action
     }
 
-    await fetch(url_history, {
+    await fetch(url_history_Builder, {
         method : 'POST',
         body: JSON.stringify(body)
     });
@@ -30,7 +30,7 @@ async function builderHistoryComplete(id_user){
         'action' : action
     }
 
-    await fetch(url_history, {
+    await fetch(url_history_Builder, {
         method : 'POST',
         body: JSON.stringify(body)
     });
@@ -45,7 +45,7 @@ async function builderHistoryProfileChange(id_user){
         'action' : action
     }
 
-    await fetch(url_history, {
+    await fetch(url_history_Builder, {
         method : 'POST',
         body: JSON.stringify(body)
     });
