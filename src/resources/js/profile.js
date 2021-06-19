@@ -65,6 +65,6 @@ document.addEventListener("DOMContentLoaded", async() => {
     var classament = await getClassament();
     var istoric = await getHistory(parseInt(current_user.id));
     loadProfile(current_user, classament);
-    loadIstoric(istoric);
+    //loadIstoric(istoric);
     document.getElementById("edit_button").addEventListener("click", updateUser);
 });
