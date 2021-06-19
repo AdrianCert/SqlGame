@@ -1,4 +1,10 @@
 let url = "http://localhost:2021/question/";
+
+/**
+ * De facut - butonul de descarcare a fisierului 
+ * functia valideaza nu face nimic
+ */
+
 let send_body = {
     'id': 0,
     'title' : "",
@@ -47,37 +53,8 @@ function getFragment(str){
     return document.createRange().createContextualFragment(str);
 }
 
-function valid(){
-    return getFragment(
-        `
-        <h3 style="color:green">VALID</h3>
-        `
-    );
-}
-
-function eroare(){
-    return getFragment(
-        `
-        <h3 style="color:red">EROARE</h3>
-        `
-    )
-}
-
-function checkResult(){
-    //verifica querryul trimis de el xd
-    return x = {
-        'accepted' : 'true'
-    }
-}
-
 function valideaza(){
-    let tof = checkResult();
-    let container = document.getElementById("Valideaza");
-    while(container.firstChild) container.firstChild.remove();
-    if(tof.accepted) container.appendChild(valid());
-    else container.appendChild(eroare());
-    document.getElementById("Valideaza").style.display = 'block';
-    // trebuie descarcat fisierul aici cu raspunsul din querry
+    console.log("descarca");
 }
 
 document.addEventListener("DOMContentLoaded", async() => {
