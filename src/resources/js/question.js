@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => writeQuestions(3));
+document.addEventListener("DOMContentLoaded", () => {
+    writeQuestions(3);
+    //add click/change event listner and call writeFitredQuestion
+});
 
 let __questions__ = null;
 
@@ -84,8 +87,19 @@ function showQuestionModal(e) {
     modal.querySelector(".modal-footer").appendChild(buttons);
 }
 
-async function writeQuestions(n) {
-    let data = await getQuestions();
+async function writeFitredQuestion(e) {
+    console.log(13);
+    // get filter field
+    // questions = getQuestions
+    // questions.filter(...)
+    // clean all content before
+    // let container = document.getElementById('main');
+    // cam asa .. while(container.firstChild) container.firstChild.remove(); 
+    // call funct writeQuestions(3, questions);
+}
+
+async function writeQuestions( n, data = null) {
+    data = data === null ? await getQuestions() : data;
     console.log(data);
     let container = document.getElementById('main');
     let curr = 0;

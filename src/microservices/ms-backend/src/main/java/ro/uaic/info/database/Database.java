@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class Database {
     private static Connection connection;
     private static final String ADDR = "jdbc:oracle:thin:@localhost:1521:xe";
-    private static final String USER = "dragos";
-    private static final String PASS = "dragos";
+    private static final String USER = "TW";
+    private static final String PASS = "TW";
 
     private Database() {
 
