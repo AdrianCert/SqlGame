@@ -1,125 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 body {
-  margin: 0px;
-  padding: 0px;
-  font-family: sans-serif;
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
   background-color: #052338;
+  position: relative;
 }
 
-.history-title {
-  width: 100%;
-  text-align: left;
-  margin-bottom: 10px;
-}
-
-.history-title .title {
-  border-bottom: 1px solid #052338;
-}
-
-.history-logs table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-.history-logs table tr {
-  border-bottom: 1px solid black;
-}
-
-.history-logs table tbody tr:hover {
-  cursor: pointer;
-}
-
-.history-logs table tfoot {
-  text-align: left;
-}
-
-.history-logs table tfoot td {
-  padding-left: 10%;
-}
-
-.history-logs table tfoot nav {
-  cursor: pointer;
-  float: left;
-  margin-right: 10px;
-}
-
-.history-logs table tfoot nav:hover {
-  color: #60b5f1;
-}
-
-.history-logs table tfoot .active {
-  cursor: default;
-  color: #031724;
-}
-
-.history-logs table tfoot .active:hover {
-  color: #031724;
-}
-
-.history-logs table .invisible, .history-logs table .q-content {
-  display: none;
-}
-
-.history-logs table .emplty-history-log {
-  background-color: #d5ecfb;
-}
-
-.history-logs table .emplty-history-log:hover {
-  cursor: default;
-}
-
-.history-question-log {
-  text-align: justify;
-}
-
-.history-question-log .question-title {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.history-question-log .question-answer p {
-  font-weight: bold;
-}
-
-.history-question-log .question-answer div {
-  border: 2px solid #031724;
-  background-color: #d5ecfb;
-  padding: 10px;
-  border-radius: 12px;
-  font-family: 'Consolas';
-}
-
-.wizzard {
-  background-color: #e9f5fd;
-  width: 60vw;
-  margin-top: 10vh;
-  height: auto;
-  padding: 30px;
-  text-align: center;
-  border-radius: 0 0 23px 23px;
-  -webkit-transition: 0.15s;
-  transition: 0.15s;
-  margin: auto;
-}
-
-@media only screen and (max-width: 800px) {
-  .wizzard {
-    width: 80vw;
-  }
-}
-
-::-webkit-scrollbar {
-  width: 15px;
-}
-
-::-webkit-scrollbar-track {
-  border: 7px solid black;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-::-webkit-scrollbar-thumb {
-  background: -webkit-gradient(linear, left top, left bottom, from(#052338), to(#a2a391));
-  background: linear-gradient(#052338, #a2a391);
+body .history {
+  background-color: #a2a391;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 60%;
   border-radius: 23px;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .history .title {
+  width: 100%;
+  padding: 1em 0 0 0;
+  margin-bottom: 1em;
+}
+
+body .history .content {
+  width: 100%;
+  padding: 1em 0 0 0;
+  margin-bottom: 1em;
+}
+
+body .history .content h3 {
+  margin: 1em;
 }
