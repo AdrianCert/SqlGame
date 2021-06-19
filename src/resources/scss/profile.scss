@@ -73,9 +73,14 @@ body{
     height: auto;
     padding: 30px;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+    display:list-item;
+    justify-content: center;
+    align-items: center;
+
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
     text-align: center;
     border-radius: 23px;
     transition: 0.15s;
