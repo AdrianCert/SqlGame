@@ -103,6 +103,10 @@ section .adauga_intrebare .add_info .row {
   margin-top: 1.4em;
 }
 
+section .adauga_intrebare .add_info .row h3 {
+  text-align: center;
+}
+
 section .adauga_intrebare .add_info .row .col_1 {
   width: 30%;
   float: left;
@@ -222,4 +226,8 @@ section .clasament .row_button button {
   background: -webkit-gradient(linear, left top, left bottom, from(#052338), to(#a2a391));
   background: linear-gradient(#052338, #a2a391);
   border-radius: 23px;
+}
+
+#Valideaza {
+  display: none;
 }

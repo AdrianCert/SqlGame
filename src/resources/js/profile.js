@@ -37,9 +37,17 @@ async function tryUpdate(data, ID){
     }).then(r => r.json());
 }
 
+function loadIstoric(istoric){
+    //dau load
+}
+
+
 document.addEventListener("DOMContentLoaded", async() => {
-    let current_user = await didIGetIt();
+    var current_user = await didIGetIt();
     var classament = await getClassament();
+    var istoric = await getHistory(parseInt(current_user.id));
+    console.log(istoric);
     loadProfile(current_user, classament);
+    loadIstoric(istoric);
     document.getElementById("edit_button").addEventListener("click", updateUser);
 });

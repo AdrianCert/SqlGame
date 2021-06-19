@@ -16,29 +16,68 @@ function build_body(entity){
     send_body["reward"] = entity["costa"] * 2;
 }
 
-const data = (ev) => {
+const data = async (ev) => {
     ev.preventDefault();
+    let current_user_id = await didIGetIt();
+
     let entity = {
         'title' : document.getElementById("titlu").value,
         'enunt': document.getElementById("enunt").value,
         'solutia' : document.getElementById("solutia").value,
         'costa' : document.getElementById("costa").value
     }
-    console.warn('added', {entity});
-    //construiesc send_body
     build_body(entity);
-    console.warn('added', {send_body});
-    //trimit request ul
-    let response = fetch(url,{
+    await fetch(url,{
         method : 'POST',
         body : JSON.stringify(send_body),
-
     }).then(r => r.json()).then(r => {
         console.log(r);
+        document.getElementById("titlu").value = '';
         document.getElementById("solutia").value = '';
         document.getElementById("enunt").value = ''
-        window.location = '/question/';
+        if(r.status != 404){
+            builderHistoryCreate(parseInt(current_user_id.id));
+            window.location = '/question/';
+        }
     });
+
+}
+
+function getFragment(str){
+    return document.createRange().createContextualFragment(str);
+}
+
+function valid(){
+    return getFragment(
+        `
+        <h3 style="color:green">VALID</h3>
+        `
+    );
+}
+
+function eroare(){
+    return getFragment(
+        `
+        <h3 style="color:red">EROARE</h3>
+        `
+    )
+}
+
+function checkResult(){
+    //verifica querryul trimis de el xd
+    return x = {
+        'accepted' : 'true'
+    }
+}
+
+function valideaza(){
+    let tof = checkResult();
+    let container = document.getElementById("Valideaza");
+    while(container.firstChild) container.firstChild.remove();
+    if(tof.accepted) container.appendChild(valid());
+    else container.appendChild(eroare());
+    document.getElementById("Valideaza").style.display = 'block';
+    // trebuie descarcat fisierul aici cu raspunsul din querry
 }
 
 document.addEventListener("DOMContentLoaded", async() => {
@@ -46,4 +85,5 @@ document.addEventListener("DOMContentLoaded", async() => {
     writeProfileCard(current_user_id.id);
     writeClassamentCard();
     document.getElementById("submit").addEventListener('click', data);
+    document.getElementById("check").addEventListener('click', valideaza);
 });
