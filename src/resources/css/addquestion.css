@@ -103,6 +103,10 @@ section .adauga_intrebare .add_info .row {
   margin-top: 1.4em;
 }
 
+section .adauga_intrebare .add_info .row h3 {
+  text-align: center;
+}
+
 section .adauga_intrebare .add_info .row .col_1 {
   width: 30%;
   float: left;

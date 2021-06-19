@@ -5,6 +5,7 @@ const {auth, login } = require('./authenticate');
 const cookies = require('./utils/cookies');
 const migrate = require('./migrate');
 
+const historyController = require('./controllers/historyController')
 const landingController = require('./controllers/landingController');
 const signupController = require('./controllers/signupController');
 const pageQuestionController = require('./controllers/pageQuestionController');
@@ -24,6 +25,7 @@ app.prefilter(processCookies);
 app.prefilter(processAuth);
 app.prefilter(authWall);
 
+app.path("/history/", historyController);
 app.path("/landing/", landingController);
 app.path("/signup/", signupController);
 app.path("/pageQuestion/", pageQuestionController);
