@@ -12,6 +12,7 @@ body {
   background-position: center;
   background-color: #052338;
   position: relative;
+  overflow: hidden;
 }
 
 body .history {
@@ -36,11 +37,13 @@ body .history .title {
 }
 
 body .history .content {
+  max-height: 70vh;
+  overflow: auto;
   width: 100%;
   padding: 1em 0 0 0;
   margin-bottom: 1em;
 }
 
-body .history .content h3 {
-  margin: 1em;
+body .history .content h4 {
+  margin: 2em;
 }

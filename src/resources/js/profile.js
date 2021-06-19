@@ -40,24 +40,8 @@ async function tryUpdate(data, ID){
     }).then(r => r.json());
 }
 
-function getFragment(str){
-    return document.createRange().createContextualFragment(str);
-}
-
-function text(i, Text){
-    return getFragment(
-        `
-        <h4>${i} -> ${Text}</h4>
-        `
-    );
-}
-
-async function loadIstoric(istoric){
-    let doc = document.getElementById("history");
-    let i = 0, j = 1;
-    while(doc.firstChild) doc.firstChild.remove();
-    while(i != istoric.length)
-        doc.appendChild(text(j++, istoric[i++].action));
+let move = (ev) =>{
+    window.location = "/history/";
 }
 
 document.addEventListener("DOMContentLoaded", async() => {
@@ -67,4 +51,5 @@ document.addEventListener("DOMContentLoaded", async() => {
     loadProfile(current_user, classament);
     //loadIstoric(istoric);
     document.getElementById("edit_button").addEventListener("click", updateUser);
+    document.getElementById("history").addEventListener("click", move);
 });

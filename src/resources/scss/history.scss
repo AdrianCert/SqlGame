@@ -1,6 +1,5 @@
 $background_color : #a2a391;
 
-
 *{
     margin: 0;
     padding : 0;
@@ -14,6 +13,7 @@ body{
     background-position: center;
     background-color: #052338;
     position: relative;
+    overflow: hidden;
 
     .history{
         background-color: $background_color;
@@ -25,20 +25,23 @@ body{
         border-radius: 23px;
         text-align: center;
         justify-content: center;
-
+        
         .title{
             width: 100%;
             padding: 1em 0 0 0;
             margin-bottom: 1em;
         }
-
+        
         .content{
+            max-height: 70vh;
+            overflow: auto;
             width: 100%;
             padding: 1em 0 0 0;
             margin-bottom: 1em;
 
-            h3{
-                margin: 1em;
+            h4{
+                margin: 2em;
+                
             }
         }
     }

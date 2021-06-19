@@ -1,4 +1,4 @@
-const url_whoIAm = "http://localhost/api/whoIAm"
+const url_whoIAm = "/api/whoIAm"
 
 async function getWhoIsLogged(){
     return await fetch(url_whoIAm, {
