@@ -63,12 +63,8 @@ body {
   width: 100%;
 }
 
-.wizzard {
-  background-color: #e9f5fd;
-  width: 70vw;
-  height: auto;
-  padding: 30px;
-  position: absolute;
+body {
+  width: 100%;
   display: list-item;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -76,13 +72,29 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+body .wizzard {
+  background-color: #e9f5fd;
+  width: 70vw;
+  height: auto;
+  padding: 30px;
+  position: absolute;
+  margin: 2em;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   text-align: center;
   border-radius: 23px;
   -webkit-transition: 0.15s;
   transition: 0.15s;
 }
 
-.wizzard input, .wizzard textarea {
+body .wizzard input, body .wizzard textarea {
   text-align: center;
   background: none;
   outline: none;
@@ -93,11 +105,11 @@ body {
   font-size: 2em;
 }
 
-.wizzard input:focus, .wizzard textarea:focus {
+body .wizzard input:focus, body .wizzard textarea:focus {
   width: calc(70% + 10px);
 }
 
-.wizzard .disabled_button {
+body .wizzard .disabled_button {
   padding: 1em 2em;
   text-align: center;
   background: #202020;
@@ -106,7 +118,7 @@ body {
   width: 100px;
 }
 
-.wizzard .enabled_button {
+body .wizzard .enabled_button {
   padding: 1em 2em;
   text-align: center;
   background: #031724;
@@ -115,7 +127,7 @@ body {
   width: 100px;
 }
 
-.wizzard p {
+body .wizzard p {
   font-size: 4vmin;
 }
 
