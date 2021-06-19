@@ -1,5 +1,5 @@
 const url_question_by_id = "http://localhost:2021/question/{id}";
-const url_API = `/api/query/check/${getCurrentQuestionId()}`;
+const url_API = `/api/querry/check/${getCurrentQuestionId()}`;
 
 const descarcaFisier = async(ev) =>{
 }
