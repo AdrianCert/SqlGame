@@ -28,6 +28,7 @@ body .history {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-top: 1em;
 }
 
 body .history .title {
@@ -46,4 +47,13 @@ body .history .content {
 
 body .history .content h4 {
   margin: 2em;
+}
+
+body .history button {
+  padding: 1em 1em;
+  text-align: center;
+  background-color: #052338;
+  outline: none;
+  border-radius: 23px;
+  color: #a2a391;
 }
