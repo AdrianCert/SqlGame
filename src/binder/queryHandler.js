@@ -14,7 +14,7 @@ const queryApi = {
     },
 
     "query" : (query, sgbd, user, pass) => {
-        return fetchData(`${getLocation}/query`, {
+        return fetchData(`${getLocation()}/query`, {
             "query" : query,
             "sgbd" : sgbd,
             "credentials" : {

@@ -9,7 +9,8 @@ function homeView(req, res) {
 }
 
 async function whoIAm(req, res) {
-    let data = await api.user.get(req.headers.auth.info.user);
+    let data = req.headers.hasOwnProperty('auth') && req.headers.auth.is_authenticated ?
+        await api.user.get(req.headers.auth.info.user) : {};
     return JsonRespone(res, data);
 }
 
@@ -55,6 +56,41 @@ async function checkQuestionAnswer(req, res) {
     });
 }
 
+async function downloadCSVResult(req, res) {
+    if( req.method !== 'POST') {
+        res.writeHead(405);
+        res.end();
+        return;
+    }
+
+    let body = [];
+    req.on('error', (err) => {
+        console.error(err);
+    }).on('data', (chunk) => {
+        body.push(chunk);
+    }).on('end', async () => {
+        body = Buffer.concat(body).toString();
+        let jbody = JSON.parse(body);
+        let qid = 0;
+        let nfo = await getQuestionCredidentials(qid);
+        let data = await queryApi.query(jbody.querry, nfo.sgbd, nfo.user, nfo.pass).then( r => r.error ? [] : r.entity).catch(() => []);
+        let exportData = "";
+        if (data.length > 0) {
+            // building csv response
+            // https://datatracker.ietf.org/doc/html/rfc4180
+            let buff = [];
+            buff.push(...Object.keys(data[0]).reduce((a,c) => `${a},${c}`));
+            data.forEach( r => buff.push('\n', Object.values(r).reduce((a,c) => `${a},${c}`)));
+            exportData = buff.reduce((a,c) => `${a}${c}`);
+        }
+
+        res.setHeader("Content-Type", "text/csv");
+        res.setHeader("Content-Disposition", `attachment; filename=interogration_${Math.random().toString(30).substring(2)}.csv`);
+        res.writeHead(200);
+        res.end(exportData);
+    });
+}
+
 async function apiController(req, res) {
     let nrout = /\/api\/(\w+)\/(.*)/gm.exec(req.url);
     if(nrout !== null && locations.includes(nrout[1])) {
@@ -65,6 +101,7 @@ async function apiController(req, res) {
         .path(/\/api\/$/gm, homeView)
         .path(/\/api\/whoIAm$/gm, whoIAm)
         .path("/api/querry/check/", checkQuestionAnswer)
+        .path("/api/querry/getcsv/", downloadCSVResult)
         .route(req, res);
 }
 

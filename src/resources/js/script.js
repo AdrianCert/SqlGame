@@ -13,6 +13,24 @@ function updateNavigation() {
     });
 }
 
-function whoIAm() {
-    
+async function fetchDownload(r) {
+    r = {
+        "data" : await r.blob(),
+        "headers" : r.headers
+    }
+    let a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style.display = "none";
+    let reqxfile = /filename=(.+);|filename=(.+)$/gm.exec(r.headers.get('content-disposition'));
+    let filename = reqxfile[1] || reqxfile[2];
+    a.download = filename;
+    a.href = window.URL.createObjectURL(new Blob([r.data],{ type : r.headers.get('content-type')}));
+    a.click();
+}
+
+/**
+ * Get user details response
+ */
+async function whoIAm() {
+    return fetch("/api/whoIAm").then(r => r.json());
 }
