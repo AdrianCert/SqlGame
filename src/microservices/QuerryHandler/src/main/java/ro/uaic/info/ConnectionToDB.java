@@ -57,6 +57,10 @@ public class ConnectionToDB {
                         return false;
                     break;
                 case 93:
+                    if (rs1.getDate(i) == null)
+                        return rs2.getDate(i) == null;
+                    if (rs2.getDate(i) == null)
+                        return false;
                     if (!rs1.getDate(i).toString().equals(rs2.getDate(i).toString()))
                         return false;
                     break;
@@ -139,7 +143,8 @@ public class ConnectionToDB {
                         response += rs.getBoolean(i);
                         break;
                     case 93:
-                        response += rs.getDate(i).toString();
+                        if (rs.getDate(i) != null)
+                            response += rs.getDate(i).toString();
                         break;
                     case 8:
                         response += rs.getDouble(i);
@@ -179,12 +184,12 @@ public class ConnectionToDB {
                 if (jo.has("query") && !jo.getString("query").isEmpty())
                     try {
                         connectToDatabase(jo);
-                        this.body = "{\"error\":false, \"entity\":"+returnJsonFromSQL(jo.getString("query")) + "}";
+                        this.body = "{\"error\":false, \"entity\":" + returnJsonFromSQL(jo.getString("query")) + "}";
                         setStatusCode(200);
                         disconnectToDatabase();
                     } catch (SQLException e) {
                         System.err.println(e.getMessage());
-                        this.body = "{\"error\":true}";
+                        this.body = "{\"error\":true, \"errorMesage\":\"" + e.getMessage().substring(0, e.getMessage().length() - 1) + "\"}";
                         setStatusCode(200);
                     }
             } else if (request.getUri().equals("/verification")) {
@@ -202,7 +207,8 @@ public class ConnectionToDB {
                         disconnectToDatabase();
                     } catch (SQLException e) {
                         System.err.println(e.getMessage());
-                        this.body = "{\"accepted\":false, \"error\":true}";
+                        this.body = "{\"accepted\":false, \"error\":true, \"errorMesage\":\"" + e.getMessage().
+                                substring(0, e.getMessage().length() - 1) + "\"}";
                         setStatusCode(200);
                     }
             }
