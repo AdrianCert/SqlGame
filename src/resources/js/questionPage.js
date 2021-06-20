@@ -17,7 +17,6 @@ const querrySender = async(ev) => {
         method : "POST",
         body : document.getElementById("solutia").value
     }).then(r => r.json());
-    console.log(tof);
     sendMessageToUser(tof);
 }
 
@@ -40,7 +39,10 @@ function eroare(){
 function sendMessageToUser(tof){
     let container = document.getElementById("validare");
     while(container.firstChild) container.firstChild.remove();
-    if(tof.accepted) container.appendChild(valid());
+    if(tof.accepted) {
+        container.appendChild(valid());
+        
+    }
     else container.appendChild(eroare());
     document.getElementById("validare").style.display = 'block';
 }
