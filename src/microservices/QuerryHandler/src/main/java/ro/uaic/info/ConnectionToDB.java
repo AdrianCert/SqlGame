@@ -134,6 +134,7 @@ public class ConnectionToDB {
                 response += "\"" + columnNames.get(i - 1) + "\":";
                 switch (rsmd.getColumnType(i)) {
                     case 1:
+                    case 12:
                         if (rs.getString(i) == null)
                             response += "\"\"";
                         else
@@ -154,9 +155,6 @@ public class ConnectionToDB {
                         break;
                     case 6:
                         response += rs.getFloat(i);
-                        break;
-                    case 12:
-                        response += rs.getString(i);
                         break;
                 }
                 if (i != columnCount)
