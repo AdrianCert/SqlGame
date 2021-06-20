@@ -24,7 +24,12 @@ async function loadHistory(id){
     replace(list);
 }
 
+function download(){
+    
+}
+
 document.addEventListener("DOMContentLoaded", async() => {
     let current_user_id = await getWhoIsLogged();
     loadHistory(parseInt(current_user_id.id));
+    document.getElementById("downloadHistory").addEventListener("click", download);
 })

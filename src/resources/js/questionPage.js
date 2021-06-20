@@ -36,7 +36,7 @@ function eroare(){
     )
 }
 
-function sendMessageToUser(tof){
+async function sendMessageToUser(tof){
     let container = document.getElementById("validare");
     while(container.firstChild) container.firstChild.remove();
     if(tof.accepted) {
