@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     writeQuestions(3);
-    //add click/change event listner and call writeFitredQuestion
+    document.getElementById("dificultate").addEventListener("change", selector);
+    document.getElementById("text").addEventListener("change", inputText);
 });
 
 let __questions__ = null;
@@ -87,15 +88,25 @@ function showQuestionModal(e) {
     modal.querySelector(".modal-footer").appendChild(buttons);
 }
 
-async function writeFitredQuestion(e) {
-    console.log(13);
-    // get filter field
-    // questions = getQuestions
-    // questions.filter(...)
-    // clean all content before
-    // let container = document.getElementById('main');
-    // cam asa .. while(container.firstChild) container.firstChild.remove(); 
-    // call funct writeQuestions(3, questions);
+let selector = async(ev) => {
+    let doc = document.getElementById("dificultate");
+    let listQuestions = await getQuestions();
+    let sortedList = listQuestions.filter(r => r.value == doc.value);
+    if(doc.value == 0) writeQuestions(3, listQuestions);
+    else writeFitredQuestion(sortedList);
+}
+
+let inputText = async(ev) =>{
+    let doc = document.getElementById("text");
+    let listQuestions = await getQuestions();
+    let sortedList = listQuestions.filter(r => r.title.includes(doc.value));
+    if(sortedList.length != 0) writeFitredQuestion(sortedList);
+}
+
+async function writeFitredQuestion(list) {
+    let doc = document.getElementById("main");
+    while(doc.firstChild) doc.firstChild.remove();  
+    writeQuestions(3, list);
 }
 
 async function writeQuestions( n, data = null) {

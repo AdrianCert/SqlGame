@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title>{{title}}</title>    
+
     <link rel="stylesheet" href="../resources/css/style.min.css">
     <link rel="stylesheet" href="../resources/css/menu.min.css">
+    <link rel="stylesheet" href="../resources/css/layout.css">
+    
+    <script type="text/javascript" charset="UTF-8" src="./../resources/js/script.js"></script>
     <script type="text/javascript" charset="UTF-8" src="./../resources/js/script.js"></script>
     <script type="text/javascript" charset="UTF-8" src="./../resources/js/modal.js"></script>
     <script type="text/javascript" charset="UTF-8" src="./../resources/js/api-bind.js"></script>
@@ -21,15 +25,22 @@
         </div>
         <div id="side">
             <div class="card">
-                <h2>Lorem ipsum dolor sit amet</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam convallis malesuada consectetur. Curabitur mollis enim aliquam dui accumsan vulputate. Sed feugiat elementum felis, et posuere quam congue a. Proin sollicitudin urna mi, vel mattis nisi finibus vitae. Sed eget felis quis metus maximus volutpat eu vel augue. Proin libero turpis, pellentesque finibus suscipit eget, finibus vitae ante. Ut in maximus lectus.</p>
-            </div>
-            <div class="card">
-                <h3>Some Post</h3>
-            </div>
-            <div class="card">
-                <h3>Header</h3>
-                <p>Some text..</p>
+                <h2>Filtru</h2>
+                <br>
+                <br>
+                <div class="types">
+                    <p>Text: </p>
+                    <textarea id="text" cols="20" rows="1" placeholder="Input..."></textarea>
+                    <br>
+                    <br>
+                    <p>Dificultate: </p>
+                    <select id="dificultate">
+                        <option value="0">Initial</option>
+                        <option value="10">Usor</option>
+                        <option value="20">Mediu</option>
+                        <option value="30">Greu</option>
+                    </select>
+                </div>
             </div>
         </div>
     </main>
