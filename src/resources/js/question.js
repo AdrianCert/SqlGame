@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     writeQuestions(3);
     document.getElementById("dificultate").addEventListener("change", selector);
     document.getElementById("text").addEventListener("change", inputText);
+    document.getElementById("status").addEventListener("change", dif);
 });
 
 let __questions__ = null;
@@ -103,6 +104,47 @@ let inputText = async(ev) =>{
     if(sortedList.length != 0) writeFitredQuestion(sortedList);
 }
 
+async function getOwned(){
+    let url = "http://localhost:2021/owquestions/";
+    return fetch(url, {
+        method : 'GET'
+    }).then(r => r.json());
+}
+
+let dif = async(ev) =>{
+    var doc = document.getElementById("status");
+    var current_user = await didIGetIt();
+    var listQ = await getQuestions();
+    var showList = Array();
+    var listaOwned = await getOwned();
+    var listaFiltrata = listaOwned.filter(q => q.user_id == parseInt(current_user.id));
+    var ok = 0, poz;
+
+    if(doc.value == 0){
+        for(let i = 0; i < listaFiltrata.length ; ++i)
+            for(let j = 0; j < listQ.length; ++j)
+                if(listaFiltrata[i].question_id == listQ[j].id) showList.push(listQ[j]);
+        
+        writeFitredQuestion(showList);
+    }
+    else if(doc.value == 1){
+        for(let i = 0; i < listQ.length; ++i){
+            ok = 1;
+            for(let j = 0; j < listaFiltrata.length; ++j)
+                if(listQ[i].id == listaFiltrata[j].question_id) ok = 0;
+            if(ok) showList.push(listQ[i]);
+        }
+        writeFitredQuestion(showList);
+    }
+    else{
+        for(let i = 0; i < listaFiltrata.length ; ++i)
+            for(let j = 0; j < listQ.length; ++j)
+                if(listaOwned[i].question_id == listQ[j].id && listaFiltrata[i].solved == "false") showList.push(listQ[j]);
+        
+        writeFitredQuestion(showList);
+    }
+}
+
 async function writeFitredQuestion(list) {
     let doc = document.getElementById("main");
     while(doc.firstChild) doc.firstChild.remove();  
@@ -111,7 +153,6 @@ async function writeFitredQuestion(list) {
 
 async function writeQuestions( n, data = null) {
     data = data === null ? await getQuestions() : data;
-    console.log(data);
     let container = document.getElementById('main');
     let curr = 0;
 

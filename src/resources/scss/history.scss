@@ -1,4 +1,4 @@
-$background_color : #a2a391;
+@import "color";
 
 *{
     margin: 0;
@@ -11,12 +11,12 @@ body{
     width: 100%;
     background-size: cover;
     background-position: center;
-    background-color: #052338;
+    background-color: $color-secondary;
     position: relative;
     overflow: hidden;
 
     .history{
-        background-color: $background_color;
+        background-color: $c_white;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -47,10 +47,10 @@ body{
         button{
             padding: 1em 1em;
             text-align: center;
-            background-color: #052338;
+            background-color: $color-primary;
             outline: none;
             border-radius: 23px;
-            color: #a2a391;
+            color: $c_white;
         }
     }
 }
