@@ -131,10 +131,13 @@ public class ConnectionToDB {
         while (rs.next()) {
             response += "{";
             for (int i = 1; i <= columnCount; i++) {
-                response += "\"" + columnNames.get(i - 1) + "\":\"";
+                response += "\"" + columnNames.get(i - 1) + "\":";
                 switch (rsmd.getColumnType(i)) {
                     case 1:
-                        response += rs.getString(i);
+                        if (rs.getString(i) == null)
+                            response += "\"\"";
+                        else
+                            response += "\"" + rs.getString(i) + "\"";
                         break;
                     case 2:
                         response += rs.getInt(i);
@@ -156,7 +159,6 @@ public class ConnectionToDB {
                         response += rs.getString(i);
                         break;
                 }
-                response += "\"";
                 if (i != columnCount)
                     response += ",";
             }
