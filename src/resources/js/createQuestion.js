@@ -54,7 +54,13 @@ function getFragment(str){
 }
 
 function valideaza(){
-    console.log("descarca");
+    fetch(`/api/querry/getcsv/`, {
+        method : "POST",
+        body: JSON.stringify({
+            "querry" : document.getElementById("solutia").value,
+            "lid" : 21
+        })
+    }).then( fetchDownload);
 }
 
 document.addEventListener("DOMContentLoaded", async() => {

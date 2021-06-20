@@ -1,7 +1,14 @@
 const url_question_by_id = "http://localhost:2021/question/{id}";
 const url_API = `/api/querry/check/${getCurrentQuestionId()}`;
 
-const descarcaFisier = async(ev) =>{
+function descarcaFisier(e) {
+    fetch(`/api/querry/getcsv/`, {
+        method : "POST",
+        body: JSON.stringify({
+            "querry" : document.getElementById("solutia").value,
+            "qid" : 0
+        })
+    }).then( fetchDownload);
 }
 
 const querrySender = async(ev) => {
@@ -49,7 +56,7 @@ function getFragment(str){
 async function getQuestionDetails(){
     var current_id = getCurrentQuestionId();
     var url_ = url_question_by_id.replace("{id}", current_id);
-    return await fetch(url_, {
+    return fetch(url_, {
         method : 'GET'
     }).then(r => r.json());
 }
@@ -69,7 +76,7 @@ async function pageQuestion_replace(){
     let container2 = document.getElementById("second_row");
     while(container2.firstChild){
         container2.firstChild.remove();
-    }   
+    }
     container2.appendChild(getFragment(
         `
         <p>${details.description}</p>
@@ -85,5 +92,5 @@ document.addEventListener("DOMContentLoaded", async() => {
     writeClassamentCard();
     pageQuestion_replace();
     document.getElementById("raspuns").addEventListener("click", querrySender);
-    document.getElementById("descarcaFisier").addEventListener("click", descarcaFisier());
+    document.getElementById("descarcaFisier").addEventListener("click", descarcaFisier);
 });
