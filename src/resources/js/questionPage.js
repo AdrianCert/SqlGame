@@ -36,7 +36,7 @@ function eroare(){
     )
 }
 
-function sendMessageToUser(tof){
+async function sendMessageToUser(tof){
     let container = document.getElementById("validare");
     while(container.firstChild) container.firstChild.remove();
     if(tof.accepted) {
@@ -87,6 +87,10 @@ async function pageQuestion_replace(){
     ));
 
 
+}
+
+function descarcaClasament(){
+    console.log("AICI");
 }
 
 document.addEventListener("DOMContentLoaded", async() => {

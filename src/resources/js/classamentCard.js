@@ -18,6 +18,16 @@ function replaceClassamentCard(classament){
             ));
        }
     })
+    container.appendChild(getFragment(
+        `
+            <br>
+            <hr>
+            <div class="row_button">
+                <button id = "downloadClasament">Descarca</button>
+            </div>
+        `
+    ));
+    container.querySelector("#downloadClasament").addEventListener('click', descarcaClasament);
 }
 
 async function writeClassamentCard(){

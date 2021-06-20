@@ -36,10 +36,8 @@ body {
   width: 90%;
   border-radius: 50%;
   border: 3px solid #002626;
-  -webkit-transition: .5s ease;
-  transition: .5s ease;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
 }
 
 #change_profile_picture {
@@ -69,14 +67,9 @@ body {
 body {
   width: 100%;
   display: list-item;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
 body .wizzard {
   background-color: #fff;
   width: 70vw;
@@ -84,19 +77,14 @@ body .wizzard {
   padding: 30px;
   position: absolute;
   margin: 2em;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   text-align: center;
   border-radius: 23px;
-  -webkit-transition: 0.15s;
   transition: 0.15s;
 }
-
 body .wizzard input, body .wizzard textarea {
   text-align: center;
   background: none;
@@ -107,11 +95,9 @@ body .wizzard input, body .wizzard textarea {
   resize: none;
   font-size: 2em;
 }
-
 body .wizzard input:focus, body .wizzard textarea:focus {
   width: calc(70% + 10px);
 }
-
 body .wizzard .disabled_button {
   padding: 1em 2em;
   text-align: center;
@@ -120,7 +106,6 @@ body .wizzard .disabled_button {
   color: #4285f4;
   width: 100px;
 }
-
 body .wizzard .enabled_button {
   padding: 1em 2em;
   text-align: center;
@@ -129,11 +114,9 @@ body .wizzard .enabled_button {
   color: #4285f4;
   width: 100px;
 }
-
 body .wizzard p {
   font-size: 4vmin;
 }
-
 body .wizzard .profile_container .profile_picture {
   border: 3px solid #002626;
 }
@@ -167,7 +150,6 @@ body .wizzard .profile_container .profile_picture {
     display: none;
   }
 }
-
 @media only screen and (max-device-width: 800px) {
   .wizzard {
     width: 80vw;
@@ -192,7 +174,6 @@ body .wizzard .profile_container .profile_picture {
     display: none;
   }
 }
-
 .disable {
   display: block;
 }
