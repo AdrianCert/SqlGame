@@ -41,7 +41,8 @@ function sendMessageToUser(tof){
     while(container.firstChild) container.firstChild.remove();
     if(tof.accepted) {
         container.appendChild(valid());
-        
+        let current_user_id = await didIGetIt();
+        builderHistoryComplete(parseInt(current_user_id.id));
     }
     else container.appendChild(eroare());
     document.getElementById("validare").style.display = 'block';
