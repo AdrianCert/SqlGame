@@ -85,6 +85,10 @@ section{
             flex-direction: inherit;
             .row{    
                 margin-top: 1.4em;
+                
+                h3{
+                    text-align: center;
+                }
                 .col_1{
                     width: 30%;
                     float: left;
@@ -102,7 +106,6 @@ section{
                         width: 90%;
                     }
                 }
-
             }
             .row_button{
                 width: 100%;
@@ -170,7 +173,7 @@ section{
                 text-align: center;
                 background: $background_color;
                 outline: none;
-                color: $text_color;
+                color: $text_color; 
                 border-radius: 23px;
             }
 
@@ -191,3 +194,4 @@ section{
     background:linear-gradient(#052338, #a2a391);
     border-radius: 23px;
 }
+

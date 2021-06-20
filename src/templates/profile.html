@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../resources/css/profile.css">
     <link rel="stylesheet" href="../resources/css/menu.min.css">
     <script src="../resources/js/classament.js"></script>
+    <script src="../resources/js/history.js"></script>
+    <script src="../resources/js/historyBuilder.js"></script>
     <script src="../resources/js/whoIsLoggedIn.js"></script>
     <script src="../resources/js/profile.js"></script>
     <title>{{title}}</title>
@@ -15,13 +17,14 @@
 <body>
     <% partial nav %>
     <div class="wizzard">
-        <h2 class="title">Profile Page</h2>
-        <div class="row">
+        <h2 class="title disable">Profile Page</h2>
+        <div class="row disable">
             <div class="profile_container">
                 <img id="profile_picture" class="profile_picture" alt="Profile Picture" src="../resources/img/0001.png">
                 <input type="file" id="change_profile_picture" accept="image/*" onchange="previewFile()">
                 <br>
                 <button id="edit_button"  class="disabled_button">Edit</button>
+                <button id="history" class = "disabled_button" >History</button>
             </div>
             <div class="col_70">
                 <div class="col_30">
@@ -72,8 +75,9 @@
                 </div>
             </div>
         </div>
-        
+        <br>
         
     </div>
+    
 </body>
 </html>

@@ -1,4 +1,4 @@
-
+const url_history_list = "http://localhost:2021/history/";
 const url_update_user = "/api/user/{id}";
 
 function loadDetails(user){
@@ -26,7 +26,10 @@ let updateUser = async(ev) =>{
     curret_user.user_name = document.getElementById("username").value;
     curret_user.mail = document.getElementById("email").value;
     let x = await tryUpdate(curret_user, parseInt(curret_user.id));
-    console.log(x);
+    if(x.status != 404){
+        builderHistoryProfileChange(parseInt(curret_user.id));
+        window.location = "/myProfile/";
+    }
 }
 
 async function tryUpdate(data, ID){
@@ -37,9 +40,16 @@ async function tryUpdate(data, ID){
     }).then(r => r.json());
 }
 
+let move = (ev) =>{
+    window.location = "/history/";
+}
+
 document.addEventListener("DOMContentLoaded", async() => {
-    let current_user = await didIGetIt();
+    var current_user = await didIGetIt();
     var classament = await getClassament();
+    var istoric = await getHistory(parseInt(current_user.id));
     loadProfile(current_user, classament);
+    //loadIstoric(istoric);
     document.getElementById("edit_button").addEventListener("click", updateUser);
+    document.getElementById("history").addEventListener("click", move);
 });

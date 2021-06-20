@@ -15,6 +15,11 @@ body{
     padding: 1em 0 0 0;
 }
 
+.row2{
+    margin: 0;
+    padding: 1em 0 0 0;
+}
+
 //pentru details
 .row::after{
     content: "";
@@ -28,10 +33,6 @@ body{
     float: left;
 }
 
-/*.container{
-    position: relative;
-}*/
-
 .profile_picture{
     opacity: 1;
     display: block;
@@ -41,32 +42,6 @@ body{
     transition: .5s ease;
     backface-visibility: hidden;
 }
-
-/*.edit_text_prompt{
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.container:hover .profile_picture {
-    opacity: 0.3;
-}
-
-.container:hover .edit_text_prompt {
-    opacity: 1;
-}
-
-.text {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    padding: 16px 32px;
-}*/
 
 #change_profile_picture{
     display: none;
@@ -88,61 +63,71 @@ body{
     text-align: right;
 }
 
-
-
 .col_100{
     width: 100%;
 }
 
-.wizzard {
-    background-color: $input_color;
-    width: 70vw;
-    height: auto;
-    padding: 30px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    border-radius: 23px;
-    transition: 0.15s;
+body{
+    width: 100%;
+    display:list-item;
+    justify-content: center;
+    align-items: center;
 
-    input, textarea {
+    .wizzard {
+        background-color: $input_color;
+        width: 70vw;
+        height: auto;
+        padding: 30px;
+        position: absolute;
+        margin: 2em;
+        height: fit-content;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         text-align: center;
-        background: none;
-        outline: none;
-        border: 3px solid $background_color;
-        width: 70%;
         border-radius: 23px;
-        resize: none;
-        font-size: 2em;
-        &:focus{
-            width: calc(70% + 10px);
+        transition: 0.15s;
+    
+        input, textarea {
+            text-align: center;
+            background: none;
+            outline: none;
+            border: 3px solid $background_color;
+            width: 70%;
+            border-radius: 23px;
+            resize: none;
+            font-size: 2em;
+            &:focus{
+                width: calc(70% + 10px);
+            }
+        }
+    
+        .disabled_button{
+            padding: 1em 2em;
+            text-align: center;
+            background: $disabled_button;
+            outline: none;
+            color: $input_color;
+            width: 100px;
+        }
+    
+        .enabled_button{
+            padding: 1em 2em;
+            text-align: center;
+            background: $text_color;
+            outline: none;
+            color: $input_color;
+            width: 100px;
+        }
+    
+        p {
+            font-size: 4vmin;
         }
     }
-
-    .disabled_button{
-        padding: 1em 2em;
-        text-align: center;
-        background: $disabled_button;
-        outline: none;
-        color: $input_color;
-        width: 100px;
-    }
-
-    .enabled_button{
-        padding: 1em 2em;
-        text-align: center;
-        background: $text_color;
-        outline: none;
-        color: $input_color;
-        width: 100px;
-    }
-
-    p {
-        font-size: 4vmin;
-    }
 }
+
+
 
 .offline {
     display: none;
@@ -213,4 +198,8 @@ body{
             display: none;
         }
     }
+}
+
+.disable{
+    display: block;
 }
