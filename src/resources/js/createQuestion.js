@@ -63,6 +63,10 @@ function valideaza(){
     }).then( fetchDownload);
 }
 
+async function descarcaClasament(){
+    console.log("AICI");
+}
+
 document.addEventListener("DOMContentLoaded", async() => {
     let current_user_id = await didIGetIt();
     writeProfileCard(current_user_id.id);

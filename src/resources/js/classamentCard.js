@@ -23,10 +23,11 @@ function replaceClassamentCard(classament){
             <br>
             <hr>
             <div class="row_button">
-                <button id = "download">Descarca</button>
+                <button id = "downloadClasament">Descarca</button>
             </div>
         `
-    ))
+    ));
+    container.querySelector("#downloadClasament").addEventListener('click', descarcaClasament);
 }
 
 async function writeClassamentCard(){
