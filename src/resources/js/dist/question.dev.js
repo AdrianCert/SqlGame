@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   writeQuestions(3);
   document.getElementById("dificultate").addEventListener("change", selector);
   document.getElementById("text").addEventListener("change", inputText);
+  document.getElementById("status").addEventListener("change", dif);
 });
 var __questions__ = null;
 
@@ -171,11 +172,99 @@ var inputText = function inputText(ev) {
   });
 };
 
-function writeFitredQuestion(list) {
-  var doc;
-  return regeneratorRuntime.async(function writeFitredQuestion$(_context4) {
+function getOwned() {
+  var url;
+  return regeneratorRuntime.async(function getOwned$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
+        case 0:
+          url = "http://localhost:2021/owquestions/";
+          return _context4.abrupt("return", fetch(url, {
+            method: 'GET'
+          }).then(function (r) {
+            return r.json();
+          }));
+
+        case 2:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  });
+}
+
+var dif = function dif(ev) {
+  var doc, current_user, listQ, showList, listaOwned, listaFiltrata, ok, poz, i, j, _i, _j, _i2, _j2;
+
+  return regeneratorRuntime.async(function dif$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          doc = document.getElementById("status");
+          _context5.next = 3;
+          return regeneratorRuntime.awrap(didIGetIt());
+
+        case 3:
+          current_user = _context5.sent;
+          _context5.next = 6;
+          return regeneratorRuntime.awrap(getQuestions());
+
+        case 6:
+          listQ = _context5.sent;
+          showList = Array();
+          _context5.next = 10;
+          return regeneratorRuntime.awrap(getOwned());
+
+        case 10:
+          listaOwned = _context5.sent;
+          listaFiltrata = listaOwned.filter(function (q) {
+            return q.user_id == parseInt(current_user.id);
+          });
+          ok = 0;
+
+          if (doc.value == 0) {
+            for (i = 0; i < listaFiltrata.length; ++i) {
+              for (j = 0; j < listQ.length; ++j) {
+                if (listaFiltrata[i].question_id == listQ[j].id) showList.push(listQ[j]);
+              }
+            }
+
+            writeFitredQuestion(showList);
+          } else if (doc.value == 1) {
+            for (_i = 0; _i < listQ.length; ++_i) {
+              ok = 1;
+
+              for (_j = 0; _j < listaFiltrata.length; ++_j) {
+                if (listQ[_i].id == listaFiltrata[_j].question_id) ok = 0;
+              }
+
+              if (ok) showList.push(listQ[_i]);
+            }
+
+            writeFitredQuestion(showList);
+          } else {
+            for (_i2 = 0; _i2 < listaFiltrata.length; ++_i2) {
+              for (_j2 = 0; _j2 < listQ.length; ++_j2) {
+                if (listaOwned[_i2].question_id == listQ[_j2].id && listaFiltrata[_i2].solved == "false") showList.push(listQ[_j2]);
+              }
+            }
+
+            writeFitredQuestion(showList);
+          }
+
+        case 14:
+        case "end":
+          return _context5.stop();
+      }
+    }
+  });
+};
+
+function writeFitredQuestion(list) {
+  var doc;
+  return regeneratorRuntime.async(function writeFitredQuestion$(_context6) {
+    while (1) {
+      switch (_context6.prev = _context6.next) {
         case 0:
           doc = document.getElementById("main");
 
@@ -187,7 +276,7 @@ function writeFitredQuestion(list) {
 
         case 3:
         case "end":
-          return _context4.stop();
+          return _context6.stop();
       }
     }
   });
@@ -198,32 +287,31 @@ function writeQuestions(n) {
       container,
       curr,
       slots,
-      _args5 = arguments;
-  return regeneratorRuntime.async(function writeQuestions$(_context5) {
+      _args7 = arguments;
+  return regeneratorRuntime.async(function writeQuestions$(_context7) {
     while (1) {
-      switch (_context5.prev = _context5.next) {
+      switch (_context7.prev = _context7.next) {
         case 0:
-          data = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : null;
+          data = _args7.length > 1 && _args7[1] !== undefined ? _args7[1] : null;
 
           if (!(data === null)) {
-            _context5.next = 7;
+            _context7.next = 7;
             break;
           }
 
-          _context5.next = 4;
+          _context7.next = 4;
           return regeneratorRuntime.awrap(getQuestions());
 
         case 4:
-          _context5.t0 = _context5.sent;
-          _context5.next = 8;
+          _context7.t0 = _context7.sent;
+          _context7.next = 8;
           break;
 
         case 7:
-          _context5.t0 = data;
+          _context7.t0 = data;
 
         case 8:
-          data = _context5.t0;
-          console.log(data);
+          data = _context7.t0;
           container = document.getElementById('main');
           curr = 0; // create slots and add recusing each outher
 
@@ -241,9 +329,9 @@ function writeQuestions(n) {
             slots[curr++].appendChild(createQuestionBox(q));
           });
 
-        case 14:
+        case 13:
         case "end":
-          return _context5.stop();
+          return _context7.stop();
       }
     }
   });

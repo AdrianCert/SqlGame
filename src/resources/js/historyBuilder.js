@@ -18,7 +18,6 @@ async function builderHistoryCreate(id_user, question_id){
         method : 'POST',
         body: JSON.stringify(body)
     });
-
 }
 
 async function builderHistoryComplete(id_user){

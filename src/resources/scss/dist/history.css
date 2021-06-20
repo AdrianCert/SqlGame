@@ -1,8 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -14,29 +13,23 @@ body {
   position: relative;
   overflow: hidden;
 }
-
 body .history {
   background-color: #fff;
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   width: 60%;
   border-radius: 23px;
   text-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   margin-top: 1em;
 }
-
 body .history .title {
   width: 100%;
   padding: 1em 0 0 0;
   margin-bottom: 1em;
 }
-
 body .history .content {
   max-height: 70vh;
   overflow: auto;
@@ -44,11 +37,9 @@ body .history .content {
   padding: 1em 0 0 0;
   margin-bottom: 1em;
 }
-
 body .history .content h4 {
   margin: 2em;
 }
-
 body .history button {
   padding: 1em 1em;
   text-align: center;
