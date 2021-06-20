@@ -34,7 +34,7 @@ function createQuestionBox(data) {
     nfobox.classList.add('nfo');
     doc.appendChild(nfobox);
 
-    nfobox.appendChild(document.createRange().createContextualFragment(`<p>#${data.id}</p><p>by Adrian</p><p>${data.value}/${data.reward}</p>`));
+    nfobox.appendChild(document.createRange().createContextualFragment(`<p>#${data.id}</p><p>${data.value}/${data.reward}</p>`));
 
     doc.addEventListener("click", showQuestionModal);
 
