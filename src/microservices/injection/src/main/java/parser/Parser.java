@@ -13,11 +13,19 @@ public class Parser {
      */
     public boolean parse(String text){
         String[] words = text.split(" ");
-        int drop_accusation, equal_accusation, comma_accusation, plus_accusation, empty_accusation;
+        int drop_accusation, equal_accusation, comma_accusation, plus_accusation, empty_accusation, create_accusation, alter_accusations,
+            insert_accusation, update_accusation, delete_accusation;
         drop_accusation = 0;
-        for(String x : words)
+        for(String x : words){
             if(x.equalsIgnoreCase("drop")) drop_accusation = 1;
-        if(drop_accusation == 1) return false;
+            else if(x.equalsIgnoreCase("create")) create_accusation = 1;
+            else if(x.equalsIgnoreCase("alter")) alter_accusations = 1;
+            else if(x.equalsIgnoreCase("insert")) insert_accusation = 1;
+            else if(x.equalsIgnoreCase("update")) update_accusation = 1;
+            else if(x.equalsIgnoreCase("delete")) delete_accusation = 1;
+        }
+        if(drop_accusation == 1 || create_accusation == 1 || alter_accusations == 1
+            insert_accusation == 1 || update_accusation == 1 || delete_accusation == 1) return false;
         equal_accusation = 0; comma_accusation = 0; plus_accusation = 0; empty_accusation = 0;
         for(int i = 0; i < words.length; ++i){
             if(words[i].equals("=")){
