@@ -8,7 +8,7 @@ const queries = {
     "classment" : `select u.id as id, u.name || ' ' || u.surname as name , u.mail as email, w.balancing as coins
     from usertable u
     join userwallet uw on u.id = uw.user_id
-    join wallet w on uw.user_id = w.id
+    join wallet w on uw.wallet_id = w.id
     order by w.balancing desc
     `.split(/\s+/).join(' '),
     "history" : `w`
