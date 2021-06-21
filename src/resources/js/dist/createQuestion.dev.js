@@ -82,32 +82,17 @@ function valideaza() {
   }).then(fetchDownload);
 }
 
-function descarcaClasament() {
-  return regeneratorRuntime.async(function descarcaClasament$(_context2) {
+document.addEventListener("DOMContentLoaded", function _callee() {
+  var current_user_id;
+  return regeneratorRuntime.async(function _callee$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          console.log("AICI");
-
-        case 1:
-        case "end":
-          return _context2.stop();
-      }
-    }
-  });
-}
-
-document.addEventListener("DOMContentLoaded", function _callee() {
-  var current_user_id;
-  return regeneratorRuntime.async(function _callee$(_context3) {
-    while (1) {
-      switch (_context3.prev = _context3.next) {
-        case 0:
-          _context3.next = 2;
+          _context2.next = 2;
           return regeneratorRuntime.awrap(didIGetIt());
 
         case 2:
-          current_user_id = _context3.sent;
+          current_user_id = _context2.sent;
           writeProfileCard(current_user_id.id);
           writeClassamentCard();
           document.getElementById("submit").addEventListener('click', data);
@@ -115,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function _callee() {
 
         case 7:
         case "end":
-          return _context3.stop();
+          return _context2.stop();
       }
     }
   });

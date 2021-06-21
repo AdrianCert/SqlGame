@@ -1,28 +1,28 @@
 let url_history_Builder = "http://localhost:2021/history/";
 
-function remove(date){
-    let cdate = date.toString();
-    return cdate.replace("GMT+0300 (Eastern European Summer Time)", "");
+function getDate(){
+    var d = new Date();
+    return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()}`;
 }
 
 async function builderHistoryCreate(id_user, question_id){
-    var date = Date();
-    let action = `Created question ${question_id} - ${remove(date)}`;
+    console.log(getDate());
+    let action = `Created question ${question_id}  ${getDate()}`;
     let body = {
         'id' : 0,
         'user_id' : parseInt(id_user),
         'action' : action
     }
 
-    await fetch(url_history_Builder, {
+    let response = await fetch(url_history_Builder, {
         method : 'POST',
         body: JSON.stringify(body)
     });
+    console.log(response);
 }
 
 async function builderHistoryComplete(id_user){
-    let date = Date();
-    let action = `Completed question - ${remove(date)}`;
+    let action = `Completed question  ${getDate()}`;
     let body = {
         'id' : 0,
         'user_id' : parseInt(id_user),
@@ -36,8 +36,7 @@ async function builderHistoryComplete(id_user){
 }
 
 async function builderHistoryProfileChange(id_user){
-    let date = Date();
-    let action = `Changed profile - ${remove(date)}`;
+    let action = `Changed profile  ${getDate()}`;
     let body = {
         'id' : 0,
         'user_id' : parseInt(id_user),

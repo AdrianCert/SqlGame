@@ -2,19 +2,19 @@
 
 var url_history_Builder = "http://localhost:2021/history/";
 
-function remove(date) {
-  var cdate = date.toString();
-  return cdate.replace("GMT+0300 (Eastern European Summer Time)", "");
+function getDate() {
+  var d = new Date();
+  return "".concat(d.getDate(), "/").concat(d.getMonth() + 1, "/").concat(d.getFullYear(), " - ").concat(d.getHours(), ":").concat(d.getMinutes());
 }
 
 function builderHistoryCreate(id_user, question_id) {
-  var date, action, body;
+  var action, body, response;
   return regeneratorRuntime.async(function builderHistoryCreate$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          date = Date();
-          action = "Created question ".concat(question_id, " - ").concat(remove(date));
+          console.log(getDate());
+          action = "Created question ".concat(question_id, "  ").concat(getDate());
           body = {
             'id': 0,
             'user_id': parseInt(id_user),
@@ -27,6 +27,10 @@ function builderHistoryCreate(id_user, question_id) {
           }));
 
         case 5:
+          response = _context.sent;
+          console.log(response);
+
+        case 7:
         case "end":
           return _context.stop();
       }
@@ -35,25 +39,24 @@ function builderHistoryCreate(id_user, question_id) {
 }
 
 function builderHistoryComplete(id_user) {
-  var date, action, body;
+  var action, body;
   return regeneratorRuntime.async(function builderHistoryComplete$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          date = Date();
-          action = "Completed question - ".concat(remove(date));
+          action = "Completed question  ".concat(getDate());
           body = {
             'id': 0,
             'user_id': parseInt(id_user),
             'action': action
           };
-          _context2.next = 5;
+          _context2.next = 4;
           return regeneratorRuntime.awrap(fetch(url_history_Builder, {
             method: 'POST',
             body: JSON.stringify(body)
           }));
 
-        case 5:
+        case 4:
         case "end":
           return _context2.stop();
       }
@@ -62,25 +65,24 @@ function builderHistoryComplete(id_user) {
 }
 
 function builderHistoryProfileChange(id_user) {
-  var date, action, body;
+  var action, body;
   return regeneratorRuntime.async(function builderHistoryProfileChange$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          date = Date();
-          action = "Changed profile - ".concat(remove(date));
+          action = "Changed profile  ".concat(getDate());
           body = {
             'id': 0,
             'user_id': parseInt(id_user),
             'action': action
           };
-          _context3.next = 5;
+          _context3.next = 4;
           return regeneratorRuntime.awrap(fetch(url_history_Builder, {
             method: 'POST',
             body: JSON.stringify(body)
           }));
 
-        case 5:
+        case 4:
         case "end":
           return _context3.stop();
       }
