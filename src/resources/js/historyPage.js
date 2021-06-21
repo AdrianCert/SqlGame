@@ -25,7 +25,10 @@ async function loadHistory(id){
 }
 
 function download(){
-
+    fetch(`/api/pdf/history/`, {
+        method : "POST",
+        body: JSON.stringify({})
+    }).then( fetchDownload);
 }
 
 document.addEventListener("DOMContentLoaded", async() => {

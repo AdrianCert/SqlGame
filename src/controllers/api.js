@@ -1,22 +1,23 @@
 const Router = require('./../routing');
 const api = require('./../binder/api');
 const queryApi = require('./../binder/queryHandler');
-const {createPdfBinary, generatePdfReportClasament} = require('./../utils/pdf-make');
+const {createPdfBinary, generatePdfReportClasament, generatePdfReportHistory} = require('./../utils/pdf-make');
 
 const locations = Object.keys(api);
 const queries = {
     "classment" : `select u.id as id, u.name || ' ' || u.surname as name , u.mail as email, w.balancing as coins
-    from usertable u
-    join userwallet uw on u.id = uw.user_id
-    join wallet w on uw.wallet_id = w.id
-    order by w.balancing desc
-    `.split(/\s+/).join(' '),
+                from usertable u
+                join userwallet uw on u.id = uw.user_id
+                join wallet w on uw.wallet_id = w.id
+                order by w.balancing desc
+                `.split(/\s+/).join(' '),
     "coins" : `select w.balancing as coins
-    from usertable u
-    join userwallet uw on u.id = uw.user_id
-    join wallet w on uw.user_id = w.id
-    where u.id = {{id}}`.split(/\s+/).join(' '),
-    "history" : `w`
+                from usertable u
+                join userwallet uw on u.id = uw.user_id
+                join wallet w on uw.user_id = w.id
+                where u.id = {{id}}
+                `.split(/\s+/).join(' '),
+    "history" : `select * from history where user_id = {{id}}`
 }
 
 function execQuery(q) {
@@ -166,12 +167,10 @@ async function downloadPdfHistory(req, res) {
         body.push(chunk);
     }).on('end', async () => {
         body = Buffer.concat(body).toString();
-        let jbody = JSON.parse(body);
-        let qid = 0;
-        let nfo = await getQuestionCredidentials(qid);
-        let data = await queryApi.query(jbody.querry, nfo.sgbd, nfo.user, nfo.pass).then( r => r.error ? [] : r.entity).catch(() => []);
+        let data = await whoIAm(req, res, true);
+        data['history'] = await execQuery(queries.history.replace('{{id}}', req.headers.auth.info.user)).then( r => r.error ? [] : r.entity.map(h => h.ACTION)).catch(() => []);
 
-        createPdfBinary(generatePdfReportClasament(data), (binary) => {
+        createPdfBinary(generatePdfReportHistory(data), (binary) => {
             res.setHeader("Content-Type", "application/pdf");
             res.setHeader("Content-Disposition", `attachment; filename=history_${Math.random().toString(30).substring(2)}.pdf`);
             res.writeHead(200);
