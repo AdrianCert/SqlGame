@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function updateNavigation() {
+    whoIAm().then( r => {
+        document.querySelector('nav a[href="/myProfile/"]').innerHTML = `${r.name} (${r.balance})`
+    });
+
     document.querySelectorAll("nav a").forEach( i => {
         if(i.href == window.location) {
             if(!i.classList.contains('active')) {
