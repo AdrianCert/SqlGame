@@ -18,7 +18,8 @@ const models = [
     "suser",
     "user",
     "wuser",
-    "wallet"
+    "wallet",
+    "owquestions"
 ]
 
 const api = bindControllers();

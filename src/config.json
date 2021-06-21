@@ -1,3 +1,10 @@
 {
-    "port" : 80
+    "port" : 80,
+    "bd" : {
+        "intern" : {
+            "sgbd" : "ORACLE",
+            "user" : "TW",
+            "pass" : "TW"
+        }
+    }
 }

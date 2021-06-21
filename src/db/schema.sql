@@ -170,7 +170,7 @@ DROP TABLE History;
 CREATE TABLE History(
     ID int not null primary key,
     user_id int not null,
-    action varchar(50) not null
+    action varchar(150) not null
 );
 
 ALTER TABLE History ADD FOREIGN KEY (user_id) REFERENCES UserTable(ID);
@@ -184,7 +184,7 @@ CREATE TABLE Payment(
     wallet_buyer int not null,
     valoare int not null CONSTRAINT valoare CHECK (valoare > 0),
     balanta_noua int not null,
-    title varchar(50) not null
+    title varchar(150) not null
  );
 
 ALTER TABLE Payment ADD FOREIGN KEY (wallet_seller) REFERENCES Wallet(ID);
