@@ -11,7 +11,17 @@ const queries = {
     join wallet w on uw.wallet_id = w.id
     order by w.balancing desc
     `.split(/\s+/).join(' '),
+    "coins" : `select w.balancing as coins
+    from usertable u
+    join userwallet uw on u.id = uw.user_id
+    join wallet w on uw.user_id = w.id
+    where u.id = {{id}}`.split(/\s+/).join(' '),
     "history" : `w`
+}
+
+function execQuery(q) {
+    let nfo = getInternBdCreddidentials();
+    return queryApi.query(q, nfo.sgbd, nfo.user, nfo.pass)
 }
 
 function homeView(req, res) {
@@ -20,7 +30,12 @@ function homeView(req, res) {
 
 async function whoIAm(req, res , intern = false) {
     let data = req.headers.hasOwnProperty('auth') && req.headers.auth.is_authenticated ?
-        await api.user.get(req.headers.auth.info.user) : {};
+        await api.user.get(req.headers.auth.info.user).then( async user => {
+            user['balance'] = await execQuery(queries.coins.replace("{{id}}", user.id))
+                                        .then( r => r.error ? 0 : r.entity[0].COINS)
+                                        .catch(() => 0);
+            return user;
+        }) : {};
     return intern ? data: JsonRespone(res, data);
 }
 
@@ -158,12 +173,10 @@ async function downloadPdfHistory(req, res) {
 
         createPdfBinary(generatePdfReportClasament(data), (binary) => {
             res.setHeader("Content-Type", "application/pdf");
-            res.setHeader("Content-Disposition", `attachment; filename=clasament_${Math.random().toString(30).substring(2)}.pdf`);
+            res.setHeader("Content-Disposition", `attachment; filename=history_${Math.random().toString(30).substring(2)}.pdf`);
             res.writeHead(200);
             res.end(binary);
         }, (e) =>res.end('ERROR:' + e));
-        
-        
 
     });
 }
