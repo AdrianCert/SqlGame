@@ -154,7 +154,19 @@ function generatePdfReportClasament(data) {
 
 }
 
+
 function generatePdfReportHistory(data) {
+
+    let tableData = {
+        table: {
+            headerRows: 1,
+            widths: [40, '*', 40, 150, 70],
+
+            body: makeTable(data),
+        }
+    };
+    
+    return createPdfReportDocumentDefinition(utils.reportDate(new Date()), 'SQL Game - Classment', 'Top users', tableData);
 
 }
 

@@ -8,7 +8,7 @@ const queries = {
     "classment" : `select u.id as id, u.name || ' ' || u.surname as name , u.mail as email, w.balancing as coins
     from usertable u
     join userwallet uw on u.id = uw.user_id
-    join wallet w on uw.user_id = w.id
+    join wallet w on uw.wallet_id = w.id
     order by w.balancing desc
     `.split(/\s+/).join(' '),
     "coins" : `select w.balancing as coins
@@ -170,13 +170,14 @@ async function downloadPdfHistory(req, res) {
         let qid = 0;
         let nfo = await getQuestionCredidentials(qid);
         let data = await queryApi.query(jbody.querry, nfo.sgbd, nfo.user, nfo.pass).then( r => r.error ? [] : r.entity).catch(() => []);
-        
+
         createPdfBinary(generatePdfReportClasament(data), (binary) => {
             res.setHeader("Content-Type", "application/pdf");
             res.setHeader("Content-Disposition", `attachment; filename=history_${Math.random().toString(30).substring(2)}.pdf`);
             res.writeHead(200);
             res.end(binary);
         }, (e) =>res.end('ERROR:' + e));
+
     });
 }
 
