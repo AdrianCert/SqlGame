@@ -89,15 +89,10 @@ async function pageQuestion_replace(){
 
 }
 
-function descarcaClasament(){
-    console.log("AICI");
-}
-
 document.addEventListener("DOMContentLoaded", async() => {
     let current_user_id = await didIGetIt();
     writeProfileCard(current_user_id.id);
     writeClassamentCard();
     pageQuestion_replace();
     document.getElementById("raspuns").addEventListener("click", querrySender);
-    document.getElementById("descarcaFisier").addEventListener("click", descarcaFisier);
 });

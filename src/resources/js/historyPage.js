@@ -25,7 +25,7 @@ async function loadHistory(id){
 }
 
 function download(){
-    
+
 }
 
 document.addEventListener("DOMContentLoaded", async() => {

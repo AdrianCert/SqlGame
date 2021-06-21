@@ -2,6 +2,13 @@ function getFragment(str){
     return document.createRange().createContextualFragment(str);
 }
 
+function descarcaClasament(e) {
+    fetch(`/api/pdf/top/`, {
+        method : "POST",
+        body: JSON.stringify({})
+    }).then( fetchDownload);
+}
+
 function replaceClassamentCard(classament){
     let counter = 1;
     let container = document.getElementById("classamentCard");
