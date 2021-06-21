@@ -25,7 +25,7 @@ app.prefilter(processCookies);
 app.prefilter(processAuth);
 app.prefilter(authWall);
 
-app.path("/history/", historyController);
+app.path("/api/", apiController);
 app.path("/landing/", landingController);
 app.path("/signup/", signupController);
 app.path("/pageQuestion/", pageQuestionController);
@@ -33,7 +33,7 @@ app.path("/createQuestion/", createQuestionController);
 app.path("/myProfile/", profileController);
 app.path("/question/", questionController);
 app.path("/auth/", authController);
-app.path("/api/", apiController);
+app.path("/history/", historyController);
 app.path("/", (inp, out) => {
     console.log(`REDIRECT HTTP/${inp.httpVersion} ${inp.method} ${inp.url}`);
     out.setHeader("Location", "/question/");
