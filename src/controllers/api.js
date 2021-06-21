@@ -155,20 +155,16 @@ async function downloadPdfHistory(req, res) {
         let qid = 0;
         let nfo = await getQuestionCredidentials(qid);
         let data = await queryApi.query(jbody.querry, nfo.sgbd, nfo.user, nfo.pass).then( r => r.error ? [] : r.entity).catch(() => []);
-        let exportData = "";
-        if (data.length > 0) {
-            // building csv response
-            // https://datatracker.ietf.org/doc/html/rfc4180
-            let buff = [];
-            buff.push(...Object.keys(data[0]).reduce((a,c) => `${a},${c}`));
-            data.forEach( r => buff.push('\n', Object.values(r).reduce((a,c) => `${a},${c}`)));
-            exportData = buff.reduce((a,c) => `${a}${c}`);
-        }
 
-        res.setHeader("Content-Type", "text/csv");
-        res.setHeader("Content-Disposition", `attachment; filename=interogration_${Math.random().toString(30).substring(2)}.csv`);
-        res.writeHead(200);
-        res.end(exportData);
+        createPdfBinary(generatePdfReportClasament(data), (binary) => {
+            res.setHeader("Content-Type", "application/pdf");
+            res.setHeader("Content-Disposition", `attachment; filename=clasament_${Math.random().toString(30).substring(2)}.pdf`);
+            res.writeHead(200);
+            res.end(binary);
+        }, (e) =>res.end('ERROR:' + e));
+        
+        
+
     });
 }
 
