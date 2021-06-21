@@ -1,0 +1,116 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 'Query Handler'
+  description: 'An API that allows users to compare if two SQL queries give the same answer or to get the answer of a given SQL query.'
+tags:
+- name: 'Query'
+- name: 'Verification'
+paths: 
+  /query:
+    post:
+      tags: 
+      - 'Query'
+      summary: Returns the answer to the given SQL query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  description: The SQL query that we want the answer to.
+                  type: string
+                  example: SELECT * FROM studenti
+                sgbd:
+                  description: The database that we need to connect to. This parametre is not case sensitive.
+                  type: string
+                  example: Oracle
+                credentials:
+                  description: The credentials to connect to the database.
+                  type: object
+                  properties:
+                    user:
+                      description: The USER of the database
+                      type: string
+                    pass:
+                      description: The PASSWORD of the database
+                      type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    description: States if SQL query is writen incorrecctly.
+                    type: boolean
+                    default: false
+                  entity:
+                    description:  If _error_ is false then _entity_ will state the answer of the SQL query. If _error_ is true then _entity_ will not be present.
+                    type: array
+                    items:
+                      type: object
+                  errorMesage:
+                    description:  If _error_ is true then _errorMesage_ will state the error mesage. If _error_ is false then _errorMesage_ will not be present.
+                    type: string
+        '400':
+          description: If the database and/or credendialse are writen wrong
+  /verification:
+    post:
+      tags: 
+      - 'Verification'
+      summary: Compares two SQL queries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sendQuery:
+                  description: One of the SQL queries we want to compare.
+                  type: string
+                  example: SELECT * FROM studenti
+                correctQuery:
+                  description: The other of the SQL queries we want to compare.
+                  type: string
+                  example: SELECT * FROM studenti
+                sgbd:
+                  description: The database that we need to connect to. This parametre is not case sensitive.
+                  type: string
+                  example: Oracle
+                credentials:
+                  description: The credentials to connect to the database.
+                  type: object
+                  properties:
+                    user:
+                      description: The USER of the database
+                      type: string
+                    pass:
+                      description: The PASSWORD of the database
+                      type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accepted:
+                    description: States if SQL query is writen incorrecctly. If _error_ is true then _accepted_ will be false by default.
+                    type: boolean
+                    default: false
+                  error:
+                    description: States if SQL query is writen incorrecctly.
+                    type: boolean
+                    default: false
+                  errorMesage:
+                    description:  If _error_ is true then _errorMesage_ will state the error mesage. If _error_ is false then _errorMesage_ will not be present.
+                    type: string
+        '400':
+          description: If the database and/or credendialse are writen wrong
