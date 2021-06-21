@@ -154,8 +154,13 @@ function generatePdfReportClasament(data) {
 
 }
 
+function generatePdfReportHistory(data) {
+
+}
+
 module.exports = { 
     createPdfBinary,
     createPdfReportDocumentDefinition,
     generatePdfReportClasament,
+    generatePdfReportHistory
 };
