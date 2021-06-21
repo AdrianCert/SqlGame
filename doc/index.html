@@ -33,8 +33,8 @@
         <h2>Abstract</h2>
         <p> SQLGame este o aplicație web creată pentru a transforma procesul anevoios şi copleşitor de a învăţa SQL
             într-o joacă și mult mai atractivă decât un curs clasic. Platforma este destinată pentru cei care doresc
-            să invețe sql și tot odată reprezintă un înstrument pentru grupuri formale prin crearea de borduri.
-            Aplicația se bazează pe întrebarări, care pot fii aduse și de către utizizatorii acestora.
+            să invețe sql și totodată reprezintă un instrument pentru grupuri formale prin crearea de borduri.
+            Aplicația se bazează pe întrebarări, care pot fi aduse și de către utilizatorii acestora.
         </p>
     </section>
     <section id="introduction" role="doc-introduction">
@@ -47,25 +47,38 @@
         <h2>Interfața</h2>
         <section id="aspect" typeof="sa:MaterialsAndMethods" role="doc-chapter">
             <h3>Aspect</h3>
+            
+            <figure id="interfata-landing">
+                <img src="img/landing.png" width="900" height="400" alt="landing page">
+                <img src="img/landing2.png" width="900" height="400" alt="landing page">
+                <figcaption>Pagina de prezentare.</figcaption>
+            </figure>
 
+            <figure id="interfata-questions">
+                <img src="img/questions.png" width="900" height="400" alt="question page">
+                <figcaption>Pagina de întrebări.</figcaption>
+            </figure>
+            
             <figure id="interfata-addq">
                 <img src="img/addq.png" width="900" height="400" alt="add page">
                 <figcaption>Adaugă o întrebare.</figcaption>
             </figure>
 
-            <figure id="interfata-error">
-                <img src="img/error.png" width="900" height="400" alt="error page">
-                <figcaption>Pagina eroare.</figcaption>
+            <!-- NEW  -->
+            <figure id="interfata-pageq">
+                <img src="img/questionPage.png" width="900" height="400" alt="add page">
+                <figcaption>Pagină întrebare.</figcaption>
+            </figure>
+            <!-- END -->
+
+            <figure id="interfata-profile">
+                <img src="img/profile.png" width="900" height="400" alt="profile page" >
+                <figcaption>Pagina de profil.</figcaption>
             </figure>
 
             <figure id="interfata-history">
                 <img src="img/history.png" width="900" height="400" alt="history page">
                 <figcaption>Pagina Istoric.</figcaption>
-            </figure>
-
-            <figure id="interfata-landing">
-                <img src="img/landing.png" width="900" height="400" alt="landing page">
-                <figcaption>Pagina prezentare.</figcaption>
             </figure>
 
             <figure id="interfata-login">
@@ -74,23 +87,15 @@
             </figure>
 
             <figure id="interfata-signup">
-                <img src="img/signup.png" width="900" height="400" alt="singup page">
+                <img src="img/signUpPage.png" width="900" height="400" alt="singup page">
+                <img src="img/signUpPage2.png" width="900" height="400" alt="singup page">
+                <img src="img/signUpPage3.png" width="900" height="400" alt="singup page">
                 <figcaption>Pagina de înscriere.</figcaption>
             </figure>
 
-            <figure id="interfata-news">
-                <img src="img/news.png" width="900" height="400" alt="news page">
-                <figcaption>Pagina de noutăți.</figcaption>
-            </figure>
-
-            <figure id="interfata-profile">
-                <img src="img/profile.png" width="900" height="400" alt="profile page" >
-                <figcaption>Pagina de profil.</figcaption>
-            </figure>
-
-            <figure id="interfata-questions">
-                <img src="img/questions.png" width="900" height="400" alt="question page">
-                <figcaption>Pagina de întrebări.</figcaption>
+            <figure id="interfata-error">
+                <img src="img/error.png" width="900" height="400" alt="error page">
+                <figcaption>Pagina eroare.</figcaption>
             </figure>
         </section>
         <section id="detalii" typeof="sa:MaterialsAndMethods" role="doc-chapter">
@@ -131,12 +136,6 @@
                     intermediul
                     HTML/CSS.</p>
             </section>
-            <section id="detalii-news" typeof="sa:MaterialsAndMethods" role="doc-chapter">
-                <h3>Detalii pagină noutăți</h3>
-                <p>Utilizatorul va putea fi la curent cu tot ce se întâmplă nou pe site prin intermediul paginii
-                    "noutăți".
-                    Interfața a fost creată prin intermediul HTML/CSS.</p>
-            </section>
             <section id="detalii-profile" typeof="sa:MaterialsAndMethods" role="doc-chapter">
                 <h3>Detalii pagină profil</h3>
                 <p>Ofera posibilitatea de a-și vedea profilul. Interfața a fost creată prin intermediul
@@ -156,7 +155,7 @@
         <section id="caracteristici-inregistrarea" typeof="sa:MaterialsAndMethods" role="doc-chapter">
             <h2>Înregistrarea</h2>
             <p>
-                Utilizatorul care nu dispune de cont, poate să-și creeze unul nou. La momentul înregistrării, li se va
+                Utilizatorul care nu dispune de cont, poate să-și creeze unul nou. La momentul înregistrării li se va
                 oferi 10-15 SQLizi. În locul SQLizilor, ar putea fi oferite 3 întrebări de nivel ușor care să poată
                 oferi utilizatorului o ințelegere a interfaței și a metodei de validare a răspunsului.
             </p>
@@ -164,7 +163,7 @@
         <section id="caracteristici-autentificare" typeof="sa:MaterialsAndMethods" role="doc-chapter">
             <h2>Autentificarea</h2>
             <p>
-                Utilizatorii care dispun de cont, pot să se autentifice și să intre pe contul lor personal.
+                Utilizatorii care dispun de cont, pot să se autentifice și să intre pe contul lor.
             </p>
         </section>
         <section id="caracteristici-editarea-profilului" typeof="sa:MaterialsAndMethods" role="doc-chapter">
@@ -179,16 +178,9 @@
             <h2>Vizualizarea Profilului</h2>
             <p>
                 Utilizatorii vor fi capabili să își vizualizeze profilul. Ei vor fi capabili să vizualizeze istoricul în
-                care vor fi salvate toate încercările utilizatorului, reușite cât și nereușite, fiind ordonate în
+                care vor fi salvate toate încercările utilizatorului, reușite, cât și nereușite, fiind ordonate în
                 ordinea efectuarii acțiunii, prima fiind cea mai recentă, ultima fiind prima actiune efectuată de către
                 utilizator.
-            </p>
-        </section>
-        <section id="caracteristici-vizualizarea-noutatilor" typeof="sa:MaterialsAndMethods" role="doc-chapter">
-            <h2>Vizualizarea Noutăților</h2>
-            <p>
-                Utilizatorii vor fi capabili să vizualizeze noutățile, fiind capabili să lase comentarii și să răspundă
-                la comentariile altor utilizatori.
             </p>
         </section>
         <section id="caracteristici-intrebare">
@@ -203,15 +195,13 @@
                 <h2>Răspunderea la Întrebări</h2>
                 <p>
                     Fiecare utilizator va fi capabil să răspundă la întrebări. La răspunderea corectă la întrebare,
-                    utilizatorului i se va oferi numarul de SQLizi egal cu costul întrebării inmulțit cu 1.5, dacă
-                    întrebarea este de dificultate ușoară sau medie, cu 2, dacă întrebarea este de dificultate grea.
+                    utilizatorului i se va oferi numărul de SQLizi egal cu costul întrebării inmulțit cu 2.
                 </p>
             </section>
             <section id="caracteristici-intrebare-creare" typeof="sa:MaterialsAndMethods" role="doc-chapter">
                 <h2>Crearea Întrebărilor</h2>
                 <p>
-                    Fiecare utilizator va fi capabil să creeze o întrebare, dacă își va permite. Întrebările mai
-                    populare vor fi salvate, celelalte fiind șterse după trecerea unei perioade de timp.
+                    Fiecare utilizator va fi capabil să creeze o întrebare, dacă își va permite.
                 </p>
             </section>
         </section>
@@ -238,7 +228,7 @@
         <section id="infrastructura-web" typeof="sa:MaterialsAndMethods" role="doc-chapter">
             <h2>Server web</h2>
             <p>
-                Serverul web este componenta plincipală a plicaţieri. Acesta serveşte clienţilor care se connectează
+                Serverul web este componenta plincipală a aplicaţiei. Acesta serveşte clienţilor care se conectează
                 pagini html și conținut static ( foi de stil, documente JavaScript, ect.). Aici se generează paginile
                 html folosind un template engine și se livrează clienților.
             </p>
@@ -247,7 +237,7 @@
             <h2>Server api</h2>
             <p>
                 Serverul api este componenta cea mai intens folosită din aplicație. Aceasta serveste raspunsuri sub
-                forma json a cerințelor efectuate de codul JavaScript care rulează pe browserul clientului. Astefel
+                forma json a cerințelor efectuate de codul JavaScript care rulează pe browserul clientului. Astfel
                 paginile încărcate devin dinamice și se permite trecerea către o aplicație de tip WPA ( web progresive
                 application).
             </p>
@@ -256,40 +246,39 @@
             <h2>Gateway</h2>
             <p>
                 În contextul unei aplicații scalabile introducem această componentă prin care datele/ cererile sunt
-                rutate. Dacă este nevoie de a apela la un microserviciu, cererea v-a fii preluată de către această
-                componentă iar aceasta v-a furniza răspunsul primit de către microserviciu înapoi. Pentru scalabilitate
-                se v-a folosii de naming services, care asigură că orice cerere primește un răspuns (exceptand cazutile
-                excepționale când tot sistemul eșuiază).
+                rutate. Dacă este nevoie de a apela la un microserviciu, cererea va fi preluată de către această
+                componentă iar aceasta va furniza răspunsul primit de către microserviciu înapoi. Pentru scalabilitate
+                se va folosi de naming services, care asigură că orice cerere primește un răspuns (exceptand cazurile
+                excepționale când tot sistemul eșuează).
             </p>
         </section>
         <section id="infrastructura-naming-service" typeof="sa:MaterialsAndMethods" role="doc-chapter">
             <h2>Naming Service</h2>
             <p>
-                Pe scurt naming services este un serviciu care monitorijează microserviciile din ecositem, echilibează
-                sarcinile primite. Fiecare microserviciu la pornire anuntă că este online. Este nevoie de un nume unicâ
-                prin care se identifică. Aceasta v-a fii monitorizat. Load Balancing se face prin prelucrarea în oridine
+                Pe scurt naming services este un serviciu care monitorizează microserviciile din ecosistem și echilibrează
+                sarcinile primite. Fiecare microserviciu la pornire anunță că este online. Este nevoie de un nume unic
+                prin care se identifică. Aceasta va fi monitorizat. Load Balancing se face prin prelucrarea în oridine
                 a cerințelor de către un microserviciu de același tip (Rount-Robbin).
             </p>
         </section>
         <section id="infrastructura-programable-worker-service" typeof="sa:MaterialsAndMethods" role="doc-chapter">
             <h2>Programable Worker Service</h2>
             <p>
-                Programable Worker Service asigură că unele acțiuni sunt efactuate la un anumit moment de timp. Această
-                preia o cerere obisnuită și o întârzie până când se ajunge la timpul dorit( data/ oră/ înterval orar).
+                Programable Worker Service asigură că unele acțiuni sunt efectuate la un anumit moment de timp. Aceasta
+                preia o cerere obișnuită și o întârzie până când se ajunge la timpul dorit( data/ oră/ înterval orar).
             </p>
         </section>
         <section id="infrastructura-preprocesor-service" typeof="sa:MaterialsAndMethods" role="doc-chapter">
             <h2>Sql Preprocessing Service</h2>
             <p>
-                Interogarile Sql vor fi preprocesate pentru a stabilii corectitutinea sintatica si a de prevenii
-                efecatuarea
-                actiunilor rau intentionate.
+                Interogările Sql vor fi preprocesate pentru a stabili corectitutinea sintactică și de a preveni
+                efecatuarea acțiunilor rău intenționate.
             </p>
         </section>
         <section id="infrastructura-processing-service" typeof="sa:MaterialsAndMethods" role="doc-chapter">
             <h2>Sql Processing Service</h2>
             <p>
-                Rezultatele unei interogari sql vor fii date de catre acest microserviciu.
+                Rezultatele unei interogari sql vor fi date de către acest microserviciu.
             </p>
         </section>
     </section>
