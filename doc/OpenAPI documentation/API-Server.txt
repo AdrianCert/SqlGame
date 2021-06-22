@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   version: 1.0.0
   title: 'API-Server'
-  description: 'An API that allows users to compare if two SQL queries give the same answer or to get the answer of a given SQL query.'
+  description: 'An API that allows users to meanigfully comunicate with the database.'
 tags:
 - name: 'Role'
 - name: 'User'
