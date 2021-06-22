@@ -2,9 +2,13 @@
 <html lang="ro">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/login.css">
-    <link rel="icon" href="imagine_tab.png">
-    <title>LoginPage</title>
+    <script type="text/javascript" charset="UTF-8" src="./../resources/js/login.js"></script>
 </head>
 
 <body>
@@ -13,14 +17,16 @@
             <div class="login-forum">
                 <h1>WELCOME</h1>
                 <div class="row">
-                    <input type="text" id="username" placeholder="Your email" name="user" required>
+                    <input type="text" placeholder="Your email" name="user" required>
                 </div>
                 <div class="row">
-                    <input type="password" id="password" placeholder="Your password" name="pass" required>
+                    <input type="password" placeholder="Your password" name="pass" required>
                 </div>
                 <div class="row">
-                    <button type="submit" value="Login">Login</button>
+                    <button type="submit" class="btn btn-primary" value="Login">Login</button>
+                    <button type="button" class="btn btn-primary" onclick="goregist();">Register</button>
                 </div>
+                <h4 class="error">{{mess}}</h4>
             </div>
         </form>
     </div>

@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f0f7ee;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+section {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10vh;
+}
+section .profil {
+  border: 3px solid #002626;
+  width: 20%;
+  border-radius: 23px;
+  background-color: #fff;
+  height: fit-content;
+}
+section .profil h2 {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+section .profil .body_profil .row {
+  width: 100%;
+}
+section .profil .body_profil .row .informatie {
+  width: 60%;
+  float: left;
+  padding: 1em 0 1em 0;
+  font-weight: bold;
+}
+section .profil .body_profil .row .date {
+  float: right;
+  width: 40%;
+  padding: 1em 0 1em 0;
+  font-style: italic;
+}
+section .intrebare {
+  border: 3px solid #002626;
+  background-color: #fff;
+  width: 55%;
+  border-radius: 23px;
+  height: fit-content;
+  flex-direction: column;
+}
+section .intrebare .add_info {
+  width: 100%;
+  display: flex;
+  flex-direction: inherit;
+}
+section .intrebare .add_info .row {
+  margin-top: 1.4em;
+  width: 100%;
+  text-align: center;
+}
+section .intrebare .add_info .row .col_1 {
+  width: 30%;
+  float: left;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+section .intrebare .add_info .row .col_2 {
+  width: 70%;
+  float: right;
+}
+section .intrebare .add_info .row .col_2 textarea {
+  resize: none;
+  box-sizing: border-box;
+  width: 90%;
+}
+section .intrebare .add_info .row_button {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  padding: 1em;
+  margin-top: 1em;
+}
+section .intrebare .add_info .row_button button {
+  padding: 1em 1em;
+  text-align: center;
+  background: #002626;
+  outline: none;
+  color: #4285f4;
+  border-radius: 23px;
+}
+section .intrebare .add_info .row_button.inline_buttons {
+  display: flex;
+  justify-content: space-around;
+}
+section .clasament {
+  border: 3px solid #002626;
+  background-color: #fff;
+  width: 15%;
+  border-radius: 23px;
+  height: fit-content;
+}
+section .clasament h2 {
+  text-align: center;
+}
+section .clasament .row p {
+  width: 100%;
+  text-align: left;
+  padding: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+section .clasament hr {
+  height: 2px;
+  background-color: orange;
+  outline: none;
+}
+section .clasament .row_button {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  padding: 1em;
+}
+section .clasament .row_button button {
+  padding: 1em 1em;
+  text-align: center;
+  background: #002626;
+  outline: none;
+  color: #4285f4;
+  border-radius: 23px;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  border: 7px solid black;
+  box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#052338, #a2a391);
+  border-radius: 23px;
+}
+
+#validare {
+  display: none;
+}

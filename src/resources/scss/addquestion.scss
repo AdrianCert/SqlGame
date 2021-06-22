@@ -1,6 +1,4 @@
-$background_color:#052338;
-$secondary_color:#973CBF;
-$text_color: #a2a391;
+@import "color";
 
 *{
     margin: 0;
@@ -10,12 +8,8 @@ $text_color: #a2a391;
 
 
 body{
-    background-color: $background_color;
-    @supports(background-blend-mode: multiply){
-        background-image: url("../img/background.png");
-        background-repeat: no-repeat;
-        background-blend-mode: multiply;
-    }
+    background-color: $color-secondary;
+    
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -30,10 +24,10 @@ section{
     margin-top: 10vh;    
 
     .profil{
-        border: 3px solid $text_color;
+        border: 3px solid $color-primary;
         width: 20%;
         border-radius: 23px;
-        background-color: $text_color;
+        background-color: $c_white;
         height: fit-content;
 
         h2{
@@ -65,8 +59,8 @@ section{
     }
     
     .adauga_intrebare{
-        border: 3px solid $text_color;
-        background-color: $text_color;
+        border: 3px solid $color-primary;
+        background-color: $c_white;
         width: 55%;
         border-radius: 23px;
         height: fit-content;
@@ -85,6 +79,10 @@ section{
             flex-direction: inherit;
             .row{    
                 margin-top: 1.4em;
+                
+                h3{
+                    text-align: center;
+                }
                 .col_1{
                     width: 30%;
                     float: left;
@@ -102,7 +100,6 @@ section{
                         width: 90%;
                     }
                 }
-
             }
             .row_button{
                 width: 100%;
@@ -113,9 +110,9 @@ section{
             button{
                 padding: 1em 1em;
                 text-align: center;
-                background: $background_color;
+                background: $color-primary;
                 outline: none;
-                color: $text_color;
+                color: $c_primary;
                 border-radius: 23px;
             }
             }
@@ -136,8 +133,8 @@ section{
     }
 
     .clasament{
-        border: 3px solid $text_color;
-        background-color: $text_color;
+        border: 3px solid $color-primary;
+        background-color: $c_white;
         width: 15%;
         border-radius: 23px;
         height: fit-content;
@@ -168,9 +165,9 @@ section{
             button{
                 padding: 1em 1em;
                 text-align: center;
-                background: $background_color;
+                background: $color-primary;
                 outline: none;
-                color: $text_color;
+                color: $c_primary; 
                 border-radius: 23px;
             }
 
@@ -191,3 +188,4 @@ section{
     background:linear-gradient(#052338, #a2a391);
     border-radius: 23px;
 }
+

@@ -1,5 +1,5 @@
 $header_color: #052338;
-$why_color: #052338;
+$why_color: hsl(205, 84%, 12%);
 $text_color: #a2a391;
 *{
     margin: 0;
@@ -11,7 +11,7 @@ header{
     background-color: $header_color;
     
     @supports(background-blend-mode: multiply){
-        background-image: url('background.png');
+        background-image: url('../img/background.png');
         background-repeat: no-repeat;
         background-blend-mode: multiply;
     }

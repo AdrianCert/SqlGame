@@ -6,18 +6,10 @@
 }
 
 body {
-  background-color: #052338;
+  background-color: #f0f7ee;
   height: 100vh;
   background-size: cover;
   background-position: center;
-}
-
-@supports (background-blend-mode: multiply) {
-  body {
-    background-image: url("../img/background.png");
-    background-repeat: no-repeat;
-    background-blend-mode: multiply;
-  }
 }
 
 section {
@@ -34,10 +26,10 @@ section {
 }
 
 section .profil {
-  border: 3px solid #a2a391;
+  border: 3px solid #002626;
   width: 20%;
   border-radius: 23px;
-  background-color: #a2a391;
+  background-color: #fff;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -68,8 +60,8 @@ section .profil .body_profil .row .date {
 }
 
 section .adauga_intrebare {
-  border: 3px solid #a2a391;
-  background-color: #a2a391;
+  border: 3px solid #002626;
+  background-color: #fff;
   width: 55%;
   border-radius: 23px;
   height: -webkit-fit-content;
@@ -101,6 +93,10 @@ section .adauga_intrebare .add_info {
 
 section .adauga_intrebare .add_info .row {
   margin-top: 1.4em;
+}
+
+section .adauga_intrebare .add_info .row h3 {
+  text-align: center;
 }
 
 section .adauga_intrebare .add_info .row .col_1 {
@@ -142,9 +138,9 @@ section .adauga_intrebare .add_info .row_button {
 section .adauga_intrebare .add_info .row_button button {
   padding: 1em 1em;
   text-align: center;
-  background: #052338;
+  background: #002626;
   outline: none;
-  color: #a2a391;
+  color: #4285f4;
   border-radius: 23px;
 }
 
@@ -163,8 +159,8 @@ section .adauga_intrebare .specificatii p {
 }
 
 section .clasament {
-  border: 3px solid #a2a391;
-  background-color: #a2a391;
+  border: 3px solid #002626;
+  background-color: #fff;
   width: 15%;
   border-radius: 23px;
   height: -webkit-fit-content;
@@ -202,9 +198,9 @@ section .clasament .row_button {
 section .clasament .row_button button {
   padding: 1em 1em;
   text-align: center;
-  background: #052338;
+  background: #002626;
   outline: none;
-  color: #a2a391;
+  color: #4285f4;
   border-radius: 23px;
 }
 

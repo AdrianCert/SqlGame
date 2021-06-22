@@ -1,4 +1,10 @@
 let url = "http://localhost:2021/question/";
+
+/**
+ * De facut - butonul de descarcare a fisierului 
+ * functia valideaza nu face nimic
+ */
+
 let send_body = {
     'id': 0,
     'title' : "",
@@ -16,31 +22,51 @@ function build_body(entity){
     send_body["reward"] = entity["costa"] * 2;
 }
 
-const data = (ev) => {
+const data = async (ev) => {
     ev.preventDefault();
+    let current_user_id = await didIGetIt();
+
     let entity = {
         'title' : document.getElementById("titlu").value,
         'enunt': document.getElementById("enunt").value,
         'solutia' : document.getElementById("solutia").value,
         'costa' : document.getElementById("costa").value
     }
-    console.warn('added', {entity});
-    //construiesc send_body
     build_body(entity);
-    console.warn('added', {send_body});
-    //trimit request ul
-    let response = fetch(url,{
+    await fetch(url,{
         method : 'POST',
         body : JSON.stringify(send_body),
-
     }).then(r => r.json()).then(r => {
         console.log(r);
+        document.getElementById("titlu").value = '';
         document.getElementById("solutia").value = '';
         document.getElementById("enunt").value = ''
-        window.location = '/question/';
+        if(r.status != 404){
+            builderHistoryCreate(parseInt(current_user_id.id), parseInt(r.id));
+            window.location = '/question/';
+        }
     });
+
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function getFragment(str){
+    return document.createRange().createContextualFragment(str);
+}
+
+function valideaza(){
+    fetch(`/api/querry/getcsv/`, {
+        method : "POST",
+        body: JSON.stringify({
+            "querry" : document.getElementById("solutia").value,
+            "lid" : 21
+        })
+    }).then( fetchDownload);
+}
+
+document.addEventListener("DOMContentLoaded", async() => {
+    let current_user_id = await didIGetIt();
+    writeProfileCard(current_user_id.id);
+    writeClassamentCard();
     document.getElementById("submit").addEventListener('click', data);
+    document.getElementById("check").addEventListener('click', valideaza);
 });

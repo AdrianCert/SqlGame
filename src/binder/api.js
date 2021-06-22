@@ -18,7 +18,8 @@ const models = [
     "suser",
     "user",
     "wuser",
-    "wallet"
+    "wallet",
+    "owquestions"
 ]
 
 const api = bindControllers();
@@ -77,11 +78,7 @@ function fetch_update(url, data) {
 
 function fetch_delete(url) {
     return fetch(url, {
-        method : 'DELETE',
-        headers:{
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body : JSON.stringify(data)
+        method : 'DELETE'
     })
 }
 

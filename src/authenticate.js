@@ -2,7 +2,7 @@ const crypto = require('crypto');
 const { uuidv4, isnn } = require('./utils/algebra');
 const api = require('./binder/api');
 
-const sessions = { }
+const sessions = { };
 
 function auth(dic) {
     return authenticator(dic);
@@ -49,7 +49,7 @@ async function verify_credentials(data) {
     }
     user = user[0];
     let user_sec = await api.suser.getAll().then( r => r.filter(u => u.user_id === user.id));
-    if(user_sec === 0) {
+    if(user_sec.length === 0) {
         return {
             "stat" : 2,
             "mess" : "no user sec associated"
@@ -74,7 +74,7 @@ async function login(data) {
     // check credidentail
     let nfo = {};
     let expr = data.hasOwnProperty('expr') ? data.expr : 3;
-    nfo.expr = new Date().setDate(new Date() + expr);
+    nfo.expr = new Date().setDate(new Date().getDate() + expr);
 
     return verify_credentials(data).then( c => {
         if( c.stat !== 0) {
@@ -99,9 +99,110 @@ async function login(data) {
     });
 }
 
-// login({
-//     "pass" : '123',
-//     "user" : 'dragosssw101'
-// }).then(console.log);
+async function getIdByRole(roleTitle) {
+    let role_list = [ ... await api.role.getAll()].filter( r => r.title === roleTitle);
+    if(role_list.length > 0 && role_list[0].hasOwnProperty('id')) {
+        return role_list[0].id;
+    }
+    return (await api.role.add({
+        "title" : roleTitle,
+        "description" : roleTitle
+    })).id;
+}
 
-module.exports = {auth, login };
+async function register(data) {
+    let nfo = {};
+    let expr = data.hasOwnProperty('expr') ? data.expr : 3;
+    nfo.expr = new Date().setDate(new Date().getDate() + expr);
+
+    let user = await api.user.add({
+        'name' : data.prenume,
+        'surname' : data.nume,
+        'user_name': data.username,
+        'mail' : data.email,
+        'details' : data.descriere
+    });
+
+    if (!user.hasOwnProperty('id')) {
+        return {
+            "auth" : false,
+            "reason" : "User not creted"
+        };
+    }
+    
+    let user_sec = await api.suser.add({
+        'user_id' : user.id,
+        'pass' : crypto.createHash("sha256").update(data.parola).digest("hex"),
+        'pass_update_at': new Date(),
+        'recovery_mail' : user.mail,
+        'recovery_code' : Math.random().toString(10).substring(8),
+    });
+    
+    if (!user_sec.hasOwnProperty('id')) {
+        await api.user.delete(user.id);
+        return {
+            "auth" : false,
+            "reason" : "User Sec not creted"
+        };
+    }
+
+    let wallet = await api.wallet.add({
+        'balancing' : 100
+    });
+
+    if(!wallet.hasOwnProperty('id')) {
+        await api.user.delete(user.id);
+        await api.suser.delete(user_sec.id);
+        return {
+            "auth" : false,
+            "reason" : "Wallet not created"
+        };
+    }
+
+    let user_wallet = await api.wuser.add({
+        'user_id' : user.id,
+        'wallet_id' : wallet.id
+    });
+
+    if(!user_wallet.hasOwnProperty('id')) {
+        await api.user.delete(user.id);
+        await api.suser.delete(user_sec.id);
+        await api.wallet.delete(wallet.id);
+        return {
+            "auth" : false,
+            "reason" : "User Wallet not created"
+        };
+    }
+
+    let user_permision = await getIdByRole("USER")
+        .then( role_id => api.puser.add({
+            'user_id' : user.id,
+            'role_id' : role_id,
+    }));
+
+    if(!user_permision.hasOwnProperty('id')) {
+        await api.user.delete(user.id);
+        await api.suser.delete(user_sec.id);
+        await api.wallet.delete(wallet.id);
+        await api.wuser.delete(user_wallet.id);
+        return {
+            "auth" : false,
+            "reason" : "User Permision not created"
+        };
+    }
+
+    nfo.user = user.id;
+
+    // generate uuid
+    let key = uuidv4();
+    while( sessions.hasOwnProperty(key)) key = uuidv4();
+
+    sessions[key] = nfo;
+
+    return {
+        "auth" : true,
+        "key" : key
+    };
+}
+
+module.exports = {auth, login, register }

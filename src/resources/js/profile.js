@@ -1,214 +1,55 @@
-let url = "http://localhost:2021/myProfile/";
-let send_body = {
-    'id': 0,
-    'name' : "",
-    'surname' : "",
-    'username' : "",
-    'mail' : "",
-    'sqlizi' : 0
-}
-var edit = false;
+const url_history_list = "http://localhost:2021/history/";
+const url_update_user = "/api/user/{id}";
 
-const data = (ev) => {
-    if(document.getElementById("edit_button").classList.contains("enabled_button")){
-        ev.preventDefault();
-        let entity = {
-            'name' : document.getElementById("name").value,
-            'surname': document.getElementById("surname").value,
-            'username' : document.getElementById("username").value,
-            'mail' : document.getElementById("email").value
-        }
-        console.warn('added', {entity});
-        //construiesc send_body
-        send_body["name"] = entity["name"];
-        send_body["surname"] = entity["surname"];
-        send_body["username"] = entity["username"];
-        send_body["mail"] = entity["mail"];
-        
-        console.warn('added', {send_body});
-        //trimit request ul
-        let response = fetch(url,{
-            method : 'POST',
-            mode:'no-cors',
-            headers:{
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body : JSON.stringify(send_body)
-        }).then(r => {
-            
-        });
-        let result = response.catch();
-        console.warn(result);
-        changeProfileInfo();
+function loadDetails(user){
+    document.getElementById("name").value = user.name;
+    document.getElementById("surname").value  = user.surname;
+    document.getElementById("username").value  = user.user_name;
+    document.getElementById("email").value  = user.mail;
+}
+
+function loadSpecificDetails(ID, classament){
+    let line = classament.filter(i => i.id == ID);
+    document.getElementById("sqlid").value = line[0].coins;
+    document.getElementById("rank").value = line[0].poz_clasament;
+}
+
+function loadProfile(user, classament){
+    loadDetails(user);
+    loadSpecificDetails(parseInt(user.id), classament);
+}
+
+let updateUser = async(ev) =>{
+    let curret_user = await didIGetIt();
+    curret_user.name = document.getElementById("name").value;
+    curret_user.surname = document.getElementById("surname").value;
+    curret_user.user_name = document.getElementById("username").value;
+    curret_user.mail = document.getElementById("email").value;
+    let x = await tryUpdate(curret_user, parseInt(curret_user.id));
+    if(x.status != 404){
+        builderHistoryProfileChange(parseInt(curret_user.id));
+        window.location = "/myProfile/";
     }
 }
 
-var profile_email, profile_name, profile_surname, profile_username, profile_id;
-
-function setProfileInfo(json){
-    var jsonDoc = JSON.parse(json.responseText);
-    
-    document.getElementById("edit_button").classList.add("disabled_button");
-    document.getElementById("edit_button").classList.remove("enabled_button");
-
-    document.getElementById("name").value = jsonDoc.name;
-    document.getElementById("name").placeholder = jsonDoc.name;
-
-    document.getElementById("surname").value = jsonDoc.surname;
-    document.getElementById("surname").placeholder = jsonDoc.surname;
-
-    document.getElementById("username").value = jsonDoc.username;
-    document.getElementById("username").placeholder = jsonDoc.username;
-
-    document.getElementById("email").value = jsonDoc.email;
-    document.getElementById("email").placeholder = jsonDoc.email;
-
-    document.getElementById("profile_picture").src = "../resources/img/" + jsonDoc.id + ".png";
-    document.getElementById("profile_picture").alt = document.getElementById("profile_picture").src;
-
-    document.getElementById("sqlid").placeholder = jsonDoc.sqlid;
-    document.getElementById("sqlid").value = jsonDoc.sqlid;
-
-    document.getElementById("rank").placeholder = "#" + jsonDoc.rank;
-    document.getElementById("rank").value = "#" + jsonDoc.rank;
+async function tryUpdate(data, ID){
+    let url_ = url_update_user.replace("{id}", ID);
+    return await fetch(url_, {
+        method : 'PUT',
+        body : JSON.stringify(data)
+    }).then(r => r.json());
 }
 
-function changeProfileInfo(){
-    document.getElementById("username").placeholder = document.getElementById("username").value;
-    document.getElementById("email").placeholder = document.getElementById("email").value;
-
-    if(!(document.getElementById("email").value == "" || document.getElementById("email").value == document.getElementById("email").placeholder)){
-        
-    }
-
-    if(!(document.getElementById("name").value == "" || document.getElementById("name").value == document.getElementById("name").placeholder)){
-        document.getElementById("name").placeholder = document.getElementById("name").value;
-    }
-
-    if(!(document.getElementById("surname").value == "" || document.getElementById("surname").value == document.getElementById("surname").placeholder)){
-        document.getElementById("surname").placeholder = document.getElementById("surname").value;
-    }
-
-    /*if(!(document.getElementById("profile_picture").src == document.getElementById("profile_picture").alt)){
-        document.getElementById("profile_picture").alt = document.getElementById("profile_picture").src;
-    }*/
-
-    document.getElementById("edit_button").classList.add("disabled_button");
-    document.getElementById("edit_button").classList.remove("enabled_button");
+let move = (ev) =>{
+    window.location = "/history/";
 }
 
-function edited_username(){
-    if(document.getElementById("username").value == "" || document.getElementById("username").value == document.getElementById("username").placeholder){
-        return false;
-    }
-    return true;
-}
-
-function edited_email(){
-    if(document.getElementById("email").value == "" || document.getElementById("email").value == document.getElementById("email").placeholder){
-        return false;
-    }
-    return true;
-}
-
-function edited_name(){
-    if(document.getElementById("name").value == "" || document.getElementById("name").value == document.getElementById("name").placeholder){
-        return false;
-    }
-    return true;
-}
-
-function edited_surname(){
-    if(document.getElementById("surname").value == "" || document.getElementById("surname").value == document.getElementById("surname").placeholder){
-        return false;
-    }
-    return true;
-}
-
-function edited_photo(){
-    if(document.getElementById("profile_picture").src == document.getElementById("profile_picture").alt){
-        return false;
-    }
-    return true;
-}
-
-function edited(){
-    return edited_username() | edited_email() | edited_name() | edited_surname() /*| edited_photo()*/;
-}
-
-document.addEventListener("DOMContentLoaded", function(event) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            setProfileInfo(this);
-        }
-    };
-    xhttp.open("GET", "../resources/database/localuser.json", true);
-    xhttp.send();
-
-    var username_input = document.getElementById("username");
-
-    if(username_input != null){
-        username_input.addEventListener("input", function(){            
-            if(edited() == false){
-                document.getElementById("edit_button").classList.add("disabled_button");
-                document.getElementById("edit_button").classList.remove("enabled_button");
-            }else{
-                document.getElementById("edit_button").classList.add("enabled_button");
-                document.getElementById("edit_button").classList.remove("disabled_button");
-            }
-        })    
-    }
-
-    var email_input = document.getElementById("email");
-
-    if(email_input != null){
-        email_input.addEventListener("input", function(){
-            if(edited() == false){
-                document.getElementById("edit_button").classList.add("disabled_button");
-                document.getElementById("edit_button").classList.remove("enabled_button");
-            }else{
-                document.getElementById("edit_button").classList.add("enabled_button");
-                document.getElementById("edit_button").classList.remove("disabled_button");
-            }
-        })    
-    }
-
-    var name_input = document.getElementById("name");
-
-    if(name_input != null){
-        name_input.addEventListener("input", function(){
-            if(edited() == false){
-                document.getElementById("edit_button").classList.add("disabled_button");
-                document.getElementById("edit_button").classList.remove("enabled_button");
-            }else{
-                document.getElementById("edit_button").classList.add("enabled_button");
-                document.getElementById("edit_button").classList.remove("disabled_button");
-            }
-        })    
-    }
-
-    var surname_input = document.getElementById("surname");
-
-    if(surname_input != null){
-        surname_input.addEventListener("input", function(){
-            if(edited() == false){
-                document.getElementById("edit_button").classList.add("disabled_button");
-                document.getElementById("edit_button").classList.remove("enabled_button");
-            }else{
-                document.getElementById("edit_button").classList.add("enabled_button");
-                document.getElementById("edit_button").classList.remove("disabled_button");
-            }
-        })    
-    }
-
-    var photo_input = document.getElementById("profile_picture");
-
-    if(photo_input != null){
-        photo_input.addEventListener("click", function(){
-            document.getElementById("change_profile_picture").click();
-        })
-    }
-
-    document.getElementById("edit_button").addEventListener("click", data)
+document.addEventListener("DOMContentLoaded", async() => {
+    var current_user = await didIGetIt();
+    var classament = await getClassament();
+    var istoric = await getHistory(parseInt(current_user.id));
+    loadProfile(current_user, classament);
+    //loadIstoric(istoric);
+    document.getElementById("edit_button").addEventListener("click", updateUser);
+    document.getElementById("history").addEventListener("click", move);
 });

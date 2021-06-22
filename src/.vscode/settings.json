@@ -13,5 +13,38 @@
         }
     ],
     "liveSassCompile.settings.showOutputWindow" : false,
-    "liveSassCompile.settings.generateMap" : false
+    "liveSassCompile.settings.generateMap" : false,
+    "restoreTerminals.terminals": [
+        {
+          "splitTerminals": [
+            {
+              "name": "server",
+              "commands": ["npm install"]
+            }
+          ]
+        },
+        {
+          "splitTerminals": [
+            {
+              "name": "ms api",
+              "commands": [
+                "cd ./microservices/ms-backend/",
+                "mvn -f pom.xml clean package",
+                "java -jar ./target/api-server-1.0.jar"
+              ],
+              "shouldRunCommands": true
+            },
+            {
+              "name": "ms query",
+              "commands": [
+                "cd ./microservices/QuerryHandler/",
+                "mvn -f pom.xml clean package",
+                "java -jar ./target/quert-handler-1.0.jar"
+              ],
+              "shouldRunCommands": true
+            }
+          ]
+        }
+      ],
+      "compile-hero.disable-compile-files-on-did-save-code": false
 }

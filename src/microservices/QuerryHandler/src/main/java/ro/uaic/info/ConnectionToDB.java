@@ -57,6 +57,10 @@ public class ConnectionToDB {
                         return false;
                     break;
                 case 93:
+                    if (rs1.getDate(i) == null)
+                        return rs2.getDate(i) == null;
+                    if (rs2.getDate(i) == null)
+                        return false;
                     if (!rs1.getDate(i).toString().equals(rs2.getDate(i).toString()))
                         return false;
                     break;
@@ -127,10 +131,14 @@ public class ConnectionToDB {
         while (rs.next()) {
             response += "{";
             for (int i = 1; i <= columnCount; i++) {
-                response += "\"" + columnNames.get(i - 1) + "\":\"";
+                response += "\"" + columnNames.get(i - 1) + "\":";
                 switch (rsmd.getColumnType(i)) {
                     case 1:
-                        response += rs.getString(i);
+                    case 12:
+                        if (rs.getString(i) == null)
+                            response += "\"\"";
+                        else
+                            response += "\"" + rs.getString(i) + "\"";
                         break;
                     case 2:
                         response += rs.getInt(i);
@@ -139,7 +147,8 @@ public class ConnectionToDB {
                         response += rs.getBoolean(i);
                         break;
                     case 93:
-                        response += rs.getDate(i).toString();
+                        if (rs.getDate(i) != null)
+                            response += rs.getDate(i).toString();
                         break;
                     case 8:
                         response += rs.getDouble(i);
@@ -147,11 +156,7 @@ public class ConnectionToDB {
                     case 6:
                         response += rs.getFloat(i);
                         break;
-                    case 12:
-                        response += rs.getString(i);
-                        break;
                 }
-                response += "\"";
                 if (i != columnCount)
                     response += ",";
             }
@@ -179,13 +184,13 @@ public class ConnectionToDB {
                 if (jo.has("query") && !jo.getString("query").isEmpty())
                     try {
                         connectToDatabase(jo);
-                        this.body = returnJsonFromSQL(jo.getString("query"));
+                        this.body = "{\"error\":false, \"entity\":" + returnJsonFromSQL(jo.getString("query")) + "}";
                         setStatusCode(200);
                         disconnectToDatabase();
                     } catch (SQLException e) {
                         System.err.println(e.getMessage());
-                        this.body = "";
-                        setStatusCode(400);
+                        this.body = "{\"error\":true, \"errorMesage\":\"" + e.getMessage().substring(0, e.getMessage().length() - 1) + "\"}";
+                        setStatusCode(200);
                     }
             } else if (request.getUri().equals("/verification")) {
 
@@ -195,15 +200,16 @@ public class ConnectionToDB {
                         connectToDatabase(jo);
                         setStatusCode(200);
                         if (correctSQL(jo.getString("sendQuery"), jo.getString("correctQuery"))) {
-                            this.body = "{\"accepted\":true}";
+                            this.body = "{\"accepted\":true, \"error\":false}";
                         } else {
-                            this.body = "{\"accepted\":false}";
+                            this.body = "{\"accepted\":false, \"error\":false}";
                         }
                         disconnectToDatabase();
                     } catch (SQLException e) {
                         System.err.println(e.getMessage());
-                        this.body = "";
-                        setStatusCode(400);
+                        this.body = "{\"accepted\":false, \"error\":true, \"errorMesage\":\"" + e.getMessage().
+                                substring(0, e.getMessage().length() - 1) + "\"}";
+                        setStatusCode(200);
                     }
             }
     }

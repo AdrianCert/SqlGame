@@ -2,10 +2,18 @@ body {
   margin: 0px;
   padding: 0px;
   font-family: sans-serif;
-  background-color: #052338;
+  background-color: #f0f7ee;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
 }
 
 .row {
+  margin: 0;
+  padding: 1em 0 0 0;
+}
+
+.row2 {
   margin: 0;
   padding: 1em 0 0 0;
 }
@@ -22,46 +30,18 @@ body {
   float: left;
 }
 
-/*.container{
-    position: relative;
-}*/
 .profile_picture {
   opacity: 1;
   display: block;
   width: 90%;
   border-radius: 50%;
-  border: 3px solid #052338;
+  border: 3px solid #002626;
   -webkit-transition: .5s ease;
   transition: .5s ease;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
 
-/*.edit_text_prompt{
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.container:hover .profile_picture {
-    opacity: 0.3;
-}
-
-.container:hover .edit_text_prompt {
-    opacity: 1;
-}
-
-.text {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    padding: 16px 32px;
-}*/
 #change_profile_picture {
   display: none;
 }
@@ -86,12 +66,27 @@ body {
   width: 100%;
 }
 
-.wizzard {
-  background-color: #e9f5fd;
+body {
+  width: 100%;
+  display: list-item;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .wizzard {
+  background-color: #fff;
   width: 70vw;
   height: auto;
   padding: 30px;
   position: absolute;
+  margin: 2em;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -102,41 +97,45 @@ body {
   transition: 0.15s;
 }
 
-.wizzard input, .wizzard textarea {
+body .wizzard input, body .wizzard textarea {
   text-align: center;
   background: none;
   outline: none;
-  border: 3px solid #052338;
+  border: 3px solid #002626;
   width: 70%;
   border-radius: 23px;
   resize: none;
   font-size: 2em;
 }
 
-.wizzard input:focus, .wizzard textarea:focus {
+body .wizzard input:focus, body .wizzard textarea:focus {
   width: calc(70% + 10px);
 }
 
-.wizzard .disabled_button {
+body .wizzard .disabled_button {
   padding: 1em 2em;
   text-align: center;
-  background: #202020;
+  background: #002626;
   outline: none;
-  color: #e9f5fd;
+  color: #4285f4;
   width: 100px;
 }
 
-.wizzard .enabled_button {
+body .wizzard .enabled_button {
   padding: 1em 2em;
   text-align: center;
-  background: #031724;
+  background: #002626;
   outline: none;
-  color: #e9f5fd;
+  color: #4285f4;
   width: 100px;
 }
 
-.wizzard p {
+body .wizzard p {
   font-size: 4vmin;
+}
+
+body .wizzard .profile_container .profile_picture {
+  border: 3px solid #002626;
 }
 
 .offline {
@@ -162,7 +161,7 @@ body {
   .wizzard .profile_container .profile_picture {
     width: 30%;
     border-radius: 50%;
-    border: 3px solid #052338;
+    border: 3px solid #002626;
   }
   .wizzard .title {
     display: none;
@@ -187,9 +186,13 @@ body {
   .wizzard .profile_container .profile_picture {
     width: 40%;
     border-radius: 50%;
-    border: 3px solid #052338;
+    border: 3px solid #002626;
   }
   .wizzard .title {
     display: none;
   }
+}
+
+.disable {
+  display: block;
 }

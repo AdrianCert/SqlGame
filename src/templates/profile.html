@@ -7,26 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resources/css/profile.css">
     <link rel="stylesheet" href="../resources/css/menu.min.css">
+    <script src="../resources/js/script.js"></script>
+    <script src="../resources/js/classament.js"></script>
+    <script src="../resources/js/history.js"></script>
+    <script src="../resources/js/historyBuilder.js"></script>
+    <script src="../resources/js/whoIsLoggedIn.js"></script>
     <script src="../resources/js/profile.js"></script>
     <title>{{title}}</title>
 </head>
 <body>
     <% partial nav %>
     <div class="wizzard">
-        <h2 class="title">Profile Page</h2>
-        <div class="row">
+        <h2 class="title disable">Profile Page</h2>
+        <div class="row disable">
             <div class="profile_container">
                 <img id="profile_picture" class="profile_picture" alt="Profile Picture" src="../resources/img/0001.png">
                 <input type="file" id="change_profile_picture" accept="image/*" onchange="previewFile()">
                 <br>
                 <button id="edit_button"  class="disabled_button">Edit</button>
+                <button id="history" class = "disabled_button" >History</button>
             </div>
             <div class="col_70">
                 <div class="col_30">
                     <p>Nume: </p>
                 </div>
                 <div class="col_70">
-                    <input type="text" id="name" placeholder="Bordea" value="Bordea" required>
+                    <input type="text" id="name" placeholder="Bordea"  required>
                 </div>
             </div>
             <div class="col_70">
@@ -34,7 +40,7 @@
                     <p>Prenume: </p>
                 </div>
                 <div class="col_70">
-                    <input type="text" id="surname" placeholder="Ion" value="Ion" required>
+                    <input type="text" id="surname" placeholder="Ion" required>
                 </div>
             </div>
             <div class="col_70">
@@ -42,7 +48,7 @@
                     <p>Username: </p>
                 </div>
                 <div class="col_70">
-                    <input type="text" id="username" placeholder="BoRdEa2@00" value="BoRdEa2@00" required>
+                    <input type="text" id="username" placeholder="BoRdEa2@00"  required>
                 </div>
             </div>
             <div class="col_70">
@@ -50,7 +56,7 @@
                     <p>Email: </p>
                 </div>
                 <div class="col_70">
-                    <input type="email" id="email" placeholder="ion@mail.com" value="ion@mail.com" required>
+                    <input type="email" id="email" placeholder="ion@mail.com"  required>
                 </div>
             </div>
             <div class="col_70">
@@ -58,7 +64,7 @@
                     <p>SQLitz: </p>
                 </div>
                 <div class="col_70">
-                    <input type="text" id="sqlid" placeholder="#" value="13" readonly>
+                    <input type="text" id="sqlid" placeholder="#"  readonly>
                 </div>
             </div>
             <div class="col_70">
@@ -66,10 +72,13 @@
                     <p>Rank: </p>
                 </div>
                 <div class="col_70">
-                    <input type="text" id="rank" placeholder="#" value="#3" readonly>
+                    <input type="text" id="rank" placeholder="#"  readonly>
                 </div>
             </div>
         </div>
+        <br>
+        
     </div>
+    
 </body>
 </html>
