@@ -8,7 +8,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class QuestionsOwnedRepository implements Repository<QuestionsOwned> {
 
     private Connection conn;
@@ -20,11 +19,10 @@ public class QuestionsOwnedRepository implements Repository<QuestionsOwned> {
     private final static String delete = "DELETE FROM QuestionsOwned WHERE ID = ?";
     private final static String selectAll = "SELECT * FROM QuestionsOwned";
 
-    public QuestionsOwnedRepository(){
-        try{
+    public QuestionsOwnedRepository() {
+        try {
             conn = Database.getConnection();
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -40,13 +38,12 @@ public class QuestionsOwnedRepository implements Repository<QuestionsOwned> {
     @Override
     public List<QuestionsOwned> getAll() {
         List<QuestionsOwned> entities = new ArrayList<>();
-        try(PreparedStatement statement =  conn.prepareStatement(selectAll);
-            ResultSet resultSet = statement.executeQuery(selectAll);
-        ) {
-            while(resultSet.next()) {
-                entities.add( new QuestionsOwnedBuilder(resultSet));
+        try (PreparedStatement statement = conn.prepareStatement(selectAll);
+                ResultSet resultSet = statement.executeQuery(selectAll);) {
+            while (resultSet.next()) {
+                entities.add(new QuestionsOwnedBuilder(resultSet));
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return entities;
@@ -56,8 +53,9 @@ public class QuestionsOwnedRepository implements Repository<QuestionsOwned> {
     public QuestionsOwned update(QuestionsOwned d) throws SQLException {
         PreparedStatement preparedStatement = conn.prepareStatement(update);
         d.prepare(preparedStatement);
-        preparedStatement.setInt(4, d.getID());
-        if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        preparedStatement.setInt(8, d.getID());
+        if (preparedStatement.executeUpdate() == 0)
+            throw new SQLException();
         preparedStatement.close();
         return d;
     }
@@ -66,11 +64,13 @@ public class QuestionsOwnedRepository implements Repository<QuestionsOwned> {
     public QuestionsOwned add(QuestionsOwned d) throws SQLException {
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(max);
-        if(rs.next()) d.setID(rs.getInt(1) + 1);
+        if (rs.next())
+            d.setID(rs.getInt(1) + 1);
 
         PreparedStatement preparedStatement = conn.prepareStatement(add);
         d.prepare(preparedStatement);
-        if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        if (preparedStatement.executeUpdate() == 0)
+            throw new SQLException();
 
         preparedStatement.close();
         return d;
@@ -80,7 +80,8 @@ public class QuestionsOwnedRepository implements Repository<QuestionsOwned> {
     public void delete(QuestionsOwned d) throws SQLException {
         PreparedStatement preparedStatement = conn.prepareStatement(delete);
         preparedStatement.setInt(1, d.getID());
-        if(preparedStatement.executeUpdate() == 0) throw new SQLException();
+        if (preparedStatement.executeUpdate() == 0)
+            throw new SQLException();
         preparedStatement.close();
     }
 }

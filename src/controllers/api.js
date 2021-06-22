@@ -3,7 +3,7 @@ const api = require('./../binder/api');
 const queryApi = require('./../binder/queryHandler');
 const {createPdfBinary, generatePdfReportClasament, generatePdfReportHistory} = require('./../utils/pdf-make');
 const { execQuery, queries } = require('./../binder/interogations');
-const { asMoney, zerofill, reportDate } = require('./../utils/formats');
+const { reportDate } = require('./../utils/formats');
 
 const locations = Object.keys(api);
 
@@ -68,11 +68,44 @@ async function checkQuestionAnswer(req, res) {
         let nfo = await getQuestionCredidentials(qid);
         let anwser = await queryApi.verificate(body, question.solution, nfo.sgbd, nfo.user, nfo.pass);
         if (anwser.accepted) {
+            let user = await whoIAm(req, res, true);
+            let w_bank = await execQuery(queries.banks).then( r => r.error ? {} : r.entity[0]).catch(() => {return {}});
+            let w_user = await execQuery(queries.userWallet.replace("{{id}}", user.id)).then( r => r.error ? {} : r.entity[0]).catch(() => {return {}});
+            let q_own = await execQuery(queries.questionOwn.replace("{{id}}", user.id).replace("{{qid}}", question.id))
+                            .then( r => r.error ? {} : r.entity[0])
+                            .catch(() => {return {}});
+            if(q_own.hasOwnProperty('SOLVED') && q_own.SOLVED === "true") return JsonRespone(res, anwser);
+            let payment = await makePayment(w_bank, w_user, question.value, `User ${user.user_name} user#${user.id} completed question#${question.id}`);
+            if (payment.hasOwnProperty('id')) {
+                return api.owquestions.update(q_own.ID, {
+                    'user_id': q_own.USER_ID,
+                    'question_id': q_own.QUESTION_ID,
+                    'solution': body,
+                    'solved': "true",
+                    'payment_buy': q_own.PAYMENT_BUY,
+                    'payment_rew': payment.id,
+                    'id': q_own.ID
+                }).then( r => {
+                    api.history.add({
+                        "user_id" : user.id,
+                        "action" : `solve question#${question.id} ${reportDate(new Date())}`
+                    })
+                    JsonRespone(res, anwser);
+                });
+            } else {
+                return JsonRespone(res, {
+                    "error" : "not enought money"
+                });
+            }
+          
             // make history
             // make payment
             // make update balance
         }
-        await api.histo
+        api.history.add({
+            "user_id" : user.id,
+            "action" : `Try to solve: ${body} question#${question.id} ${reportDate(new Date())}`
+        })
         return JsonRespone(res, anwser);
     });
 }

@@ -200,13 +200,13 @@ CREATE TABLE QuestionsOwned(
     solution varchar(250),
     solved varchar(10) not null,
     payment_buy int not null,
-    patment_rew int
+    payment_rew int
 );
 
 ALTER TABLE QuestionsOwned ADD FOREIGN KEY (user_id) REFERENCES USERTABLE(ID);
 ALTER TABLE QuestionsOwned ADD FOREIGN KEY (question_id) REFERENCES Question(ID);
 ALTER TABLE QuestionsOwned ADD FOREIGN KEY (payment_buy) REFERENCES Payment(ID);
-ALTER TABLE QuestionsOwned ADD FOREIGN KEY (patment_rew) REFERENCES Payment(ID);
+ALTER TABLE QuestionsOwned ADD FOREIGN KEY (payment_rew) REFERENCES Payment(ID);
 
 
 -- Wallet

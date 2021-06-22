@@ -95,4 +95,5 @@ document.addEventListener("DOMContentLoaded", async() => {
     writeClassamentCard();
     pageQuestion_replace();
     document.getElementById("raspuns").addEventListener("click", querrySender);
+    document.getElementById("descarcaFisier").addEventListener("click", descarcaFisier);
 });

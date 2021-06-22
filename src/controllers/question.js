@@ -1,5 +1,8 @@
 const Router = require('./../routing');
 const render = require('./../utils/html-response').HtmlRespone;
+const api = require('./../binder/api');
+const queryApi = require('./../binder/queryHandler');
+const { execQuery, queries, whoIAm } = require('./../binder/interogations');
 
 async function homeView(req, res) {
     render(res, "layout.html", {
@@ -9,7 +12,17 @@ async function homeView(req, res) {
 
 async function questionView(req, res) {
     let qid  = /\/question\/(\d+)/gm.exec(req.url)[1];
-    console.log(qid);
+    let question = await api.question.get(qid);
+    let user = await whoIAm(req, res, true);
+    let q_own = await execQuery(queries.questionOwn.replace("{{id}}", user.id).replace("{{qid}}", question.id))
+        .then( r => r.error ? {} : r.entity[0])
+        .catch(() => {return {}});
+    if(!q_own.hasOwnProperty('ID')){
+        res.setHeader("Location", "/question/");
+        res.writeHead(307);
+        res.end();
+        return
+    }
     render(res, "questionpage.html", {
         "title" : "Question"
     });
