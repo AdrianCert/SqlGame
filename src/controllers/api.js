@@ -66,9 +66,9 @@ async function checkQuestionAnswer(req, res) {
         let qid = /\/api\/querry\/check\/(\d+)/gm.exec(req.url)[1];
         let question = await api.question.get(qid);
         let nfo = await getQuestionCredidentials(qid);
+        let user = await whoIAm(req, res, true);
         let anwser = await queryApi.verificate(body, question.solution, nfo.sgbd, nfo.user, nfo.pass);
         if (anwser.accepted) {
-            let user = await whoIAm(req, res, true);
             let w_bank = await execQuery(queries.banks).then( r => r.error ? {} : r.entity[0]).catch(() => {return {}});
             let w_user = await execQuery(queries.userWallet.replace("{{id}}", user.id)).then( r => r.error ? {} : r.entity[0]).catch(() => {return {}});
             let q_own = await execQuery(queries.questionOwn.replace("{{id}}", user.id).replace("{{qid}}", question.id))

@@ -12,7 +12,7 @@ const queries = {
     "coins" : `select w.balancing as coins
                 from usertable u
                 join userwallet uw on u.id = uw.user_id
-                join wallet w on uw.user_id = w.id
+                join wallet w on uw.wallet_id = w.id
                 where u.id = {{id}}
                 `.split(/\s+/).join(' '),
     "history" : `select * from history where user_id = {{id}}`,
