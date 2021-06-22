@@ -2,28 +2,11 @@ const Router = require('./../routing');
 const api = require('./../binder/api');
 const queryApi = require('./../binder/queryHandler');
 const {createPdfBinary, generatePdfReportClasament, generatePdfReportHistory} = require('./../utils/pdf-make');
+const { execQuery, queries } = require('./../binder/interogations');
+const { reportDate } = require('./../utils/formats');
 
 const locations = Object.keys(api);
-const queries = {
-    "classment" : `select u.id as id, u.name || ' ' || u.surname as name , u.mail as email, w.balancing as coins
-                from usertable u
-                join userwallet uw on u.id = uw.user_id
-                join wallet w on uw.wallet_id = w.id
-                order by w.balancing desc
-                `.split(/\s+/).join(' '),
-    "coins" : `select w.balancing as coins
-                from usertable u
-                join userwallet uw on u.id = uw.user_id
-                join wallet w on uw.user_id = w.id
-                where u.id = {{id}}
-                `.split(/\s+/).join(' '),
-    "history" : `select * from history where user_id = {{id}}`
-}
 
-function execQuery(q) {
-    let nfo = getInternBdCreddidentials();
-    return queryApi.query(q, nfo.sgbd, nfo.user, nfo.pass)
-}
 
 function homeView(req, res) {
     JsonRespone(res, );
@@ -38,6 +21,10 @@ async function whoIAm(req, res , intern = false) {
             return user;
         }) : {};
     return intern ? data: JsonRespone(res, data);
+}
+
+async function getBanksWallets() {
+    return execQuery(queries.banks);
 }
 
 async function getQuestionCredidentials(id) {
@@ -79,13 +66,46 @@ async function checkQuestionAnswer(req, res) {
         let qid = /\/api\/querry\/check\/(\d+)/gm.exec(req.url)[1];
         let question = await api.question.get(qid);
         let nfo = await getQuestionCredidentials(qid);
+        let user = await whoIAm(req, res, true);
         let anwser = await queryApi.verificate(body, question.solution, nfo.sgbd, nfo.user, nfo.pass);
         if (anwser.accepted) {
+            let w_bank = await execQuery(queries.banks).then( r => r.error ? {} : r.entity[0]).catch(() => {return {}});
+            let w_user = await execQuery(queries.userWallet.replace("{{id}}", user.id)).then( r => r.error ? {} : r.entity[0]).catch(() => {return {}});
+            let q_own = await execQuery(queries.questionOwn.replace("{{id}}", user.id).replace("{{qid}}", question.id))
+                            .then( r => r.error ? {} : r.entity[0])
+                            .catch(() => {return {}});
+            if(q_own.hasOwnProperty('SOLVED') && q_own.SOLVED === "true") return JsonRespone(res, anwser);
+            let payment = await makePayment(w_bank, w_user, question.value, `User ${user.user_name} user#${user.id} completed question#${question.id}`);
+            if (payment.hasOwnProperty('id')) {
+                return api.owquestions.update(q_own.ID, {
+                    'user_id': q_own.USER_ID,
+                    'question_id': q_own.QUESTION_ID,
+                    'solution': body,
+                    'solved': "true",
+                    'payment_buy': q_own.PAYMENT_BUY,
+                    'payment_rew': payment.id,
+                    'id': q_own.ID
+                }).then( r => {
+                    api.history.add({
+                        "user_id" : user.id,
+                        "action" : `solve question#${question.id} ${reportDate(new Date())}`
+                    })
+                    JsonRespone(res, anwser);
+                });
+            } else {
+                return JsonRespone(res, {
+                    "error" : "not enought money"
+                });
+            }
+          
             // make history
             // make payment
             // make update balance
         }
-        await api.histo
+        api.history.add({
+            "user_id" : user.id,
+            "action" : `Try to solve: ${body} question#${question.id} ${reportDate(new Date())}`
+        })
         return JsonRespone(res, anwser);
     });
 }
@@ -180,6 +200,63 @@ async function downloadPdfHistory(req, res) {
     });
 }
 
+function makePayment(buyer, seller, ammount, title) {
+    let ini_buy = buyer.BALANCING;
+    let ini_sell = seller.BALANCING;
+    if(ammount < ini_buy) {
+        api.wallet.update( buyer.ID, {
+            'id' : buyer.ID,
+            'balancing' :  ini_buy - ammount
+        });
+        api.wallet.update(seller.ID, {
+            'id' : seller.ID,
+            'balancing' :  ini_sell + ammount
+        });
+
+        return api.payment.add({
+            "wallet_seller": seller.ID,
+            "wallet_buyer": buyer.ID,
+            "valoare": ammount,
+            "blanta_noua": ini_buy - ammount,
+            "title": title,
+        });
+    }
+    return {};
+}
+
+async function buyQuestion(req, res) {
+    let qid = /\/api\/action\/buyquestion\/(\d+)$/gm.exec(req.url);
+    if( qid === null) {
+        res.writeHead(400);
+        res.end();
+        return;
+    }
+    let question = await api.question.get(qid[1]);
+    let user = await whoIAm(req, res, true);
+    let w_bank = await execQuery(queries.banks).then( r => r.error ? {} : r.entity[0]).catch(() => {return {}});
+    let w_user = await execQuery(queries.userWallet.replace("{{id}}", user.id)).then( r => r.error ? {} : r.entity[0]).catch(() => {return {}});
+    let payment = await makePayment(w_user, w_bank, question.value, `User ${user.user_name} user#${user.id} buy question#${question.id}`);
+    if (payment.hasOwnProperty('id')) {
+        api.owquestions.add({
+            "user_id": user.id,
+            "question_id": question.id,
+            "solved": "false",
+            "payment_buy": payment.id,
+            "payment_rew": payment.id,
+        }).then( r => {
+            api.history.add({
+                "user_id" : user.id,
+                "action" : `buy question#${question.id} ${reportDate(new Date())}`
+            })
+            JsonRespone(res, r);
+        });
+    } else {
+        JsonRespone(res, {
+            "error" : "not enought money"
+        });
+    }
+}
+
 async function apiController(req, res) {
     let nrout = /\/api\/(\w+)\/(.*)/gm.exec(req.url);
     if(nrout !== null && locations.includes(nrout[1])) {
@@ -189,6 +266,7 @@ async function apiController(req, res) {
     return new Router()
         .path(/\/api\/$/gm, homeView)
         .path(/\/api\/whoIAm$/gm, whoIAm)
+        .path('api/action/buyquestion', buyQuestion)
         .path("/api/querry/check/", checkQuestionAnswer)
         .path("/api/querry/getcsv/", downloadCSVResult)
         .path("/api/pdf/top/", downloadPdfClasament)

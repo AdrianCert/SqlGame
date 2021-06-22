@@ -170,7 +170,7 @@ DROP TABLE History;
 CREATE TABLE History(
     ID int not null primary key,
     user_id int not null,
-    action varchar(50) not null
+    action varchar(150) not null
 );
 
 ALTER TABLE History ADD FOREIGN KEY (user_id) REFERENCES UserTable(ID);
@@ -184,7 +184,7 @@ CREATE TABLE Payment(
     wallet_buyer int not null,
     valoare int not null CONSTRAINT valoare CHECK (valoare > 0),
     balanta_noua int not null,
-    title varchar(50) not null
+    title varchar(150) not null
  );
 
 ALTER TABLE Payment ADD FOREIGN KEY (wallet_seller) REFERENCES Wallet(ID);
@@ -200,13 +200,13 @@ CREATE TABLE QuestionsOwned(
     solution varchar(250),
     solved varchar(10) not null,
     payment_buy int not null,
-    patment_rew int
+    payment_rew int
 );
 
 ALTER TABLE QuestionsOwned ADD FOREIGN KEY (user_id) REFERENCES USERTABLE(ID);
 ALTER TABLE QuestionsOwned ADD FOREIGN KEY (question_id) REFERENCES Question(ID);
 ALTER TABLE QuestionsOwned ADD FOREIGN KEY (payment_buy) REFERENCES Payment(ID);
-ALTER TABLE QuestionsOwned ADD FOREIGN KEY (patment_rew) REFERENCES Payment(ID);
+ALTER TABLE QuestionsOwned ADD FOREIGN KEY (payment_rew) REFERENCES Payment(ID);
 
 
 -- Wallet

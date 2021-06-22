@@ -69,17 +69,25 @@ function showQuestionModal(e) {
     view_btn.className = btn_classes;
     view_btn.textContent = "view";
     view_btn.addEventListener('click' , () => {
-        console.log(qid);
         window.location = `/question/${qid}`;
     });
     buttons.appendChild(view_btn);
 
     let buy_btn = document.createElement('button');
     buy_btn.type = 'button';
+    buy_btn.id = "buy_question_btn";
     buy_btn.className = btn_classes;
     buy_btn.textContent = `${question_data.value} coins`;
     buy_btn.addEventListener('click' , () => {
-        window.location = '/';
+        fetch(`/api/action/buyquestion/${qid}`)
+        .then( r => r.json()).then(r => {
+            console.log(r);
+            if(r.hasOwnProperty('id')){
+                window.location = `/question/${qid}`;
+            } else {
+                document.getElementById('buy_question_btn').classList.add('error');
+            }
+        });
     });
     buttons.appendChild(buy_btn);
 
