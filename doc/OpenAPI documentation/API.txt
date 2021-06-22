@@ -1,0 +1,3437 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 'API-Server'
+  description: 'An API that allows users to compare if two SQL queries give the same answer or to get the answer of a given SQL query.'
+tags:
+- name: 'Role'
+- name: 'User'
+- name: 'Question'
+- name: 'UserSec'
+
+paths: 
+  /user/:
+    post:
+      tags: 
+      - 'User'
+      summary: Adds a new user to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: The name of the added user.
+                  type: string
+                  example: Filimon
+                surname:
+                  description: The surname of the added user.
+                  type: string
+                  example: Andrei
+                user_name:
+                  description: The Username of the added user.
+                  type: string
+                  example: 4ndr31
+                mail:
+                  description: The email of the added user.
+                  type: string
+                  example: andrei-filimon@gmail.com
+                details:
+                  description: Additional information about the added user. Optional.
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Filimon
+                  surname:
+                    type: string
+                    example: Andrei
+                  user_name:
+                    type: string
+                    example: 4ndr31
+                  mail:
+                    type: string
+                    example: andrei-filimon@gmail.com
+                  details:
+                    default: null 
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the Username and/or the mail is already in use.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                    example: /user/
+                  status:
+                    description: The curent status.
+                    type: string
+                    example: 404
+    get:
+      tags: 
+      - 'User'
+      summary: Gets all the users from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: Filimon
+                    surname:
+                      type: string
+                      example: Andrei
+                    user_name:
+                      type: string
+                      example: 4ndr31
+                    mail:
+                      type: string
+                      example: andrei-filimon@gmail.com
+                    details:
+                      default: null 
+                      type: string
+                    id: 
+                      type: integer
+  /user/{userId}:
+    get:
+      tags: 
+      - 'User'
+      summary: Gets the user by the given id from the database
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: integer
+          required: true
+          description: ID of the user
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Filimon
+                  surname:
+                    type: string
+                    example: Andrei
+                  user_name:
+                    type: string
+                    example: 4ndr31
+                  mail:
+                    type: string
+                    example: andrei-filimon@gmail.com
+                  details:
+                    default: null 
+                    type: string
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'User'
+      summary: Puts the user by the given id from the database
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: integer
+          required: true
+          description: ID of the user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: The name of the added user.
+                  type: string
+                  example: Filimon
+                surname:
+                  description: The surname of the added user.
+                  type: string
+                  example: Andrei
+                user_name:
+                  description: The Username of the added user.
+                  type: string
+                  example: 4ndr31
+                mail:
+                  description: The email of the added user.
+                  type: string
+                  example: andrei-filimon@gmail.com
+                details:
+                  description: Additional information about the added user. Optional.
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Filimon
+                  surname:
+                    type: string
+                    example: Andrei
+                  user_name:
+                    type: string
+                    example: 4ndr31
+                  mail:
+                    type: string
+                    example: andrei-filimon@gmail.com
+                  details:
+                    default: null 
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the Username and/or the mail is already in use.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                    example: /user/
+                  status:
+                    description: The curent status.
+                    type: string
+                    example: 404
+    delete:
+      tags: 
+      - 'User'
+      summary: Deletes the user by the given id from the database
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: integer
+          required: true
+          description: ID of the user
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /role/:
+    post:
+      tags: 
+      - 'Role'
+      summary: Adds a new role to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  description: The title of the added role.
+                  type: string
+                  example: admin
+                description:
+                  description: Additional information about the added role. Optional.
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    example: admin
+                  description:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                    example: /role/
+                  status:
+                    description: The curent status.
+                    type: string
+                    example: 404
+    get:
+      tags: 
+      - 'Role'
+      summary: Gets all the roles from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      example: admin
+                    description:
+                      default: null 
+                      type: string
+                    id: 
+                      type: integer
+  /role/{roleId}:
+    get:
+      tags: 
+      - 'Role'
+      summary: Gets the role by the given id from the database
+      parameters:
+        - in: path
+          name: roleId
+          schema:
+            type: integer
+          required: true
+          description: ID of the role
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    example: admin
+                  description:
+                    default: null 
+                    type: string
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'Role'
+      summary: Puts the role by the given id from the database
+      parameters:
+        - in: path
+          name: roleId
+          schema:
+            type: integer
+          required: true
+          description: ID of the role
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  description: The title of the added role.
+                  type: string
+                  example: admin
+                description:
+                  description: Additional information about the added role. Optional.
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    example: admin
+                  description:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the Username and/or the mail is already in use.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                    example: /role/3
+                  status:
+                    description: The curent status.
+                    type: string
+                    example: 404
+    delete:
+      tags: 
+      - 'Role'
+      summary: Deletes the role by the given id from the database
+      parameters:
+        - in: path
+          name: roleId
+          schema:
+            type: integer
+          required: true
+          description: ID of the role
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /question/:
+    post:
+      tags: 
+      - 'Question'
+      summary: Adds a new question to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  description: The title of the added question.
+                  type: string
+                description:
+                  description: Additional information about the added question.
+                  type: string
+                solution:
+                  description: The solution of the added question.
+                  type: string
+                value:
+                  description: The value of the added question.
+                  type: integer
+                reward:
+                  description: The reward of the added question.
+                  type: integer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  solution:
+                    type: string
+                  value:
+                    type: integer
+                  reward:
+                    type: integer
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                    example: /question/
+                  status:
+                    description: The curent status.
+                    type: string
+                    example: 404
+    get:
+      tags: 
+      - 'Question'
+      summary: Gets all the questions from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    solution:
+                      type: string
+                    value:
+                      type: integer
+                    reward:
+                      type: integer
+                    id: 
+                      type: integer
+  /question/{questionId}:
+    get:
+      tags: 
+      - 'Question'
+      summary: Gets the question by the given id from the database
+      parameters:
+        - in: path
+          name: questionId
+          schema:
+            type: integer
+          required: true
+          description: ID of the question
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  solution:
+                    type: string
+                  value:
+                    type: integer
+                  reward:
+                    type: integer
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'Question'
+      summary: Puts the question by the given id from the database
+      parameters:
+        - in: path
+          name: questionId
+          schema:
+            type: integer
+          required: true
+          description: ID of the role
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                solution:
+                  type: string
+                value:
+                  type: integer
+                reward:
+                  type: integer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  solution:
+                    type: string
+                  value:
+                    type: integer
+                  reward:
+                    type: integer
+                  id: 
+                    type: integer
+        '404':
+          description: If the Username and/or the mail is already in use.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                    example: /question/3
+                  status:
+                    description: The curent status.
+                    type: string
+                    example: 404
+    delete:
+      tags: 
+      - 'Question'
+      summary: Deletes the question by the given id from the database
+      parameters:
+        - in: path
+          name: questionId
+          schema:
+            type: integer
+          required: true
+          description: ID of the role
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /suser/:
+    post:
+      tags: 
+      - 'UserSec'
+      summary: Adds a new UserSec to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  description: The users id.
+                  type: integer
+                  example: 1
+                pass:
+                  description: The users password.
+                  type: string
+                pass_update_at:
+                  description: The date when the password was updated.
+                  type: string
+                recovery_mail:
+                  description: The recovery mail.
+                  type: string
+                recovery_code:
+                  description: The recovery code.
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                    example: 1
+                  pass:
+                    type: string
+                  pass_update_at:
+                    type: string
+                  recovery_mail:
+                    type: string
+                  recovery_code:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                    example: /suser/
+                  status:
+                    description: The curent status.
+                    type: string
+                    example: 404
+    get:
+      tags: 
+      - 'UserSec'
+      summary: Gets all the UserSecs from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: integer
+                      example: 1
+                    pass:
+                      type: string
+                    pass_update_at:
+                      type: string
+                    recovery_mail:
+                      type: string
+                    recovery_code:
+                      type: string
+                    id: 
+                      type: integer
+  /suser/{suserId}:
+    get:
+      tags: 
+      - 'UserSec'
+      summary: Gets the UserSec by the given id from the database
+      parameters:
+        - in: path
+          name: suserId
+          schema:
+            type: integer
+          required: true
+          description: ID of the UserSec
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                    example: 1
+                  pass:
+                    type: string
+                  pass_update_at:
+                    type: string
+                  recovery_mail:
+                    type: string
+                  recovery_code:
+                    type: string
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'UserSec'
+      summary: Puts the UserSec by the given id from the database
+      parameters:
+        - in: path
+          name: suserId
+          schema:
+            type: integer
+          required: true
+          description: ID of the UserSec
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  description: The users id.
+                  type: integer
+                  example: 1
+                pass:
+                  description: The users password.
+                  type: string
+                pass_update_at:
+                  description: The date when the password was updated.
+                  type: string
+                recovery_mail:
+                  description: The recovery mail.
+                  type: string
+                recovery_code:
+                  description: The recovery code.
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                    example: 1
+                  pass:
+                    type: string
+                  pass_update_at:
+                    type: string
+                  recovery_mail:
+                    type: string
+                  recovery_code:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the Username and/or the mail is already in use.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                    example: /suser/3
+                  status:
+                    description: The curent status.
+                    type: string
+                    example: 404
+    delete:
+      tags: 
+      - 'UserSec'
+      summary: Deletes the UserSec by the given id from the database
+      parameters:
+        - in: path
+          name: suserId
+          schema:
+            type: integer
+          required: true
+          description: ID of the UserSec
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /puser/:
+    post:
+      tags: 
+      - 'UserPermision'
+      summary: Adds a new UserPermision to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                role_id:
+                  type: integer
+                expiration:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  role_id:
+                    type: integer
+                  expiration:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                    example: /puser/
+                  status:
+                    description: The curent status.
+                    type: string
+                    example: 404
+    get:
+      tags: 
+      - 'UserPermision'
+      summary: Gets all the UserPermisions from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: integer
+                    role_id:
+                      type: integer
+                    expiration:
+                      type: string
+                    id: 
+                      type: integer
+  /puser/{puserId}:
+    get:
+      tags: 
+      - 'UserPermision'
+      summary: Gets the UserPermision by the given id from the database
+      parameters:
+        - in: path
+          name: puserId
+          schema:
+            type: integer
+          required: true
+          description: ID of the UserPermision
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  role_id:
+                    type: integer
+                  expiration:
+                    type: string
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'UserPermision'
+      summary: Puts the UserPermision by the given id from the database
+      parameters:
+        - in: path
+          name: puserId
+          schema:
+            type: integer
+          required: true
+          description: ID of the UserPermision
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                role_id:
+                  type: integer
+                expiration:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  role_id:
+                    type: integer
+                  expiration:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the Username and/or the mail is already in use.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'UserPermision'
+      summary: Deletes the UserPermision by the given id from the database
+      parameters:
+        - in: path
+          name: puserId
+          schema:
+            type: integer
+          required: true
+          description: ID of the UserPermision
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /squestion/:
+    post:
+      tags: 
+      - 'QuestionSec'
+      summary: Adds a new QuestionSec to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                question_id:
+                  type: integer
+                user_id:
+                  type: integer
+                schema_id:
+                  type: integer
+                dml_permission:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  question_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  schema_id:
+                    type: integer
+                  dml_permission:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'QuestionSec'
+      summary: Gets all the QuestionSecs from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    question_id:
+                      type: integer
+                    user_id:
+                      type: integer
+                    schema_id:
+                      type: integer
+                    dml_permission:
+                      type: string
+                    id: 
+                      type: integer
+  /squestion/{squestionId}:
+    get:
+      tags: 
+      - 'QuestionSec'
+      summary: Gets the QuestionSec by the given id from the database
+      parameters:
+        - in: path
+          name: squestionId
+          schema:
+            type: integer
+          required: true
+          description: ID of the QuestionSec
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  question_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  schema_id:
+                    type: integer
+                  dml_permission:
+                    type: string
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'QuestionSec'
+      summary: Puts the QuestionSec by the given id from the database
+      parameters:
+        - in: path
+          name: squestionId
+          schema:
+            type: integer
+          required: true
+          description: ID of the QuestionSec
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                question_id:
+                  type: integer
+                user_id:
+                  type: integer
+                schema_id:
+                  type: integer
+                dml_permission:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  question_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  schema_id:
+                    type: integer
+                  dml_permission:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the Username and/or the mail is already in use.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'QuestionSec'
+      summary: Deletes the QuestionSec by the given id from the database
+      parameters:
+        - in: path
+          name: squestionId
+          schema:
+            type: integer
+          required: true
+          description: ID of the QuestionSec
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /schemaT/:
+    post:
+      tags: 
+      - 'Schema'
+      summary: Adds a new Schema to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sgdb:
+                  type: string
+                creation_script:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sgdb:
+                    type: string
+                  creation_script:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'Schema'
+      summary: Gets all the Schemas from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    sgdb:
+                      type: string
+                    creation_script:
+                      type: string
+                    id: 
+                      type: integer
+  /schemaT/{schemaTId}:
+    get:
+      tags: 
+      - 'Schema'
+      summary: Gets the Schema by the given id from the database
+      parameters:
+        - in: path
+          name: schemaTId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Schema
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sgdb:
+                    type: string
+                  creation_script:
+                    type: string
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'Schema'
+      summary: Puts the Schema by the given id from the database
+      parameters:
+        - in: path
+          name: schemaTId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Schema
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sgdb:
+                  type: string
+                creation_script:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sgdb:
+                    type: string
+                  creation_script:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'Schema'
+      summary: Deletes the Schema by the given id from the database
+      parameters:
+        - in: path
+          name: schemaTId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Schema
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /schemaL/:
+    post:
+      tags: 
+      - 'SchemaLocation'
+      summary: Adds a new SchemaLocation to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schema_id:
+                  type: integer
+                credential:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schema_id:
+                    type: integer
+                  credential:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'SchemaLocation'
+      summary: Gets all the SchemaLocation from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    schema_id:
+                      type: integer
+                    credential:
+                      type: string
+                    id: 
+                      type: integer
+  /schemaL/{schemaLId}:
+    get:
+      tags: 
+      - 'SchemaLocation'
+      summary: Gets the SchemaLocation by the given id from the database
+      parameters:
+        - in: path
+          name: schemaLId
+          schema:
+            type: integer
+          required: true
+          description: ID of the SchemaLocation
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schema_id:
+                    type: integer
+                  credential:
+                    type: string
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'SchemaLocation'
+      summary: Puts the SchemaLocation by the given id from the database
+      parameters:
+        - in: path
+          name: schemaLId
+          schema:
+            type: integer
+          required: true
+          description: ID of the SchemaLocation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schema_id:
+                  type: integer
+                credential:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schema_id:
+                    type: integer
+                  credential:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'SchemaLocation'
+      summary: Deletes the SchemaLocation by the given id from the database
+      parameters:
+        - in: path
+          name: schemaLId
+          schema:
+            type: integer
+          required: true
+          description: ID of the SchemaLocation
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /board/:
+    post:
+      tags: 
+      - 'Board'
+      summary: Adds a new Board to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                owner:
+                  type: integer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  owner:
+                    type: integer
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'Board'
+      summary: Gets all the Boards from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    owner:
+                      type: integer
+                    id: 
+                      type: integer
+  /board/{boardId}:
+    get:
+      tags: 
+      - 'Board'
+      summary: Gets the Board by the given id from the database
+      parameters:
+        - in: path
+          name: boardId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Board
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  owner:
+                    type: integer
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'Board'
+      summary: Puts the Board by the given id from the database
+      parameters:
+        - in: path
+          name: boardId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Board
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                owner:
+                  type: integer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  owner:
+                    type: integer
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'Board'
+      summary: Deletes the Board by the given id from the database
+      parameters:
+        - in: path
+          name: boardId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Board
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /bmembership/:
+    post:
+      tags: 
+      - 'BoardMembership'
+      summary: Adds a new BoardMembership to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                role_id:
+                  type: integer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  role_id:
+                    type: integer
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'BoardMembership'
+      summary: Gets all the BoardMemberships from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: integer
+                    role_id:
+                      type: integer
+                    id: 
+                      type: integer
+  /bmembership/{bmembershipId}:
+    get:
+      tags: 
+      - 'BoardMembership'
+      summary: Gets the BoardMembership by the given id from the database
+      parameters:
+        - in: path
+          name: bmembershipId
+          schema:
+            type: integer
+          required: true
+          description: ID of the BoardMembership
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  role_id:
+                    type: integer
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'BoardMembership'
+      summary: Puts the BoardMembership by the given id from the database
+      parameters:
+        - in: path
+          name: bmembershipId
+          schema:
+            type: integer
+          required: true
+          description: ID of the BoardMembership
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                role_id:
+                  type: integer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  role_id:
+                    type: integer
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'BoardMembership'
+      summary: Deletes the BoardMembership by the given id from the database
+      parameters:
+        - in: path
+          name: bmembershipId
+          schema:
+            type: integer
+          required: true
+          description: ID of the BoardMembership
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /bpublish/:
+    post:
+      tags: 
+      - 'BoardPublish'
+      summary: Adds a new BoardPublish to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                publish_at:
+                  type: string
+                user_id:
+                  type: integer
+                board_id:
+                  type: integer
+                question_id:
+                  type: integer
+                post_id:
+                  type: integer
+                valid_field:
+                  type: string
+                pub_field:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  publish_at:
+                    type: string
+                  user_id:
+                    type: integer
+                  board_id:
+                    type: integer
+                  question_id:
+                    type: integer
+                  post_id:
+                    type: integer
+                  valid_field:
+                    type: string
+                  pub_field:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'BoardPublish'
+      summary: Gets all the BoardPublish from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    publish_at:
+                      type: string
+                    user_id:
+                      type: integer
+                    board_id:
+                      type: integer
+                    question_id:
+                      type: integer
+                    post_id:
+                      type: integer
+                    valid_field:
+                      type: string
+                    pub_field:
+                      type: string
+                    id: 
+                      type: integer
+  /bpublish/{bpublishId}:
+    get:
+      tags: 
+      - 'BoardPublish'
+      summary: Gets the BoardPublish by the given id from the database
+      parameters:
+        - in: path
+          name: bpublishId
+          schema:
+            type: integer
+          required: true
+          description: ID of the BoardPublish
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  publish_at:
+                    type: string
+                  user_id:
+                    type: integer
+                  board_id:
+                    type: integer
+                  question_id:
+                    type: integer
+                  post_id:
+                    type: integer
+                  valid_field:
+                    type: string
+                  pub_field:
+                    type: string
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'BoardPublish'
+      summary: Puts the BoardPublish by the given id from the database
+      parameters:
+        - in: path
+          name: bpublishId
+          schema:
+            type: integer
+          required: true
+          description: ID of the BoardPublish
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                publish_at:
+                  type: string
+                user_id:
+                  type: integer
+                board_id:
+                  type: integer
+                question_id:
+                  type: integer
+                post_id:
+                  type: integer
+                valid_field:
+                  type: string
+                pub_field:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  publish_at:
+                    type: string
+                  user_id:
+                    type: integer
+                  board_id:
+                    type: integer
+                  question_id:
+                    type: integer
+                  post_id:
+                    type: integer
+                  valid_field:
+                    type: string
+                  pub_field:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'BoardPublish'
+      summary: Deletes the BoardPublish by the given id from the database
+      parameters:
+        - in: path
+          name: bpublishId
+          schema:
+            type: integer
+          required: true
+          description: ID of the BoardPublish
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /post/:
+    post:
+      tags: 
+      - 'Post'
+      summary: Adds a new Post to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                title:
+                  type: string
+                content:
+                  type: string
+                comments:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  comments:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'Post'
+      summary: Gets all the Posts from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: integer
+                    title:
+                      type: string
+                    content:
+                      type: string
+                    comments:
+                      type: string
+                    id: 
+                      type: integer
+  /post/{postId}:
+    get:
+      tags: 
+      - 'Post'
+      summary: Gets the Post by the given id from the database
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Post
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  comments:
+                    type: string
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'Post'
+      summary: Puts the Post by the given id from the database
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                title:
+                  type: string
+                content:
+                  type: string
+                comments:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  comments:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'Post'
+      summary: Deletes the Post by the given id from the database
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Post
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /aquestion/:
+    post:
+      tags: 
+      - 'Answer'
+      summary: Adds a new Answer to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: string
+                question_id:
+                  type: integer
+                user_id:
+                  type: integer
+                submit_time:
+                  type: string
+                status:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: string
+                  question_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  submit_time:
+                    type: string
+                  status:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'Answer'
+      summary: Gets all the Answers from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                    question_id:
+                      type: integer
+                    user_id:
+                      type: integer
+                    submit_time:
+                      type: string
+                    status:
+                      type: string
+                    id: 
+                      type: integer
+  /aquestion/{aquestionId}:
+    get:
+      tags: 
+      - 'Answer'
+      summary: Gets the Answer by the given id from the database
+      parameters:
+        - in: path
+          name: aquestionId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Answer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: string
+                  question_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  submit_time:
+                    type: string
+                  status:
+                    type: string
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'Answer'
+      summary: Puts the Answer by the given id from the database
+      parameters:
+        - in: path
+          name: aquestionId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Answer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: string
+                question_id:
+                  type: integer
+                user_id:
+                  type: integer
+                submit_time:
+                  type: string
+                status:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: string
+                  question_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  submit_time:
+                    type: string
+                  status:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'Answer'
+      summary: Deletes the Answer by the given id from the database
+      parameters:
+        - in: path
+          name: aquestionId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Answer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /history/:
+    post:
+      tags: 
+      - 'History'
+      summary: Adds a new History to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                action:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  action:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'History'
+      summary: Gets all the History from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: integer
+                    action:
+                      type: string
+                    id: 
+                      type: integer
+  /history/{historyId}:
+    get:
+      tags: 
+      - 'History'
+      summary: Gets the History by the given id from the database
+      parameters:
+        - in: path
+          name: historyId
+          schema:
+            type: integer
+          required: true
+          description: ID of the History
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  action:
+                    type: string
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'History'
+      summary: Puts the History by the given id from the database
+      parameters:
+        - in: path
+          name: historyId
+          schema:
+            type: integer
+          required: true
+          description: ID of the History
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                action:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  action:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'History'
+      summary: Deletes the History by the given id from the database
+      parameters:
+        - in: path
+          name: historyId
+          schema:
+            type: integer
+          required: true
+          description: ID of the History
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /payment/:
+    post:
+      tags: 
+      - 'Payment'
+      summary: Adds a new Payment to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet_seller:
+                  type: integer
+                wallet_buyer:
+                  type: integer
+                valoare:
+                  type: integer
+                balanta_noua:
+                  type: integer
+                title:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  wallet_seller:
+                    type: integer
+                  wallet_buyer:
+                    type: integer
+                  valoare:
+                    type: integer
+                  balanta_noua:
+                    type: integer
+                  title:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'Payment'
+      summary: Gets all the Payment from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    wallet_seller:
+                      type: integer
+                    wallet_buyer:
+                      type: integer
+                    valoare:
+                      type: integer
+                    balanta_noua:
+                      type: integer
+                    title:
+                      type: string
+                    id: 
+                      type: integer
+  /payment/{paymentId}:
+    get:
+      tags: 
+      - 'Payment'
+      summary: Gets the Payment by the given id from the database
+      parameters:
+        - in: path
+          name: paymentId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Payment
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  wallet_seller:
+                    type: integer
+                  wallet_buyer:
+                    type: integer
+                  valoare:
+                    type: integer
+                  balanta_noua:
+                    type: integer
+                  title:
+                    type: string
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'Payment'
+      summary: Puts the Payment by the given id from the database
+      parameters:
+        - in: path
+          name: paymentId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet_seller:
+                  type: integer
+                wallet_buyer:
+                  type: integer
+                valoare:
+                  type: integer
+                balanta_noua:
+                  type: integer
+                title:
+                  type: string
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  wallet_seller:
+                    type: integer
+                  wallet_buyer:
+                    type: integer
+                  valoare:
+                    type: integer
+                  balanta_noua:
+                    type: integer
+                  title:
+                    type: string
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'Payment'
+      summary: Deletes the Payment by the given id from the database
+      parameters:
+        - in: path
+          name: paymentId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Payment
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /owquestions/:
+    post:
+      tags: 
+      - 'Ownership'
+      summary: Adds a new Ownership to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                question_id:
+                  type: integer
+                solution:
+                  type: string
+                solved:
+                  type: string
+                payment_buy:
+                  type: integer
+                patment_rew:
+                  type: integer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  question_id:
+                    type: integer
+                  solution:
+                    type: string
+                  solved:
+                    type: string
+                  payment_buy:
+                    type: integer
+                  patment_rew:
+                    type: integer
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'Ownership'
+      summary: Gets all the Ownerships from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: integer
+                    question_id:
+                      type: integer
+                    solution:
+                      type: string
+                    solved:
+                      type: string
+                    payment_buy:
+                      type: integer
+                    patment_rew:
+                      type: integer
+                    id: 
+                      type: integer
+  /owquestions/{owquestionsId}:
+    get:
+      tags: 
+      - 'Ownership'
+      summary: Gets the Ownership by the given id from the database
+      parameters:
+        - in: path
+          name: owquestionsId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Ownership
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  question_id:
+                    type: integer
+                  solution:
+                    type: string
+                  solved:
+                    type: string
+                  payment_buy:
+                    type: integer
+                  patment_rew:
+                    type: integer
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'Ownership'
+      summary: Puts the Ownership by the given id from the database
+      parameters:
+        - in: path
+          name: owquestionsId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Ownership
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                question_id:
+                  type: integer
+                solution:
+                  type: string
+                solved:
+                  type: string
+                payment_buy:
+                  type: integer
+                patment_rew:
+                  type: integer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  question_id:
+                    type: integer
+                  solution:
+                    type: string
+                  solved:
+                    type: string
+                  payment_buy:
+                    type: integer
+                  patment_rew:
+                    type: integer
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'Ownership'
+      summary: Deletes the Ownership by the given id from the database
+      parameters:
+        - in: path
+          name: owquestionsId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Ownership
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /wallet/:
+    post:
+      tags: 
+      - 'Wallet'
+      summary: Adds a new Wallet to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                balancing:
+                  type: integer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balancing:
+                    type: integer
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'Wallet'
+      summary: Gets all the Wallets from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    balancing:
+                      type: integer
+                    id: 
+                      type: integer
+  /wallet/{walletId}:
+    get:
+      tags: 
+      - 'Wallet'
+      summary: Gets the Wallet by the given id from the database
+      parameters:
+        - in: path
+          name: walletId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Wallet
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balancing:
+                    type: integer
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'Wallet'
+      summary: Puts the Wallet by the given id from the database
+      parameters:
+        - in: path
+          name: walletId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Wallet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                balancing:
+                  type: integer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balancing:
+                    type: integer
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'Wallet'
+      summary: Deletes the Wallet by the given id from the database
+      parameters:
+        - in: path
+          name: walletId
+          schema:
+            type: integer
+          required: true
+          description: ID of the Wallet
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+  /wuser/:
+    post:
+      tags: 
+      - 'UserWallet'
+      summary: Adds a new UserWallet to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                wallet_id:
+                  type: integer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  wallet_id:
+                    type: integer
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    get:
+      tags: 
+      - 'UserWallet'
+      summary: Gets all the UserWallets from the database
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: integer
+                    wallet_id:
+                      type: integer
+                    id: 
+                      type: integer
+  /wuser/{wuserId}:
+    get:
+      tags: 
+      - 'UserWallet'
+      summary: Gets the UserWallet by the given id from the database
+      parameters:
+        - in: path
+          name: wuserId
+          schema:
+            type: integer
+          required: true
+          description: ID of the UserWallet
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  wallet_id:
+                    type: integer
+                  id: 
+                    type: integer
+    put:
+      tags: 
+      - 'UserWallet'
+      summary: Puts the UserWallet by the given id from the database
+      parameters:
+        - in: path
+          name: wuserId
+          schema:
+            type: integer
+          required: true
+          description: ID of the UserWallet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                wallet_id:
+                  type: integer
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  wallet_id:
+                    type: integer
+                  id: 
+                    type: integer
+        '404':
+          description: If the response is writen wrong.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    description: The curent tipestamp.
+                    type: string
+                  path:
+                    description: The used path.
+                    type: string
+                  status:
+                    description: The curent status.
+                    type: string
+    delete:
+      tags: 
+      - 'UserWallet'
+      summary: Deletes the UserWallet by the given id from the database
+      parameters:
+        - in: path
+          name: wuserId
+          schema:
+            type: integer
+          required: true
+          description: ID of the UserWallet
+      responses:
+        '200':
+          description: Everithing is alright
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
